@@ -23,7 +23,9 @@ public class BaseDeDatos {
     static public String USERNAME = "uxe6qbbaxvktdfyn";
     static public String PASSWORD = "w1I6jPbJJgscJH8AFt9y";
 
-    
+    public String BorraEstoSebas(){
+    return "Solo Fue para que se hicera el commit xd";
+    }
     /* static public String DBNAME   = "SEM";
    static public String HOSTNAME = "localhost";
    static  public String PORT="5432";
