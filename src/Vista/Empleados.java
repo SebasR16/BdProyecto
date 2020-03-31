@@ -5,17 +5,39 @@
  */
 package Vista;
 
+import bdproyecto.BaseDeDatos;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sebas
  */
 public class Empleados extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Empleados
-     */
-    public Empleados() {
+PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+     Connection con = null;
+     DefaultTableModel modelo = new DefaultTableModel();
+     DefaultTableModel modelo2 = new DefaultTableModel();
+     DefaultTableModel modelo3 = new DefaultTableModel();
+     DefaultTableModel modelo4 = new DefaultTableModel();
+     DefaultTableModel modelo5 = new DefaultTableModel();
+     DefaultTableModel modelo6 = new DefaultTableModel();
+    public Empleados() throws SQLException {
         initComponents();
+        con = BaseDeDatos.Conexion();
+        getEmpleados();
+        getSalarios();
+        getDepartamentos();
+        getDept_Emp();
+        getTitulos();
+        getDept_Manager();
+        
     }
 
     /**
@@ -140,17 +162,8 @@ public class Empleados extends javax.swing.JFrame {
         jLabel2.setText("Apellido:");
 
         TablaEmpleados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        TablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "emp_no", "birth_date", "first_date", "gender", "gire_date"
-            }
-        ));
+        TablaEmpleados.setModel(modelo);
+        TablaEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(TablaEmpleados);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -302,17 +315,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Agregar departamentos ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "dept_no", "dept_name"
-            }
-        ));
+        jTable1.setModel(modelo2);
         jScrollPane2.setViewportView(jTable1);
 
         Registrardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -410,17 +413,7 @@ public class Empleados extends javax.swing.JFrame {
         addtitles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addtitles.setText("Agregar titulos");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "emp_no", "title", "from_date", "to_date"
-            }
-        ));
+        jTable2.setModel(modelo3);
         jScrollPane3.setViewportView(jTable2);
 
         Restablecertitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -532,17 +525,7 @@ public class Empleados extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("titles", jPanel3);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "emp_no", "dept_no", "from_date", "to_date"
-            }
-        ));
+        jTable5.setModel(modelo6);
         jScrollPane6.setViewportView(jTable5);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -588,17 +571,7 @@ public class Empleados extends javax.swing.JFrame {
 
         todateyear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "emp_no", "salary", "from_date", "to_date"
-            }
-        ));
+        jTable3.setModel(modelo5);
         jScrollPane4.setViewportView(jTable3);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -731,17 +704,7 @@ public class Empleados extends javax.swing.JFrame {
         updateemp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateemp.setText("Actualizar");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "emp_no", "dept_no", "from_date", "to_date"
-            }
-        ));
+        jTable4.setModel(modelo4);
         jScrollPane5.setViewportView(jTable4);
 
         dateday3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -900,11 +863,121 @@ public class Empleados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empleados().setVisible(true);
+                try {
+                    new Empleados().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
-
+ public void getEmpleados() throws SQLException {
+        String SQL = "SELECT * FROM employees;";
+        modelo.addColumn("emp_no");
+        modelo.addColumn("birth_date");
+        modelo.addColumn("First_name");
+        modelo.addColumn("Last_name");
+        modelo.addColumn("Gender");
+        modelo.addColumn("HireDate");
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+    }
+  public void getDepartamentos() throws SQLException {
+        String SQL = "SELECT * FROM departments";
+        modelo2.addColumn("dept_no");
+        modelo2.addColumn("dept_name");
+       
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo2.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo2.addRow(fila);
+        }
+    }
+   public void getTitulos() throws SQLException {
+        String SQL = "SELECT * FROM titles;";
+        modelo3.addColumn("emp_no");
+        modelo3.addColumn("title");
+        modelo3.addColumn("From_date");
+        modelo3.addColumn("To_date");
+      
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo3.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+    }
+    public void getDept_Emp() throws SQLException {
+        String SQL = "SELECT * FROM dept_emp;";
+        modelo4.addColumn("emp_no");
+        modelo4.addColumn("dept_no");
+        modelo4.addColumn("From_date");
+        modelo4.addColumn("To_date");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo4.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+    }
+     public void getSalarios() throws SQLException {
+        String SQL = "SELECT * FROM employees;";
+          modelo5.addColumn("emp_no");
+        modelo5.addColumn("salary");
+        modelo5.addColumn("From_date");
+        modelo5.addColumn("To_date");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo5.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+    }
+      public void getDept_Manager() throws SQLException {
+        String SQL = "SELECT * FROM employees;";
+         modelo6.addColumn("emp_no");
+        modelo6.addColumn("dept_no");
+        modelo6.addColumn("From_date");
+        modelo6.addColumn("To_date");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            //int id_docente, String nombre, String apellido, String alias
+            Object [] fila = new Object[modelo6.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
     private javax.swing.JLabel Contratacion;
