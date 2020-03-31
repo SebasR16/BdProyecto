@@ -5,6 +5,9 @@
  */
 package bdproyecto;
 
+import Vista.Empleados;
+import java.sql.SQLException;
+
 /**
  *
  * @author sebas
@@ -14,9 +17,9 @@ public class BDproyecto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        
+        new Empleados().setVisible(true);
         
         
     }
