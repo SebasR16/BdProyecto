@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sebas
  */
-public class Empleados extends javax.swing.JFrame {
+public final class Empleados extends javax.swing.JFrame {
 PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
      Connection con = null;
@@ -872,7 +872,7 @@ PreparedStatement preparedStatement = null;
         });
     }
  public void getEmpleados() throws SQLException {
-        String SQL = "SELECT * FROM employees;";
+        String SQL = "SELECT * FROM employees limit 100;";
         modelo.addColumn("emp_no");
         modelo.addColumn("birth_date");
         modelo.addColumn("First_name");
@@ -891,7 +891,7 @@ PreparedStatement preparedStatement = null;
         }
     }
   public void getDepartamentos() throws SQLException {
-        String SQL = "SELECT * FROM departments";
+        String SQL = "SELECT * FROM departments limit 100";
         modelo2.addColumn("dept_no");
         modelo2.addColumn("dept_name");
        
@@ -907,7 +907,7 @@ PreparedStatement preparedStatement = null;
         }
     }
    public void getTitulos() throws SQLException {
-        String SQL = "SELECT * FROM titles;";
+        String SQL = "SELECT * FROM titles limit 100;";
         modelo3.addColumn("emp_no");
         modelo3.addColumn("title");
         modelo3.addColumn("From_date");
@@ -921,11 +921,11 @@ PreparedStatement preparedStatement = null;
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
             }
-         modelo.addRow(fila);
+         modelo3.addRow(fila);
         }
     }
     public void getDept_Emp() throws SQLException {
-        String SQL = "SELECT * FROM dept_emp;";
+        String SQL = "SELECT * FROM dept_emp limit 100;";
         modelo4.addColumn("emp_no");
         modelo4.addColumn("dept_no");
         modelo4.addColumn("From_date");
@@ -939,11 +939,11 @@ PreparedStatement preparedStatement = null;
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
             }
-         modelo.addRow(fila);
+         modelo4.addRow(fila);
         }
     }
      public void getSalarios() throws SQLException {
-        String SQL = "SELECT * FROM employees;";
+        String SQL = "SELECT * FROM salaries limit 100;";
           modelo5.addColumn("emp_no");
         modelo5.addColumn("salary");
         modelo5.addColumn("From_date");
@@ -957,11 +957,11 @@ PreparedStatement preparedStatement = null;
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
             }
-         modelo.addRow(fila);
+         modelo5.addRow(fila);
         }
     }
       public void getDept_Manager() throws SQLException {
-        String SQL = "SELECT * FROM employees;";
+        String SQL = "SELECT * FROM employees limit 100;";
          modelo6.addColumn("emp_no");
         modelo6.addColumn("dept_no");
         modelo6.addColumn("From_date");
@@ -975,7 +975,7 @@ PreparedStatement preparedStatement = null;
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
             }
-         modelo.addRow(fila);
+         modelo6.addRow(fila);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
