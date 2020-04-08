@@ -21,7 +21,6 @@ public class BDproyecto {
         // TODO code application logic here
         new Empleados().setVisible(true);
         
-        
     }
     
 }

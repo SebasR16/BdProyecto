@@ -6,10 +6,20 @@
 package Vista;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -18,10 +28,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sebas
  */
-public final class Empleados extends javax.swing.JFrame {
+public final class Empleados extends javax.swing.JFrame implements ActionListener{
 PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
      Connection con = null;
+     DateFormat df = null;
      DefaultTableModel modelo = new DefaultTableModel();
      DefaultTableModel modelo2 = new DefaultTableModel();
      DefaultTableModel modelo3 = new DefaultTableModel();
@@ -37,9 +48,54 @@ PreparedStatement preparedStatement = null;
         getDept_Emp();
         getTitulos();
         getDept_Manager();
-        
-    }
+      this.birthmonth.addActionListener(this);
+      this.birthyear.addActionListener(this);
+      this.conmonth.addActionListener(this);
+      this.conyear.addActionListener(this);
+      this.datemonth.addActionListener(this);
+      this.dateyear.addActionListener(this);
+      this.todatemonth.addActionListener(this);
+      this.todateyear.addActionListener(this);
+      this.datemonth1.addActionListener(this);
+      this.dateyear1.addActionListener(this);
+      this.todatemonth1.addActionListener(this);
+      this.todateyear1.addActionListener(this);
+      this.datemonth2.addActionListener(this);
+      this.dateyear2.addActionListener(this);
+      this.todatemonth2.addActionListener(this);
+      this.todateyear2.addActionListener(this);
+      this.datemonth3.addActionListener(this);
+      this.dateyear3.addActionListener(this);
+      this.todatemonth3.addActionListener(this);
+      this.todateyear3.addActionListener(this);
 
+    }
+  
+
+
+    public String userId() throws RemoteException {
+        String n = null;
+        int num = 0;
+        con = BaseDeDatos.Conexion();
+        String SQL = "SELECT MAX(employees.emp_no) FROM employees";
+
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+
+            while (rs.next()) {
+                String u = rs.getString(1);
+                num = Integer.parseInt(u) + 1;
+
+            }
+            n = "" + num;
+        } catch (SQLException ex) {
+            System.out.println("Error " + ex);
+        }
+        return n;
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +120,7 @@ PreparedStatement preparedStatement = null;
         birthmonth = new javax.swing.JComboBox<>();
         birthyear = new javax.swing.JComboBox<>();
         Contratacion = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        conday = new javax.swing.JComboBox<>();
         conmonth = new javax.swing.JComboBox<>();
         conyear = new javax.swing.JComboBox<>();
         Restablecer = new javax.swing.JButton();
@@ -82,6 +138,8 @@ PreparedStatement preparedStatement = null;
         Restablecerdept = new javax.swing.JButton();
         updatedept = new javax.swing.JButton();
         Eliminardept = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        deptId = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -95,7 +153,7 @@ PreparedStatement preparedStatement = null;
         dateyear = new javax.swing.JComboBox<>();
         todateyear = new javax.swing.JComboBox<>();
         addtitles = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Title = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         Restablecertitle = new javax.swing.JButton();
@@ -105,19 +163,36 @@ PreparedStatement preparedStatement = null;
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        RestablecerMan = new javax.swing.JButton();
+        RegistrarMan = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        Numemp2 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        departamento1 = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        dateday3 = new javax.swing.JComboBox<>();
+        datemonth3 = new javax.swing.JComboBox<>();
+        dateyear3 = new javax.swing.JComboBox<>();
+        todateday3 = new javax.swing.JComboBox<>();
+        todatemonth3 = new javax.swing.JComboBox<>();
+        todateyear3 = new javax.swing.JComboBox<>();
+        EliminarMan = new javax.swing.JButton();
+        updateMan = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        Numepleado = new javax.swing.JTextField();
+        Numempleado = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         Salario = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         dateday1 = new javax.swing.JComboBox<>();
-        dateday2 = new javax.swing.JComboBox<>();
+        todateday1 = new javax.swing.JComboBox<>();
         datemonth1 = new javax.swing.JComboBox<>();
-        datemonth2 = new javax.swing.JComboBox<>();
+        todatemonth1 = new javax.swing.JComboBox<>();
+        dateyear1 = new javax.swing.JComboBox<>();
         todateyear1 = new javax.swing.JComboBox<>();
-        todateyear2 = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
@@ -136,14 +211,15 @@ PreparedStatement preparedStatement = null;
         updateemp = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        dateday3 = new javax.swing.JComboBox<>();
-        dateday4 = new javax.swing.JComboBox<>();
-        datemonth3 = new javax.swing.JComboBox<>();
-        datemonth4 = new javax.swing.JComboBox<>();
-        todateyear3 = new javax.swing.JComboBox<>();
-        todateyear4 = new javax.swing.JComboBox<>();
+        dateday2 = new javax.swing.JComboBox<>();
+        todateday2 = new javax.swing.JComboBox<>();
+        datemonth2 = new javax.swing.JComboBox<>();
+        todatemonth2 = new javax.swing.JComboBox<>();
+        dateyear2 = new javax.swing.JComboBox<>();
+        todateyear2 = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,7 +259,7 @@ PreparedStatement preparedStatement = null;
         Contratacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Contratacion.setText("Contratado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        conday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         conmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
@@ -191,6 +267,11 @@ PreparedStatement preparedStatement = null;
 
         Restablecer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restablecer.setText("Restablecer");
+        Restablecer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecerActionPerformed(evt);
+            }
+        });
 
         Eliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminar.setText("Eliminar");
@@ -200,6 +281,11 @@ PreparedStatement preparedStatement = null;
 
         Registrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrar.setText("Registrar");
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Registrar empleados");
@@ -220,7 +306,7 @@ PreparedStatement preparedStatement = null;
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(birthday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(conday, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(birthmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +381,7 @@ PreparedStatement preparedStatement = null;
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Contratacion)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(conday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(conmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(conyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
@@ -320,15 +406,28 @@ PreparedStatement preparedStatement = null;
 
         Registrardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrardept.setText("Registrar");
+        Registrardept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrardeptActionPerformed(evt);
+            }
+        });
 
         Restablecerdept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restablecerdept.setText("Restablecer");
+        Restablecerdept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecerdeptActionPerformed(evt);
+            }
+        });
 
         updatedept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatedept.setText("Actualizar");
 
         Eliminardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminardept.setText("Eliminar");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel21.setText("Clave de departamento: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -351,12 +450,16 @@ PreparedStatement preparedStatement = null;
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(Restablecerdept)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                                         .addComponent(Registrardept))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel21))
                                         .addGap(18, 18, 18)
-                                        .addComponent(deptname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(deptname, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(deptId))))))
                         .addGap(64, 64, 64)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(89, Short.MAX_VALUE))
@@ -368,7 +471,11 @@ PreparedStatement preparedStatement = null;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(53, 53, 53)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(deptId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(deptname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -418,9 +525,19 @@ PreparedStatement preparedStatement = null;
 
         Restablecertitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restablecertitle.setText("Restablecer");
+        Restablecertitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecertitleActionPerformed(evt);
+            }
+        });
 
         Registrartitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrartitle.setText("Registrar");
+        Registrartitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrartitleActionPerformed(evt);
+            }
+        });
 
         Eliminartitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminartitle.setText("Eliminar");
@@ -470,7 +587,7 @@ PreparedStatement preparedStatement = null;
                                             .addComponent(todateyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(102, 102, 102)
-                                        .addComponent(jTextField1))))
+                                        .addComponent(Title))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(Restablecertitle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -496,7 +613,7 @@ PreparedStatement preparedStatement = null;
                         .addGap(34, 34, 34)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -523,26 +640,160 @@ PreparedStatement preparedStatement = null;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("titles", jPanel3);
+        jTabbedPane2.addTab("Titulos", jPanel3);
 
         jTable5.setModel(modelo6);
         jScrollPane6.setViewportView(jTable5);
+
+        RestablecerMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RestablecerMan.setText("Restablecer");
+        RestablecerMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecerManActionPerformed(evt);
+            }
+        });
+
+        RegistrarMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        RegistrarMan.setText("Registrar");
+        RegistrarMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarManActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel22.setText("Numero de empleado:");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel23.setText("Departamento: ");
+
+        departamento1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Numero del departamento" }));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel25.setText("Desde:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel26.setText("Hasta:");
+
+        dateday3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        datemonth3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        dateyear3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        todateday3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        todatemonth3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        todateyear3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        EliminarMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        EliminarMan.setText("Eliminar");
+
+        updateMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        updateMan.setText("Actualizar");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setText("Gerente de departamento");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(410, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addGap(39, 39, 39)
+                                .addComponent(departamento1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(RestablecerMan)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addComponent(jLabel26)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(todateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addComponent(jLabel25)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel22)))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Numemp2))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(todatemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(datemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(dateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 3, Short.MAX_VALUE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(RegistrarMan)
+                                        .addGap(22, 22, 22))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel24)
+                        .addGap(55, 55, 55)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateMan)
+                        .addGap(49, 49, 49)
+                        .addComponent(EliminarMan)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel24)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(Numemp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(departamento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(dateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(todateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todatemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RestablecerMan)
+                            .addComponent(RegistrarMan)
+                            .addComponent(EliminarMan)
+                            .addComponent(updateMan)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Gerente de departamento", jPanel4);
@@ -561,15 +812,15 @@ PreparedStatement preparedStatement = null;
 
         dateday1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        dateday2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        todateday1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         datemonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        datemonth2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        todatemonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
+        dateyear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
         todateyear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
-
-        todateyear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
         jTable3.setModel(modelo5);
         jScrollPane4.setViewportView(jTable3);
@@ -579,9 +830,19 @@ PreparedStatement preparedStatement = null;
 
         Registrarsal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrarsal.setText("Registrar");
+        Registrarsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarsalActionPerformed(evt);
+            }
+        });
 
         Restablecersal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restablecersal.setText("Restablecer");
+        Restablecersal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecersalActionPerformed(evt);
+            }
+        });
 
         Eliminarsal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminarsal.setText("Eliminar");
@@ -619,7 +880,7 @@ PreparedStatement preparedStatement = null;
                                         .addGroup(jPanel5Layout.createSequentialGroup()
                                             .addComponent(jLabel15)
                                             .addGap(58, 58, 58)
-                                            .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(todateday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel5Layout.createSequentialGroup()
                                             .addComponent(jLabel14)
                                             .addGap(54, 54, 54)
@@ -631,12 +892,12 @@ PreparedStatement preparedStatement = null;
                                         .addGroup(jPanel5Layout.createSequentialGroup()
                                             .addComponent(datemonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(todateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(dateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(todatemonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(Numepleado))))))
+                                            .addComponent(todateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Numempleado))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
@@ -651,7 +912,7 @@ PreparedStatement preparedStatement = null;
                         .addGap(21, 21, 21)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(Numepleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Numempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
@@ -661,13 +922,13 @@ PreparedStatement preparedStatement = null;
                             .addComponent(jLabel14)
                             .addComponent(dateday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(datemonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(todateday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todatemonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todateyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Restablecersal)
@@ -690,13 +951,23 @@ PreparedStatement preparedStatement = null;
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("Departamento: ");
 
-        departamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre del departamento" }));
+        departamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Numero del departamento" }));
 
         Registraremp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registraremp.setText("Registrar");
+        Registraremp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarempActionPerformed(evt);
+            }
+        });
 
         Restableceremp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restableceremp.setText("Restablecer");
+        Restableceremp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestablecerempActionPerformed(evt);
+            }
+        });
 
         Eliminaremp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminaremp.setText("Eliminar");
@@ -707,23 +978,26 @@ PreparedStatement preparedStatement = null;
         jTable4.setModel(modelo4);
         jScrollPane5.setViewportView(jTable4);
 
-        dateday3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dateday2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        dateday4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        todateday2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        datemonth3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        datemonth2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        datemonth4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        todatemonth2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        todateyear3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+        dateyear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
-        todateyear4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+        todateyear2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel19.setText("Desde:");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Hasta:");
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("Departamento - Empleado ");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -745,17 +1019,17 @@ PreparedStatement preparedStatement = null;
                             .addComponent(Numemp1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(departamento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                            .addComponent(dateday4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(datemonth4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(todateyear4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                            .addComponent(dateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(datemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -764,6 +1038,10 @@ PreparedStatement preparedStatement = null;
                         .addGap(44, 44, 44)
                         .addComponent(Eliminaremp)))
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel27)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,30 +1051,32 @@ PreparedStatement preparedStatement = null;
                         .addGap(39, 39, 39)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel27)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
+                                .addGap(128, 128, 128)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(dateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(datemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Numemp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel17))
-                                .addGap(52, 52, 52)
+                                .addGap(35, 35, 35)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel18)
                                     .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addGap(41, 41, 41)
                                 .addComponent(jLabel19)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel20)
-                            .addComponent(dateday4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datemonth4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todateyear4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -833,6 +1113,133 @@ PreparedStatement preparedStatement = null;
         // TODO add your handling code here:
     }//GEN-LAST:event_PrimernombreActionPerformed
 
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+    try {
+        // TODO add your handling code here:
+        setEmpleados();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void RestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerActionPerformed
+        // TODO add your handling code here:
+        Primernombre.setText("");
+        Apellido.setText("");
+        Genero.setSelectedIndex(0);
+        birthday.setSelectedIndex(0);
+        birthmonth.setSelectedIndex(0);
+        birthyear.setSelectedIndex(0);
+        conday.setSelectedIndex(0);
+        conmonth.setSelectedIndex(0);
+        conyear.setSelectedIndex(0);
+    }//GEN-LAST:event_RestablecerActionPerformed
+
+    private void RestablecerdeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerdeptActionPerformed
+        // TODO add your handling code here:
+        deptId.setText("");
+        deptname.setText("");
+    }//GEN-LAST:event_RestablecerdeptActionPerformed
+
+    private void RestablecertitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecertitleActionPerformed
+        // TODO add your handling code here:
+        Numemp.setText("");
+        Title.setText("");
+        dateday.setSelectedIndex(0);
+        datemonth.setSelectedIndex(0);
+        dateyear.setSelectedIndex(0);
+        todateday.setSelectedIndex(0);
+        todatemonth.setSelectedIndex(0);
+        todateyear.setSelectedIndex(0);
+    }//GEN-LAST:event_RestablecertitleActionPerformed
+
+    private void RestablecersalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecersalActionPerformed
+        // TODO add your handling code here:
+        Numempleado.setText("");
+        Salario.setText("");
+        dateday1.setSelectedIndex(0);
+        datemonth1.setSelectedIndex(0);
+        dateyear1.setSelectedIndex(0);
+        todateday1.setSelectedIndex(0);
+        todatemonth1.setSelectedIndex(0);
+        todateyear1.setSelectedIndex(0);
+    }//GEN-LAST:event_RestablecersalActionPerformed
+
+    private void RestablecerempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerempActionPerformed
+        // TODO add your handling code here:
+        Numemp1.setText("");
+        departamento.setSelectedIndex(0);
+        dateday2.setSelectedIndex(0);
+        datemonth2.setSelectedIndex(0);
+        dateyear2.setSelectedIndex(0);
+        todateday2.setSelectedIndex(0);
+        todatemonth2.setSelectedIndex(0);
+        todateyear2.setSelectedIndex(0);
+    }//GEN-LAST:event_RestablecerempActionPerformed
+
+    private void RegistrardeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrardeptActionPerformed
+    try {
+        // TODO add your handling code here:
+        
+        setDepartamentos();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_RegistrardeptActionPerformed
+
+    private void RegistrartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrartitleActionPerformed
+    try {
+        // TODO add your handling code here:
+        setTitulos();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_RegistrartitleActionPerformed
+
+    private void RegistrarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarsalActionPerformed
+    try {
+        // TODO add your handling code here:
+        setSalarios();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_RegistrarsalActionPerformed
+
+    private void RegistrarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarempActionPerformed
+    try {
+        // TODO add your handling code here:
+        
+        setDept_emp();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_RegistrarempActionPerformed
+
+    private void RestablecerManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerManActionPerformed
+        // TODO add your handling code here:
+        Numemp2.setText("");
+        departamento1.setSelectedIndex(0);
+        dateday3.setSelectedIndex(0);
+        datemonth3.setSelectedIndex(0);
+        dateyear3.setSelectedIndex(0);
+        todateday3.setSelectedIndex(0);
+        todatemonth3.setSelectedIndex(0);
+        todateyear3.setSelectedIndex(0);
+    }//GEN-LAST:event_RestablecerManActionPerformed
+
+    private void RegistrarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarManActionPerformed
+    try {
+        // TODO add your handling code here:
+        setDept_manager();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_RegistrarManActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -871,6 +1278,7 @@ PreparedStatement preparedStatement = null;
             }
         });
     }
+ 
  public void getEmpleados() throws SQLException {
         String SQL = "SELECT * FROM employees limit 100;";
         modelo.addColumn("emp_no");
@@ -944,7 +1352,7 @@ PreparedStatement preparedStatement = null;
     }
      public void getSalarios() throws SQLException {
         String SQL = "SELECT * FROM salaries limit 100;";
-          modelo5.addColumn("emp_no");
+        modelo5.addColumn("emp_no");
         modelo5.addColumn("salary");
         modelo5.addColumn("From_date");
         modelo5.addColumn("To_date");
@@ -961,8 +1369,8 @@ PreparedStatement preparedStatement = null;
         }
     }
       public void getDept_Manager() throws SQLException {
-        String SQL = "SELECT * FROM employees limit 100;";
-         modelo6.addColumn("emp_no");
+        String SQL = "SELECT * FROM dept_manager limit 100;";
+        modelo6.addColumn("emp_no");
         modelo6.addColumn("dept_no");
         modelo6.addColumn("From_date");
         modelo6.addColumn("To_date");
@@ -978,10 +1386,201 @@ PreparedStatement preparedStatement = null;
          modelo6.addRow(fila);
         }
     }
+      public void setEmpleados() throws ParseException {
+        String SQL = "INSERT INTO employees(emp_no,birth_date,first_name,last_name,gender,hire_date)VALUES(?,?,?,?,?,?)";
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = birthyear.getSelectedItem().toString() + "-" + (birthmonth.getSelectedIndex()+1) + "-" + birthday.getSelectedItem().toString();
+        String birth_date1 =conyear.getSelectedItem().toString() + "-" + (conmonth.getSelectedIndex()+1) + "-" + conday.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        try {
+            if (Primernombre.getText().isEmpty()||Apellido.getText().isEmpty()) {
+                System.out.println("Introduzca Nombre y Apellido");
+                
+            }else{
+                
+            
+            PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(userId()));
+            pst.setDate(2, sqdet);
+            pst.setString(3, Primernombre.getText());
+            pst.setString(4, Apellido.getText());
+            pst.setString(5, (String) Genero.getSelectedItem());
+            pst.setDate(6, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Se realizo el registro");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+      public boolean setDepartamentos() throws ParseException, SQLException {
+          
+        boolean exists = false;
+        String SQL1 = "INSERT INTO departments(dept_no,dept_name)VALUES(?,?)";
+        String SQL = "SELECT * FROM departments limit 100;";
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+
+        String[] datos = new String[2];
+        String id = deptId.getText();
+        String name = deptname.getText();
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos[1] = resultSet.getString(2);
+            System.out.println(datos[0]);
+            if (id.equals(datos[0]) || name.equals(datos[1])) {
+                exists = true;
+                System.out.println("ya existe");
+
+            }
+        }
+        if (exists) {
+            return exists;
+        } else {
+
+            PreparedStatement pst = con.prepareStatement(SQL1);
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            return false;
+        }
+
+    }
+      public void setTitulos() throws ParseException {
+        String SQL = "INSERT INTO titles(emp_no,title,from_date,to_date)VALUES(?,?,?,?)";
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear.getSelectedItem().toString() + "-" + (datemonth.getSelectedIndex()+1) + "-" + dateday.getSelectedItem().toString();
+        String birth_date1 =todateyear.getSelectedItem().toString() + "-" + (todatemonth.getSelectedIndex()+1) + "-" + todateday.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        try {
+            if (Numemp.getText().isEmpty()||Title.getText().isEmpty()) {
+                System.out.println("Introduzca Numero de empleado y apellido");
+                
+            }else{
+            
+            PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(Numemp.getText()));
+            pst.setString(2, Title.getText());
+            pst.setDate(3, sqdet); 
+            pst.setDate(4, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Se realizo el registro");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      
+      public void setSalarios() throws ParseException {
+        String SQL = "INSERT INTO salaries(emp_no,salary,from_date,to_date)VALUES(?,?,?,?)";
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex()+1) + "-" + dateday1.getSelectedItem().toString();
+        String birth_date1 =todateyear1.getSelectedItem().toString() + "-" + (todatemonth1.getSelectedIndex()+1) + "-" + todateday1.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        try {
+            if (Numempleado.getText().isEmpty()||Salario.getText().isEmpty()) {
+                System.out.println("Introduzca Numero de empleado y Salario");
+                
+            }else{
+            
+            PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(Numempleado.getText()));
+            pst.setString(2, Salario.getText());
+            pst.setDate(3, sqdet); 
+            pst.setDate(4, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Se realizo el registro");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      public void setDept_emp() throws ParseException {
+        String SQL = "INSERT INTO dept_emp(emp_no,dept_no,from_date,to_date)VALUES(?,?,?,?)";
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex()+1) + "-" + dateday2.getSelectedItem().toString();
+        String birth_date1 =todateyear2.getSelectedItem().toString() + "-" + (todatemonth2.getSelectedIndex()+1) + "-" + todateday2.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        try {
+            if (Numemp1.getText().isEmpty()) {
+                System.out.println("Introduzca Numero de empleado");
+                
+            }else{
+            
+            PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(Numemp1.getText()));
+            pst.setString(2, (String) departamento.getSelectedItem());
+            pst.setDate(3, sqdet); 
+            pst.setDate(4, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Se realizo el registro");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      public void setDept_manager() throws ParseException {
+        String SQL = "INSERT INTO dept_manager(emp_no,dept_no,from_date,to_date)VALUES(?,?,?,?)";
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex()+1) + "-" + dateday3.getSelectedItem().toString();
+        String birth_date1 =todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex()+1) + "-" + todateday3.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        try {
+            if (Numemp2.getText().isEmpty()) {
+                System.out.println("Introduzca Numero de empleado");
+                
+            }else{
+            
+            PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(Numemp2.getText()));
+            pst.setString(2, (String) departamento1.getSelectedItem());
+            pst.setDate(3, sqdet); 
+            pst.setDate(4, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Se realizo el registro");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
     private javax.swing.JLabel Contratacion;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JButton EliminarMan;
     private javax.swing.JButton Eliminardept;
     private javax.swing.JButton Eliminaremp;
     private javax.swing.JButton Eliminarsal;
@@ -989,40 +1588,47 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JComboBox<String> Genero;
     private javax.swing.JTextField Numemp;
     private javax.swing.JTextField Numemp1;
-    private javax.swing.JTextField Numepleado;
+    private javax.swing.JTextField Numemp2;
+    private javax.swing.JTextField Numempleado;
     private javax.swing.JTextField Primernombre;
     private javax.swing.JButton Registrar;
+    private javax.swing.JButton RegistrarMan;
     private javax.swing.JButton Registrardept;
     private javax.swing.JButton Registraremp;
     private javax.swing.JButton Registrarsal;
     private javax.swing.JButton Registrartitle;
     private javax.swing.JButton Restablecer;
+    private javax.swing.JButton RestablecerMan;
     private javax.swing.JButton Restablecerdept;
     private javax.swing.JButton Restableceremp;
     private javax.swing.JButton Restablecersal;
     private javax.swing.JButton Restablecertitle;
     private javax.swing.JTextField Salario;
     private javax.swing.JTable TablaEmpleados;
+    private javax.swing.JTextField Title;
     private javax.swing.JLabel addtitles;
     private javax.swing.JComboBox<String> birthday;
     private javax.swing.JComboBox<String> birthmonth;
     private javax.swing.JComboBox<String> birthyear;
+    private javax.swing.JComboBox<String> conday;
     private javax.swing.JComboBox<String> conmonth;
     private javax.swing.JComboBox<String> conyear;
     private javax.swing.JComboBox<String> dateday;
     private javax.swing.JComboBox<String> dateday1;
     private javax.swing.JComboBox<String> dateday2;
     private javax.swing.JComboBox<String> dateday3;
-    private javax.swing.JComboBox<String> dateday4;
     private javax.swing.JComboBox<String> datemonth;
     private javax.swing.JComboBox<String> datemonth1;
     private javax.swing.JComboBox<String> datemonth2;
     private javax.swing.JComboBox<String> datemonth3;
-    private javax.swing.JComboBox<String> datemonth4;
     private javax.swing.JComboBox<String> dateyear;
+    private javax.swing.JComboBox<String> dateyear1;
+    private javax.swing.JComboBox<String> dateyear2;
+    private javax.swing.JComboBox<String> dateyear3;
     private javax.swing.JComboBox<String> departamento;
+    private javax.swing.JComboBox<String> departamento1;
+    private javax.swing.JTextField deptId;
     private javax.swing.JTextField deptname;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1036,6 +1642,13 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1061,18 +1674,687 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> todateday;
+    private javax.swing.JComboBox<String> todateday1;
+    private javax.swing.JComboBox<String> todateday2;
+    private javax.swing.JComboBox<String> todateday3;
     private javax.swing.JComboBox<String> todatemonth;
+    private javax.swing.JComboBox<String> todatemonth1;
+    private javax.swing.JComboBox<String> todatemonth2;
+    private javax.swing.JComboBox<String> todatemonth3;
     private javax.swing.JComboBox<String> todateyear;
     private javax.swing.JComboBox<String> todateyear1;
     private javax.swing.JComboBox<String> todateyear2;
     private javax.swing.JComboBox<String> todateyear3;
-    private javax.swing.JComboBox<String> todateyear4;
     private javax.swing.JButton update;
+    private javax.swing.JButton updateMan;
     private javax.swing.JButton updatedept;
     private javax.swing.JButton updateemp;
     private javax.swing.JButton updatetitle;
     private javax.swing.JButton updatetitle1;
     // End of variables declaration//GEN-END:variables
+@Override
+    public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == birthmonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (birthmonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(birthyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (birthmonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            birthday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               birthday.addItem("" + i);
+            }
+         } else if (e.getSource() == birthyear) {
+            int days = birthday.getItemCount() + 1;
+            if (birthmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(birthyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            birthday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               birthday.addItem("" + i);
+            }
+         }
+    
+     if (e.getSource() == conmonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (conmonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (conmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(conyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (conmonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (conmonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            conday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               conday.addItem("" + i);
+            }
+         } else if (e.getSource() == conyear) {
+            int days = conday.getItemCount() + 1;
+            if (conmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(conyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            conday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               conday.addItem("" + i);
+            }
+         }
+     if (e.getSource() == datemonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (datemonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (datemonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (datemonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (datemonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            dateday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday.addItem("" + i);
+            }
+         } else if (e.getSource() == dateyear) {
+            int days = dateday.getItemCount() + 1;
+            if (datemonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            dateday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday.addItem("" + i);
+            }
+         }
+     if (e.getSource() == todatemonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (todatemonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (todatemonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            todateday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday.addItem("" + i);
+            }
+         } else if (e.getSource() == todateyear) {
+            int days = todateday.getItemCount() + 1;
+            if (todatemonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            todateday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday.addItem("" + i);
+            }
+         }
+     if (e.getSource() == datemonth1) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (datemonth1.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (datemonth1.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            dateday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday1.addItem("" + i);
+            }
+         } else if (e.getSource() == dateyear1) {
+            int days = dateday1.getItemCount() + 1;
+            if (datemonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            dateday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday1.addItem("" + i);
+            }
+         }
+     if (e.getSource() == todatemonth1) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (todatemonth1.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (todatemonth1.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            todateday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday1.addItem("" + i);
+            }
+         } else if (e.getSource() == todateyear1) {
+            int days = todateday1.getItemCount() + 1;
+            if (todatemonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            todateday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday1.addItem("" + i);
+            }
+         }
+     if (e.getSource() == datemonth2) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (datemonth2.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear2.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (datemonth2.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            dateday2.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday2.addItem("" + i);
+            }
+         } else if (e.getSource() == dateyear2) {
+            int days = dateday2.getItemCount() + 1;
+            if (datemonth2.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear2.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            dateday2.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday2.addItem("" + i);
+            }
+         }
+     if (e.getSource() == todatemonth2) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (todatemonth2.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear2.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (todatemonth2.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            todateday2.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday2.addItem("" + i);
+            }
+         } else if (e.getSource() == todateyear2) {
+            int days = todateday2.getItemCount() + 1;
+            if (todatemonth2.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear2.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            todateday2.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday2.addItem("" + i);
+            }
+         }
+     if (e.getSource() == datemonth3) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (datemonth3.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear2.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (datemonth3.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            dateday3.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday3.addItem("" + i);
+            }
+         } else if (e.getSource() == dateyear3) {
+            int days = dateday3.getItemCount() + 1;
+            if (datemonth3.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(dateyear3.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            dateday3.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               dateday3.addItem("" + i);
+            }
+         }
+     if (e.getSource() == todatemonth3) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (todatemonth3.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear3.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (todatemonth3.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            todateday3.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday3.addItem("" + i);
+            }
+         } else if (e.getSource() == todateyear3) {
+            int days = todateday3.getItemCount() + 1;
+            if (todatemonth3.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(todateyear3.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            todateday3.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               todateday3.addItem("" + i);
+            }
+         }
+    }
 }

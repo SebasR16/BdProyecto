@@ -74,7 +74,7 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="birthday" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="conday" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -177,7 +177,7 @@
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="Contratacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="conday" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="conmonth" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="conyear" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -457,7 +457,7 @@
                 <Property name="text" type="java.lang.String" value="Contratado"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="conday">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="31">
@@ -611,6 +611,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restablecer"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecerActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Eliminar">
               <Properties>
@@ -635,6 +638,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -677,13 +683,19 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="Restablecerdept" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="123" max="32767" attributes="0"/>
                                               <Component id="Registrardept" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="deptname" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="deptname" pref="150" max="32767" attributes="0"/>
+                                                  <Component id="deptId" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -703,7 +715,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deptId" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="deptname" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -768,6 +785,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrardeptActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Restablecerdept">
               <Properties>
@@ -776,6 +796,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restablecer"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecerdeptActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatedept">
               <Properties>
@@ -793,13 +816,23 @@
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel21">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Clave de departamento: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="deptId">
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="titles">
-                <Property name="tabTitle" type="java.lang.String" value="titles"/>
+              <JTabbedPaneConstraints tabName="Titulos">
+                <Property name="tabTitle" type="java.lang.String" value="Titulos"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -853,7 +886,7 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" max="32767" attributes="0"/>
+                                              <Component id="Title" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -890,7 +923,7 @@
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Title" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1264,7 +1297,7 @@
                 <Property name="text" type="java.lang.String" value="Agregar titulos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="Title">
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane3">
               <AuxValues>
@@ -1292,6 +1325,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restablecer"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecertitleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Registrartitle">
               <Properties>
@@ -1300,6 +1336,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrartitleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Eliminartitle">
               <Properties>
@@ -1332,8 +1371,80 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="410" max="32767" attributes="0"/>
-                      <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="departamento1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="RestablecerMan" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="todateday3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="dateday3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="Numemp2" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="todatemonth3" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="todateyear3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="datemonth3" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="dateyear3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="RegistrarMan" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="updateMan" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="EliminarMan" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1341,9 +1452,48 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jScrollPane6" min="-2" pref="211" max="-2" attributes="0"/>
-                      <EmptySpace pref="158" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Numemp2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="departamento1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateday3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="datemonth3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateyear3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateday3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todatemonth3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateyear3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="56" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="RestablecerMan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RegistrarMan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="EliminarMan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="updateMan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="248" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1368,6 +1518,392 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="RestablecerMan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Restablecer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecerManActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="RegistrarMan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarManActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel22">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Numero de empleado:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="Numemp2">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel23">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Departamento: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="departamento1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="Numero del departamento"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel25">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Desde:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel26">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hasta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dateday3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="31">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                    <StringItem index="8" value="9"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="datemonth3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="Enero"/>
+                    <StringItem index="1" value="Febrero"/>
+                    <StringItem index="2" value="Marzo"/>
+                    <StringItem index="3" value="Abril"/>
+                    <StringItem index="4" value="Mayo"/>
+                    <StringItem index="5" value="Junio"/>
+                    <StringItem index="6" value="Julio"/>
+                    <StringItem index="7" value="Agosto"/>
+                    <StringItem index="8" value="Septiembre"/>
+                    <StringItem index="9" value="Octubre"/>
+                    <StringItem index="10" value="Noviembre"/>
+                    <StringItem index="11" value="Diciembre"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dateyear3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="71">
+                    <StringItem index="0" value="2020"/>
+                    <StringItem index="1" value="2019"/>
+                    <StringItem index="2" value="2018"/>
+                    <StringItem index="3" value="2017"/>
+                    <StringItem index="4" value="2016"/>
+                    <StringItem index="5" value="2015"/>
+                    <StringItem index="6" value="2014"/>
+                    <StringItem index="7" value="2013"/>
+                    <StringItem index="8" value="2012"/>
+                    <StringItem index="9" value="2011"/>
+                    <StringItem index="10" value="2010"/>
+                    <StringItem index="11" value="2009"/>
+                    <StringItem index="12" value="2008"/>
+                    <StringItem index="13" value="2007"/>
+                    <StringItem index="14" value="2006"/>
+                    <StringItem index="15" value="2005"/>
+                    <StringItem index="16" value="2004"/>
+                    <StringItem index="17" value="2003"/>
+                    <StringItem index="18" value="2002"/>
+                    <StringItem index="19" value="2001"/>
+                    <StringItem index="20" value="2000"/>
+                    <StringItem index="21" value="1999"/>
+                    <StringItem index="22" value="1998"/>
+                    <StringItem index="23" value="1997"/>
+                    <StringItem index="24" value="1996"/>
+                    <StringItem index="25" value="1995"/>
+                    <StringItem index="26" value="1994"/>
+                    <StringItem index="27" value="1993"/>
+                    <StringItem index="28" value="1992"/>
+                    <StringItem index="29" value="1991"/>
+                    <StringItem index="30" value="1990"/>
+                    <StringItem index="31" value="1989"/>
+                    <StringItem index="32" value="1988"/>
+                    <StringItem index="33" value="1987"/>
+                    <StringItem index="34" value="1986"/>
+                    <StringItem index="35" value="1985"/>
+                    <StringItem index="36" value="1984"/>
+                    <StringItem index="37" value="1983"/>
+                    <StringItem index="38" value="1982"/>
+                    <StringItem index="39" value="1981"/>
+                    <StringItem index="40" value="1980"/>
+                    <StringItem index="41" value="1979"/>
+                    <StringItem index="42" value="1978"/>
+                    <StringItem index="43" value="1977"/>
+                    <StringItem index="44" value="1976"/>
+                    <StringItem index="45" value="1975"/>
+                    <StringItem index="46" value="1974"/>
+                    <StringItem index="47" value="1973"/>
+                    <StringItem index="48" value="1972"/>
+                    <StringItem index="49" value="1971"/>
+                    <StringItem index="50" value="1970"/>
+                    <StringItem index="51" value="1969"/>
+                    <StringItem index="52" value="1968"/>
+                    <StringItem index="53" value="1967"/>
+                    <StringItem index="54" value="1966"/>
+                    <StringItem index="55" value="1965"/>
+                    <StringItem index="56" value="1964"/>
+                    <StringItem index="57" value="1963"/>
+                    <StringItem index="58" value="1962"/>
+                    <StringItem index="59" value="1961"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1959"/>
+                    <StringItem index="62" value="1958"/>
+                    <StringItem index="63" value="1957"/>
+                    <StringItem index="64" value="1956"/>
+                    <StringItem index="65" value="1955"/>
+                    <StringItem index="66" value="1954"/>
+                    <StringItem index="67" value="1953"/>
+                    <StringItem index="68" value="1952"/>
+                    <StringItem index="69" value="1951"/>
+                    <StringItem index="70" value="1950"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="todateday3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="31">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                    <StringItem index="8" value="9"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="todatemonth3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="Enero"/>
+                    <StringItem index="1" value="Febrero"/>
+                    <StringItem index="2" value="Marzo"/>
+                    <StringItem index="3" value="Abril"/>
+                    <StringItem index="4" value="Mayo"/>
+                    <StringItem index="5" value="Junio"/>
+                    <StringItem index="6" value="Julio"/>
+                    <StringItem index="7" value="Agosto"/>
+                    <StringItem index="8" value="Septiembre"/>
+                    <StringItem index="9" value="Octubre"/>
+                    <StringItem index="10" value="Noviembre"/>
+                    <StringItem index="11" value="Diciembre"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="todateyear3">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="71">
+                    <StringItem index="0" value="2020"/>
+                    <StringItem index="1" value="2019"/>
+                    <StringItem index="2" value="2018"/>
+                    <StringItem index="3" value="2017"/>
+                    <StringItem index="4" value="2016"/>
+                    <StringItem index="5" value="2015"/>
+                    <StringItem index="6" value="2014"/>
+                    <StringItem index="7" value="2013"/>
+                    <StringItem index="8" value="2012"/>
+                    <StringItem index="9" value="2011"/>
+                    <StringItem index="10" value="2010"/>
+                    <StringItem index="11" value="2009"/>
+                    <StringItem index="12" value="2008"/>
+                    <StringItem index="13" value="2007"/>
+                    <StringItem index="14" value="2006"/>
+                    <StringItem index="15" value="2005"/>
+                    <StringItem index="16" value="2004"/>
+                    <StringItem index="17" value="2003"/>
+                    <StringItem index="18" value="2002"/>
+                    <StringItem index="19" value="2001"/>
+                    <StringItem index="20" value="2000"/>
+                    <StringItem index="21" value="1999"/>
+                    <StringItem index="22" value="1998"/>
+                    <StringItem index="23" value="1997"/>
+                    <StringItem index="24" value="1996"/>
+                    <StringItem index="25" value="1995"/>
+                    <StringItem index="26" value="1994"/>
+                    <StringItem index="27" value="1993"/>
+                    <StringItem index="28" value="1992"/>
+                    <StringItem index="29" value="1991"/>
+                    <StringItem index="30" value="1990"/>
+                    <StringItem index="31" value="1989"/>
+                    <StringItem index="32" value="1988"/>
+                    <StringItem index="33" value="1987"/>
+                    <StringItem index="34" value="1986"/>
+                    <StringItem index="35" value="1985"/>
+                    <StringItem index="36" value="1984"/>
+                    <StringItem index="37" value="1983"/>
+                    <StringItem index="38" value="1982"/>
+                    <StringItem index="39" value="1981"/>
+                    <StringItem index="40" value="1980"/>
+                    <StringItem index="41" value="1979"/>
+                    <StringItem index="42" value="1978"/>
+                    <StringItem index="43" value="1977"/>
+                    <StringItem index="44" value="1976"/>
+                    <StringItem index="45" value="1975"/>
+                    <StringItem index="46" value="1974"/>
+                    <StringItem index="47" value="1973"/>
+                    <StringItem index="48" value="1972"/>
+                    <StringItem index="49" value="1971"/>
+                    <StringItem index="50" value="1970"/>
+                    <StringItem index="51" value="1969"/>
+                    <StringItem index="52" value="1968"/>
+                    <StringItem index="53" value="1967"/>
+                    <StringItem index="54" value="1966"/>
+                    <StringItem index="55" value="1965"/>
+                    <StringItem index="56" value="1964"/>
+                    <StringItem index="57" value="1963"/>
+                    <StringItem index="58" value="1962"/>
+                    <StringItem index="59" value="1961"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1959"/>
+                    <StringItem index="62" value="1958"/>
+                    <StringItem index="63" value="1957"/>
+                    <StringItem index="64" value="1956"/>
+                    <StringItem index="65" value="1955"/>
+                    <StringItem index="66" value="1954"/>
+                    <StringItem index="67" value="1953"/>
+                    <StringItem index="68" value="1952"/>
+                    <StringItem index="69" value="1951"/>
+                    <StringItem index="70" value="1950"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="EliminarMan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="updateMan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel24">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Gerente de departamento"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -1411,7 +1947,7 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                                  <Component id="dateday2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="todateday1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -1427,15 +1963,15 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="datemonth1" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="todateyear1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="dateyear1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="datemonth2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="todatemonth1" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="todateyear2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="todateyear1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="Numepleado" max="32767" attributes="0"/>
+                                          <Component id="Numempleado" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1457,7 +1993,7 @@
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Numepleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Numempleado" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1469,14 +2005,14 @@
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="dateday1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="datemonth1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="todateyear1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateyear1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dateday2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="datemonth2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="todateyear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateday1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todatemonth1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateyear1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1508,7 +2044,7 @@
                 <Property name="text" type="java.lang.String" value="Numero de empleado:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Numepleado">
+            <Component class="javax.swing.JTextField" name="Numempleado">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
@@ -1578,7 +2114,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="dateday2">
+            <Component class="javax.swing.JComboBox" name="todateday1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="31">
@@ -1643,6 +2179,579 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JComboBox" name="todatemonth1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="Enero"/>
+                    <StringItem index="1" value="Febrero"/>
+                    <StringItem index="2" value="Marzo"/>
+                    <StringItem index="3" value="Abril"/>
+                    <StringItem index="4" value="Mayo"/>
+                    <StringItem index="5" value="Junio"/>
+                    <StringItem index="6" value="Julio"/>
+                    <StringItem index="7" value="Agosto"/>
+                    <StringItem index="8" value="Septiembre"/>
+                    <StringItem index="9" value="Octubre"/>
+                    <StringItem index="10" value="Noviembre"/>
+                    <StringItem index="11" value="Diciembre"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dateyear1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="71">
+                    <StringItem index="0" value="2020"/>
+                    <StringItem index="1" value="2019"/>
+                    <StringItem index="2" value="2018"/>
+                    <StringItem index="3" value="2017"/>
+                    <StringItem index="4" value="2016"/>
+                    <StringItem index="5" value="2015"/>
+                    <StringItem index="6" value="2014"/>
+                    <StringItem index="7" value="2013"/>
+                    <StringItem index="8" value="2012"/>
+                    <StringItem index="9" value="2011"/>
+                    <StringItem index="10" value="2010"/>
+                    <StringItem index="11" value="2009"/>
+                    <StringItem index="12" value="2008"/>
+                    <StringItem index="13" value="2007"/>
+                    <StringItem index="14" value="2006"/>
+                    <StringItem index="15" value="2005"/>
+                    <StringItem index="16" value="2004"/>
+                    <StringItem index="17" value="2003"/>
+                    <StringItem index="18" value="2002"/>
+                    <StringItem index="19" value="2001"/>
+                    <StringItem index="20" value="2000"/>
+                    <StringItem index="21" value="1999"/>
+                    <StringItem index="22" value="1998"/>
+                    <StringItem index="23" value="1997"/>
+                    <StringItem index="24" value="1996"/>
+                    <StringItem index="25" value="1995"/>
+                    <StringItem index="26" value="1994"/>
+                    <StringItem index="27" value="1993"/>
+                    <StringItem index="28" value="1992"/>
+                    <StringItem index="29" value="1991"/>
+                    <StringItem index="30" value="1990"/>
+                    <StringItem index="31" value="1989"/>
+                    <StringItem index="32" value="1988"/>
+                    <StringItem index="33" value="1987"/>
+                    <StringItem index="34" value="1986"/>
+                    <StringItem index="35" value="1985"/>
+                    <StringItem index="36" value="1984"/>
+                    <StringItem index="37" value="1983"/>
+                    <StringItem index="38" value="1982"/>
+                    <StringItem index="39" value="1981"/>
+                    <StringItem index="40" value="1980"/>
+                    <StringItem index="41" value="1979"/>
+                    <StringItem index="42" value="1978"/>
+                    <StringItem index="43" value="1977"/>
+                    <StringItem index="44" value="1976"/>
+                    <StringItem index="45" value="1975"/>
+                    <StringItem index="46" value="1974"/>
+                    <StringItem index="47" value="1973"/>
+                    <StringItem index="48" value="1972"/>
+                    <StringItem index="49" value="1971"/>
+                    <StringItem index="50" value="1970"/>
+                    <StringItem index="51" value="1969"/>
+                    <StringItem index="52" value="1968"/>
+                    <StringItem index="53" value="1967"/>
+                    <StringItem index="54" value="1966"/>
+                    <StringItem index="55" value="1965"/>
+                    <StringItem index="56" value="1964"/>
+                    <StringItem index="57" value="1963"/>
+                    <StringItem index="58" value="1962"/>
+                    <StringItem index="59" value="1961"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1959"/>
+                    <StringItem index="62" value="1958"/>
+                    <StringItem index="63" value="1957"/>
+                    <StringItem index="64" value="1956"/>
+                    <StringItem index="65" value="1955"/>
+                    <StringItem index="66" value="1954"/>
+                    <StringItem index="67" value="1953"/>
+                    <StringItem index="68" value="1952"/>
+                    <StringItem index="69" value="1951"/>
+                    <StringItem index="70" value="1950"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="todateyear1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="71">
+                    <StringItem index="0" value="2020"/>
+                    <StringItem index="1" value="2019"/>
+                    <StringItem index="2" value="2018"/>
+                    <StringItem index="3" value="2017"/>
+                    <StringItem index="4" value="2016"/>
+                    <StringItem index="5" value="2015"/>
+                    <StringItem index="6" value="2014"/>
+                    <StringItem index="7" value="2013"/>
+                    <StringItem index="8" value="2012"/>
+                    <StringItem index="9" value="2011"/>
+                    <StringItem index="10" value="2010"/>
+                    <StringItem index="11" value="2009"/>
+                    <StringItem index="12" value="2008"/>
+                    <StringItem index="13" value="2007"/>
+                    <StringItem index="14" value="2006"/>
+                    <StringItem index="15" value="2005"/>
+                    <StringItem index="16" value="2004"/>
+                    <StringItem index="17" value="2003"/>
+                    <StringItem index="18" value="2002"/>
+                    <StringItem index="19" value="2001"/>
+                    <StringItem index="20" value="2000"/>
+                    <StringItem index="21" value="1999"/>
+                    <StringItem index="22" value="1998"/>
+                    <StringItem index="23" value="1997"/>
+                    <StringItem index="24" value="1996"/>
+                    <StringItem index="25" value="1995"/>
+                    <StringItem index="26" value="1994"/>
+                    <StringItem index="27" value="1993"/>
+                    <StringItem index="28" value="1992"/>
+                    <StringItem index="29" value="1991"/>
+                    <StringItem index="30" value="1990"/>
+                    <StringItem index="31" value="1989"/>
+                    <StringItem index="32" value="1988"/>
+                    <StringItem index="33" value="1987"/>
+                    <StringItem index="34" value="1986"/>
+                    <StringItem index="35" value="1985"/>
+                    <StringItem index="36" value="1984"/>
+                    <StringItem index="37" value="1983"/>
+                    <StringItem index="38" value="1982"/>
+                    <StringItem index="39" value="1981"/>
+                    <StringItem index="40" value="1980"/>
+                    <StringItem index="41" value="1979"/>
+                    <StringItem index="42" value="1978"/>
+                    <StringItem index="43" value="1977"/>
+                    <StringItem index="44" value="1976"/>
+                    <StringItem index="45" value="1975"/>
+                    <StringItem index="46" value="1974"/>
+                    <StringItem index="47" value="1973"/>
+                    <StringItem index="48" value="1972"/>
+                    <StringItem index="49" value="1971"/>
+                    <StringItem index="50" value="1970"/>
+                    <StringItem index="51" value="1969"/>
+                    <StringItem index="52" value="1968"/>
+                    <StringItem index="53" value="1967"/>
+                    <StringItem index="54" value="1966"/>
+                    <StringItem index="55" value="1965"/>
+                    <StringItem index="56" value="1964"/>
+                    <StringItem index="57" value="1963"/>
+                    <StringItem index="58" value="1962"/>
+                    <StringItem index="59" value="1961"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1959"/>
+                    <StringItem index="62" value="1958"/>
+                    <StringItem index="63" value="1957"/>
+                    <StringItem index="64" value="1956"/>
+                    <StringItem index="65" value="1955"/>
+                    <StringItem index="66" value="1954"/>
+                    <StringItem index="67" value="1953"/>
+                    <StringItem index="68" value="1952"/>
+                    <StringItem index="69" value="1951"/>
+                    <StringItem index="70" value="1950"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable3">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="modelo5" type="code"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Administrar pagos"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="Registrarsal">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarsalActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Restablecersal">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Restablecer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecersalActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Eliminarsal">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="updatetitle1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel6">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="dept_emp">
+                <Property name="tabTitle" type="java.lang.String" value="dept_emp"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Restableceremp" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="Registraremp" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="Numemp1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="departamento" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="todateday2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="todatemonth2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="todateyear2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="dateday2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="datemonth2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="dateyear2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane5" alignment="1" min="-2" pref="493" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="updateemp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="Eliminaremp" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="dateday2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="datemonth2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dateyear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="Numemp1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="departamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="54" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateday2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todatemonth2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="todateyear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateemp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Eliminaremp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Registraremp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Restableceremp" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel17">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Numero de empleado:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="Numemp1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel18">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Departamento: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="departamento">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="1">
+                    <StringItem index="0" value="Numero del departamento"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="Registraremp">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarempActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Restableceremp">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Restablecer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestablecerempActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Eliminaremp">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="updateemp">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable4">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="modelo4" type="code"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JComboBox" name="dateday2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="31">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                    <StringItem index="8" value="9"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="todateday2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="31">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                    <StringItem index="8" value="9"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
             <Component class="javax.swing.JComboBox" name="datemonth2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -1666,7 +2775,30 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="todateyear1">
+            <Component class="javax.swing.JComboBox" name="todatemonth2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="Enero"/>
+                    <StringItem index="1" value="Febrero"/>
+                    <StringItem index="2" value="Marzo"/>
+                    <StringItem index="3" value="Abril"/>
+                    <StringItem index="4" value="Mayo"/>
+                    <StringItem index="5" value="Junio"/>
+                    <StringItem index="6" value="Julio"/>
+                    <StringItem index="7" value="Agosto"/>
+                    <StringItem index="8" value="Septiembre"/>
+                    <StringItem index="9" value="Octubre"/>
+                    <StringItem index="10" value="Noviembre"/>
+                    <StringItem index="11" value="Diciembre"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dateyear2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="71">
@@ -1830,604 +2962,6 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable3">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="modelo5" type="code"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JLabel" name="jLabel16">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Administrar pagos"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Registrarsal">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Registrar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Restablecersal">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Restablecer"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Eliminarsal">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="updatetitle1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Actualizar"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel6">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="dept_emp">
-                <Property name="tabTitle" type="java.lang.String" value="dept_emp"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Restableceremp" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="Registraremp" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Numemp1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="departamento" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="dateday4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="datemonth4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="todateyear4" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="dateday3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="datemonth3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="todateyear3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" alignment="1" min="-2" pref="493" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="updateemp" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="Eliminaremp" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="dateday3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="datemonth3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="todateyear3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="Numemp1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="departamento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dateday4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="datemonth4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="todateyear4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="updateemp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Eliminaremp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Registraremp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Restableceremp" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel17">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Numero de empleado:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="Numemp1">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel18">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Departamento: "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="departamento">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Nombre del departamento"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JButton" name="Registraremp">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Registrar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Restableceremp">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Restablecer"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Eliminaremp">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="updateemp">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Actualizar"/>
-              </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable4">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="modelo4" type="code"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                      </TableColumnModel>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JComboBox" name="dateday3">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="31">
-                    <StringItem index="0" value="1"/>
-                    <StringItem index="1" value="2"/>
-                    <StringItem index="2" value="3"/>
-                    <StringItem index="3" value="4"/>
-                    <StringItem index="4" value="5"/>
-                    <StringItem index="5" value="6"/>
-                    <StringItem index="6" value="7"/>
-                    <StringItem index="7" value="8"/>
-                    <StringItem index="8" value="9"/>
-                    <StringItem index="9" value="10"/>
-                    <StringItem index="10" value="11"/>
-                    <StringItem index="11" value="12"/>
-                    <StringItem index="12" value="13"/>
-                    <StringItem index="13" value="14"/>
-                    <StringItem index="14" value="15"/>
-                    <StringItem index="15" value="16"/>
-                    <StringItem index="16" value="17"/>
-                    <StringItem index="17" value="18"/>
-                    <StringItem index="18" value="19"/>
-                    <StringItem index="19" value="20"/>
-                    <StringItem index="20" value="21"/>
-                    <StringItem index="21" value="22"/>
-                    <StringItem index="22" value="23"/>
-                    <StringItem index="23" value="24"/>
-                    <StringItem index="24" value="25"/>
-                    <StringItem index="25" value="26"/>
-                    <StringItem index="26" value="27"/>
-                    <StringItem index="27" value="28"/>
-                    <StringItem index="28" value="29"/>
-                    <StringItem index="29" value="30"/>
-                    <StringItem index="30" value="31"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="dateday4">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="31">
-                    <StringItem index="0" value="1"/>
-                    <StringItem index="1" value="2"/>
-                    <StringItem index="2" value="3"/>
-                    <StringItem index="3" value="4"/>
-                    <StringItem index="4" value="5"/>
-                    <StringItem index="5" value="6"/>
-                    <StringItem index="6" value="7"/>
-                    <StringItem index="7" value="8"/>
-                    <StringItem index="8" value="9"/>
-                    <StringItem index="9" value="10"/>
-                    <StringItem index="10" value="11"/>
-                    <StringItem index="11" value="12"/>
-                    <StringItem index="12" value="13"/>
-                    <StringItem index="13" value="14"/>
-                    <StringItem index="14" value="15"/>
-                    <StringItem index="15" value="16"/>
-                    <StringItem index="16" value="17"/>
-                    <StringItem index="17" value="18"/>
-                    <StringItem index="18" value="19"/>
-                    <StringItem index="19" value="20"/>
-                    <StringItem index="20" value="21"/>
-                    <StringItem index="21" value="22"/>
-                    <StringItem index="22" value="23"/>
-                    <StringItem index="23" value="24"/>
-                    <StringItem index="24" value="25"/>
-                    <StringItem index="25" value="26"/>
-                    <StringItem index="26" value="27"/>
-                    <StringItem index="27" value="28"/>
-                    <StringItem index="28" value="29"/>
-                    <StringItem index="29" value="30"/>
-                    <StringItem index="30" value="31"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="datemonth3">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
-                    <StringItem index="0" value="Enero"/>
-                    <StringItem index="1" value="Febrero"/>
-                    <StringItem index="2" value="Marzo"/>
-                    <StringItem index="3" value="Abril"/>
-                    <StringItem index="4" value="Mayo"/>
-                    <StringItem index="5" value="Junio"/>
-                    <StringItem index="6" value="Julio"/>
-                    <StringItem index="7" value="Agosto"/>
-                    <StringItem index="8" value="Septiembre"/>
-                    <StringItem index="9" value="Octubre"/>
-                    <StringItem index="10" value="Noviembre"/>
-                    <StringItem index="11" value="Diciembre"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="datemonth4">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
-                    <StringItem index="0" value="Enero"/>
-                    <StringItem index="1" value="Febrero"/>
-                    <StringItem index="2" value="Marzo"/>
-                    <StringItem index="3" value="Abril"/>
-                    <StringItem index="4" value="Mayo"/>
-                    <StringItem index="5" value="Junio"/>
-                    <StringItem index="6" value="Julio"/>
-                    <StringItem index="7" value="Agosto"/>
-                    <StringItem index="8" value="Septiembre"/>
-                    <StringItem index="9" value="Octubre"/>
-                    <StringItem index="10" value="Noviembre"/>
-                    <StringItem index="11" value="Diciembre"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="todateyear3">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="71">
-                    <StringItem index="0" value="2020"/>
-                    <StringItem index="1" value="2019"/>
-                    <StringItem index="2" value="2018"/>
-                    <StringItem index="3" value="2017"/>
-                    <StringItem index="4" value="2016"/>
-                    <StringItem index="5" value="2015"/>
-                    <StringItem index="6" value="2014"/>
-                    <StringItem index="7" value="2013"/>
-                    <StringItem index="8" value="2012"/>
-                    <StringItem index="9" value="2011"/>
-                    <StringItem index="10" value="2010"/>
-                    <StringItem index="11" value="2009"/>
-                    <StringItem index="12" value="2008"/>
-                    <StringItem index="13" value="2007"/>
-                    <StringItem index="14" value="2006"/>
-                    <StringItem index="15" value="2005"/>
-                    <StringItem index="16" value="2004"/>
-                    <StringItem index="17" value="2003"/>
-                    <StringItem index="18" value="2002"/>
-                    <StringItem index="19" value="2001"/>
-                    <StringItem index="20" value="2000"/>
-                    <StringItem index="21" value="1999"/>
-                    <StringItem index="22" value="1998"/>
-                    <StringItem index="23" value="1997"/>
-                    <StringItem index="24" value="1996"/>
-                    <StringItem index="25" value="1995"/>
-                    <StringItem index="26" value="1994"/>
-                    <StringItem index="27" value="1993"/>
-                    <StringItem index="28" value="1992"/>
-                    <StringItem index="29" value="1991"/>
-                    <StringItem index="30" value="1990"/>
-                    <StringItem index="31" value="1989"/>
-                    <StringItem index="32" value="1988"/>
-                    <StringItem index="33" value="1987"/>
-                    <StringItem index="34" value="1986"/>
-                    <StringItem index="35" value="1985"/>
-                    <StringItem index="36" value="1984"/>
-                    <StringItem index="37" value="1983"/>
-                    <StringItem index="38" value="1982"/>
-                    <StringItem index="39" value="1981"/>
-                    <StringItem index="40" value="1980"/>
-                    <StringItem index="41" value="1979"/>
-                    <StringItem index="42" value="1978"/>
-                    <StringItem index="43" value="1977"/>
-                    <StringItem index="44" value="1976"/>
-                    <StringItem index="45" value="1975"/>
-                    <StringItem index="46" value="1974"/>
-                    <StringItem index="47" value="1973"/>
-                    <StringItem index="48" value="1972"/>
-                    <StringItem index="49" value="1971"/>
-                    <StringItem index="50" value="1970"/>
-                    <StringItem index="51" value="1969"/>
-                    <StringItem index="52" value="1968"/>
-                    <StringItem index="53" value="1967"/>
-                    <StringItem index="54" value="1966"/>
-                    <StringItem index="55" value="1965"/>
-                    <StringItem index="56" value="1964"/>
-                    <StringItem index="57" value="1963"/>
-                    <StringItem index="58" value="1962"/>
-                    <StringItem index="59" value="1961"/>
-                    <StringItem index="60" value="1960"/>
-                    <StringItem index="61" value="1959"/>
-                    <StringItem index="62" value="1958"/>
-                    <StringItem index="63" value="1957"/>
-                    <StringItem index="64" value="1956"/>
-                    <StringItem index="65" value="1955"/>
-                    <StringItem index="66" value="1954"/>
-                    <StringItem index="67" value="1953"/>
-                    <StringItem index="68" value="1952"/>
-                    <StringItem index="69" value="1951"/>
-                    <StringItem index="70" value="1950"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="todateyear4">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="71">
-                    <StringItem index="0" value="2020"/>
-                    <StringItem index="1" value="2019"/>
-                    <StringItem index="2" value="2018"/>
-                    <StringItem index="3" value="2017"/>
-                    <StringItem index="4" value="2016"/>
-                    <StringItem index="5" value="2015"/>
-                    <StringItem index="6" value="2014"/>
-                    <StringItem index="7" value="2013"/>
-                    <StringItem index="8" value="2012"/>
-                    <StringItem index="9" value="2011"/>
-                    <StringItem index="10" value="2010"/>
-                    <StringItem index="11" value="2009"/>
-                    <StringItem index="12" value="2008"/>
-                    <StringItem index="13" value="2007"/>
-                    <StringItem index="14" value="2006"/>
-                    <StringItem index="15" value="2005"/>
-                    <StringItem index="16" value="2004"/>
-                    <StringItem index="17" value="2003"/>
-                    <StringItem index="18" value="2002"/>
-                    <StringItem index="19" value="2001"/>
-                    <StringItem index="20" value="2000"/>
-                    <StringItem index="21" value="1999"/>
-                    <StringItem index="22" value="1998"/>
-                    <StringItem index="23" value="1997"/>
-                    <StringItem index="24" value="1996"/>
-                    <StringItem index="25" value="1995"/>
-                    <StringItem index="26" value="1994"/>
-                    <StringItem index="27" value="1993"/>
-                    <StringItem index="28" value="1992"/>
-                    <StringItem index="29" value="1991"/>
-                    <StringItem index="30" value="1990"/>
-                    <StringItem index="31" value="1989"/>
-                    <StringItem index="32" value="1988"/>
-                    <StringItem index="33" value="1987"/>
-                    <StringItem index="34" value="1986"/>
-                    <StringItem index="35" value="1985"/>
-                    <StringItem index="36" value="1984"/>
-                    <StringItem index="37" value="1983"/>
-                    <StringItem index="38" value="1982"/>
-                    <StringItem index="39" value="1981"/>
-                    <StringItem index="40" value="1980"/>
-                    <StringItem index="41" value="1979"/>
-                    <StringItem index="42" value="1978"/>
-                    <StringItem index="43" value="1977"/>
-                    <StringItem index="44" value="1976"/>
-                    <StringItem index="45" value="1975"/>
-                    <StringItem index="46" value="1974"/>
-                    <StringItem index="47" value="1973"/>
-                    <StringItem index="48" value="1972"/>
-                    <StringItem index="49" value="1971"/>
-                    <StringItem index="50" value="1970"/>
-                    <StringItem index="51" value="1969"/>
-                    <StringItem index="52" value="1968"/>
-                    <StringItem index="53" value="1967"/>
-                    <StringItem index="54" value="1966"/>
-                    <StringItem index="55" value="1965"/>
-                    <StringItem index="56" value="1964"/>
-                    <StringItem index="57" value="1963"/>
-                    <StringItem index="58" value="1962"/>
-                    <StringItem index="59" value="1961"/>
-                    <StringItem index="60" value="1960"/>
-                    <StringItem index="61" value="1959"/>
-                    <StringItem index="62" value="1958"/>
-                    <StringItem index="63" value="1957"/>
-                    <StringItem index="64" value="1956"/>
-                    <StringItem index="65" value="1955"/>
-                    <StringItem index="66" value="1954"/>
-                    <StringItem index="67" value="1953"/>
-                    <StringItem index="68" value="1952"/>
-                    <StringItem index="69" value="1951"/>
-                    <StringItem index="70" value="1950"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2442,6 +2976,14 @@
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Hasta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel27">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Departamento - Empleado "/>
               </Properties>
             </Component>
           </SubComponents>
