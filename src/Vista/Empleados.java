@@ -6,6 +6,7 @@
 package Vista;
 
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
@@ -667,7 +668,7 @@ PreparedStatement preparedStatement = null;
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Departamento: ");
 
-        departamento1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Numero del departamento" }));
+        departamento1.setToolTipText("");
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel25.setText("Desde:");
@@ -784,7 +785,7 @@ PreparedStatement preparedStatement = null;
                             .addComponent(todateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(todatemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(RestablecerMan)
                             .addComponent(RegistrarMan)
@@ -793,7 +794,7 @@ PreparedStatement preparedStatement = null;
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Gerente de departamento", jPanel4);
@@ -951,8 +952,6 @@ PreparedStatement preparedStatement = null;
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel18.setText("Departamento: ");
 
-        departamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Numero del departamento" }));
-
         Registraremp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registraremp.setText("Registrar");
         Registraremp.addActionListener(new java.awt.event.ActionListener() {
@@ -1015,9 +1014,7 @@ PreparedStatement preparedStatement = null;
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Registraremp)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Numemp1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(departamento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Numemp1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                             .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -1029,7 +1026,8 @@ PreparedStatement preparedStatement = null;
                             .addGap(18, 18, 18)
                             .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(departamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1071,7 +1069,7 @@ PreparedStatement preparedStatement = null;
                                     .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel19)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel20)
                             .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1333,23 +1331,35 @@ PreparedStatement preparedStatement = null;
         }
     }
     public void getDept_Emp() throws SQLException {
+        
         String SQL = "SELECT * FROM dept_emp limit 100;";
         modelo4.addColumn("emp_no");
         modelo4.addColumn("dept_no");
         modelo4.addColumn("From_date");
         modelo4.addColumn("To_date");
-        
+     
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             //int id_docente, String nombre, String apellido, String alias
+            
+           
             Object [] fila = new Object[modelo4.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
             }
          modelo4.addRow(fila);
         }
+     
+         String SQL2 = "SELECT dept_no FROM departments ";
+          preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+              departamento.addItem(resultSet.getString(1));
+              departamento1.addItem(resultSet.getString(1));
+        }
     }
+    
      public void getSalarios() throws SQLException {
         String SQL = "SELECT * FROM salaries limit 100;";
         modelo5.addColumn("emp_no");
