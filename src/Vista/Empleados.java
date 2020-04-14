@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,6 +41,9 @@ PreparedStatement preparedStatement = null;
      DefaultTableModel modelo4 = new DefaultTableModel();
      DefaultTableModel modelo5 = new DefaultTableModel();
      DefaultTableModel modelo6 = new DefaultTableModel();
+     String dato= null;
+     String dato1= null;
+     int seleccionar;
     public Empleados() throws SQLException {
         initComponents();
         con = BaseDeDatos.Conexion();
@@ -69,7 +73,7 @@ PreparedStatement preparedStatement = null;
       this.dateyear3.addActionListener(this);
       this.todatemonth3.addActionListener(this);
       this.todateyear3.addActionListener(this);
-
+      this.Tablasalarios.setModel(modelo5);
     }
   
 
@@ -134,7 +138,7 @@ PreparedStatement preparedStatement = null;
         deptname = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabladepartamentos = new javax.swing.JTable();
         Registrardept = new javax.swing.JButton();
         Restablecerdept = new javax.swing.JButton();
         updatedept = new javax.swing.JButton();
@@ -156,14 +160,14 @@ PreparedStatement preparedStatement = null;
         addtitles = new javax.swing.JLabel();
         Title = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Tablatitulos = new javax.swing.JTable();
         Restablecertitle = new javax.swing.JButton();
         Registrartitle = new javax.swing.JButton();
         Eliminartitle = new javax.swing.JButton();
         updatetitle = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        Tablagerente = new javax.swing.JTable();
         RestablecerMan = new javax.swing.JButton();
         RegistrarMan = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
@@ -195,7 +199,7 @@ PreparedStatement preparedStatement = null;
         dateyear1 = new javax.swing.JComboBox<>();
         todateyear1 = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        Tablasalarios = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         Registrarsal = new javax.swing.JButton();
         Restablecersal = new javax.swing.JButton();
@@ -211,7 +215,7 @@ PreparedStatement preparedStatement = null;
         Eliminaremp = new javax.swing.JButton();
         updateemp = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        Tabladept_emp = new javax.swing.JTable();
         dateday2 = new javax.swing.JComboBox<>();
         todateday2 = new javax.swing.JComboBox<>();
         datemonth2 = new javax.swing.JComboBox<>();
@@ -241,6 +245,11 @@ PreparedStatement preparedStatement = null;
         TablaEmpleados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TablaEmpleados.setModel(modelo);
         TablaEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaEmpleadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaEmpleados);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -276,9 +285,19 @@ PreparedStatement preparedStatement = null;
 
         Eliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
 
         update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Actualizar");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
 
         Registrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrar.setText("Registrar");
@@ -402,8 +421,13 @@ PreparedStatement preparedStatement = null;
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Agregar departamentos ");
 
-        jTable1.setModel(modelo2);
-        jScrollPane2.setViewportView(jTable1);
+        Tabladepartamentos.setModel(modelo2);
+        Tabladepartamentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabladepartamentosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Tabladepartamentos);
 
         Registrardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Registrardept.setText("Registrar");
@@ -426,6 +450,11 @@ PreparedStatement preparedStatement = null;
 
         Eliminardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminardept.setText("Eliminar");
+        Eliminardept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminardeptActionPerformed(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Clave de departamento: ");
@@ -521,8 +550,13 @@ PreparedStatement preparedStatement = null;
         addtitles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addtitles.setText("Agregar titulos");
 
-        jTable2.setModel(modelo3);
-        jScrollPane3.setViewportView(jTable2);
+        Tablatitulos.setModel(modelo3);
+        Tablatitulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablatitulosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(Tablatitulos);
 
         Restablecertitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Restablecertitle.setText("Restablecer");
@@ -542,6 +576,11 @@ PreparedStatement preparedStatement = null;
 
         Eliminartitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminartitle.setText("Eliminar");
+        Eliminartitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminartitleActionPerformed(evt);
+            }
+        });
 
         updatetitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatetitle.setText("Actualizar");
@@ -643,8 +682,13 @@ PreparedStatement preparedStatement = null;
 
         jTabbedPane2.addTab("Titulos", jPanel3);
 
-        jTable5.setModel(modelo6);
-        jScrollPane6.setViewportView(jTable5);
+        Tablagerente.setModel(modelo6);
+        Tablagerente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablagerenteMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(Tablagerente);
 
         RestablecerMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         RestablecerMan.setText("Restablecer");
@@ -690,6 +734,16 @@ PreparedStatement preparedStatement = null;
 
         EliminarMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         EliminarMan.setText("Eliminar");
+        EliminarMan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EliminarManMouseClicked(evt);
+            }
+        });
+        EliminarMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarManActionPerformed(evt);
+            }
+        });
 
         updateMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateMan.setText("Actualizar");
@@ -749,21 +803,21 @@ PreparedStatement preparedStatement = null;
                         .addGap(55, 55, 55)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(updateMan)
-                        .addGap(49, 49, 49)
-                        .addComponent(EliminarMan)))
-                .addContainerGap())
+                        .addGap(47, 47, 47)
+                        .addComponent(EliminarMan))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addComponent(jLabel24)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -784,16 +838,14 @@ PreparedStatement preparedStatement = null;
                             .addComponent(jLabel26)
                             .addComponent(todateday3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(todatemonth3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RestablecerMan)
-                            .addComponent(RegistrarMan)
-                            .addComponent(EliminarMan)
-                            .addComponent(updateMan)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(todateyear3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RestablecerMan)
+                    .addComponent(RegistrarMan)
+                    .addComponent(EliminarMan)
+                    .addComponent(updateMan))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
@@ -823,8 +875,13 @@ PreparedStatement preparedStatement = null;
 
         todateyear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
 
-        jTable3.setModel(modelo5);
-        jScrollPane4.setViewportView(jTable3);
+        Tablasalarios.setModel(modelo5);
+        Tablasalarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablasalariosMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(Tablasalarios);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Administrar pagos");
@@ -847,6 +904,11 @@ PreparedStatement preparedStatement = null;
 
         Eliminarsal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminarsal.setText("Eliminar");
+        Eliminarsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarsalActionPerformed(evt);
+            }
+        });
 
         updatetitle1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatetitle1.setText("Actualizar");
@@ -970,12 +1032,22 @@ PreparedStatement preparedStatement = null;
 
         Eliminaremp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminaremp.setText("Eliminar");
+        Eliminaremp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarempActionPerformed(evt);
+            }
+        });
 
         updateemp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateemp.setText("Actualizar");
 
-        jTable4.setModel(modelo4);
-        jScrollPane5.setViewportView(jTable4);
+        Tabladept_emp.setModel(modelo4);
+        Tabladept_emp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabladept_empMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(Tabladept_emp);
 
         dateday2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
@@ -1003,86 +1075,94 @@ PreparedStatement preparedStatement = null;
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(Restableceremp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Registraremp)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Numemp1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                            .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                            .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(departamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(updateemp)
-                        .addGap(44, 44, 44)
-                        .addComponent(Eliminaremp)))
-                .addContainerGap())
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel27)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel20))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                                .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                                .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(Numemp1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(Restableceremp)
+                                .addGap(71, 71, 71)
+                                .addComponent(Registraremp)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateemp)
+                                .addGap(77, 77, 77)
+                                .addComponent(Eliminaremp))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel27)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel27)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Numemp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel18)
-                                    .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel19)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addGap(128, 128, 128)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)))
-                .addGap(16, 16, 16)
+                            .addComponent(dateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Numemp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateemp)
-                    .addComponent(Eliminaremp)
+                    .addComponent(jLabel20)
+                    .addComponent(todateday2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(todatemonth2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(todateyear2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Registraremp)
                     .addComponent(Restableceremp))
                 .addGap(77, 77, 77))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateemp)
+                    .addComponent(Eliminaremp))
+                .addGap(82, 82, 82))
         );
 
         jTabbedPane2.addTab("dept_emp", jPanel6);
@@ -1237,6 +1317,150 @@ PreparedStatement preparedStatement = null;
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_RegistrarManActionPerformed
+
+    private void EliminarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarsalActionPerformed
+    try {
+        // TODO add your handling code here:
+        setDeleteSalaries();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_EliminarsalActionPerformed
+
+    private void TablasalariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasalariosMouseClicked
+        // TODO add your handling code here:
+        seleccionar = Tablasalarios.rowAtPoint(evt.getPoint());
+        
+        dato = String.valueOf(Tablasalarios.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
+        
+          
+    }//GEN-LAST:event_TablasalariosMouseClicked
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    /*try {
+        // TODO add your handling code here:
+        int fila = TablaEmpleados.getRowCount();
+        for (int i = fila; i >=0; i++) {
+            modelo.removeRow(i);
+        }
+        getEmpleados();
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }*/
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void TablaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadosMouseClicked
+        // TODO add your handling code here:
+        seleccionar = TablaEmpleados.rowAtPoint(evt.getPoint());
+        
+        dato = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 0));
+    }//GEN-LAST:event_TablaEmpleadosMouseClicked
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+    try {
+        // TODO add your handling code here:
+        setDeleteEmpleados();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void EliminardeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardeptActionPerformed
+        // TODO add your handling code here:
+        try {
+        // TODO add your handling code here:
+        setDeleteDepartamento();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_EliminardeptActionPerformed
+
+    private void TabladepartamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabladepartamentosMouseClicked
+        // TODO add your handling code here:
+        
+        seleccionar = Tabladepartamentos.rowAtPoint(evt.getPoint());
+        dato = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 0));
+        System.out.println(dato);
+    }//GEN-LAST:event_TabladepartamentosMouseClicked
+
+    private void EliminartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminartitleActionPerformed
+        // TODO add your handling code here:
+        try {
+        
+        setDeleteTitulos();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_EliminartitleActionPerformed
+
+    private void TablatitulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablatitulosMouseClicked
+        // TODO add your handling code here:
+        seleccionar = Tablatitulos.rowAtPoint(evt.getPoint());
+        dato = String.valueOf(Tablatitulos.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
+
+        
+    }//GEN-LAST:event_TablatitulosMouseClicked
+
+    private void EliminarManMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarManMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_EliminarManMouseClicked
+
+    private void EliminarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarManActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+        
+        setDeleteGerente();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_EliminarManActionPerformed
+
+    private void TablagerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablagerenteMouseClicked
+        // TODO add your handling code here:
+        seleccionar = Tablagerente.rowAtPoint(evt.getPoint());
+        dato = String.valueOf(Tablagerente.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
+        
+    }//GEN-LAST:event_TablagerenteMouseClicked
+
+    private void EliminarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarempActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+        
+        setDeleteDept_emp();
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        
+    }//GEN-LAST:event_EliminarempActionPerformed
+
+    private void Tabladept_empMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabladept_empMouseClicked
+        // TODO add your handling code here:
+        seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
+        dato = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
+        
+    }//GEN-LAST:event_Tabladept_empMouseClicked
     
     /**
      * @param args the command line arguments
@@ -1278,7 +1502,7 @@ PreparedStatement preparedStatement = null;
     }
  
  public void getEmpleados() throws SQLException {
-        String SQL = "SELECT * FROM employees limit 100;";
+        String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("emp_no");
         modelo.addColumn("birth_date");
         modelo.addColumn("First_name");
@@ -1313,7 +1537,7 @@ PreparedStatement preparedStatement = null;
         }
     }
    public void getTitulos() throws SQLException {
-        String SQL = "SELECT * FROM titles limit 100;";
+        String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
         modelo3.addColumn("emp_no");
         modelo3.addColumn("title");
         modelo3.addColumn("From_date");
@@ -1332,7 +1556,7 @@ PreparedStatement preparedStatement = null;
     }
     public void getDept_Emp() throws SQLException {
         
-        String SQL = "SELECT * FROM dept_emp limit 100;";
+        String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
         modelo4.addColumn("emp_no");
         modelo4.addColumn("dept_no");
         modelo4.addColumn("From_date");
@@ -1361,7 +1585,7 @@ PreparedStatement preparedStatement = null;
     }
     
      public void getSalarios() throws SQLException {
-        String SQL = "SELECT * FROM salaries limit 100;";
+        String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
         modelo5.addColumn("emp_no");
         modelo5.addColumn("salary");
         modelo5.addColumn("From_date");
@@ -1379,7 +1603,7 @@ PreparedStatement preparedStatement = null;
         }
     }
       public void getDept_Manager() throws SQLException {
-        String SQL = "SELECT * FROM dept_manager limit 100;";
+        String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
         modelo6.addColumn("emp_no");
         modelo6.addColumn("dept_no");
         modelo6.addColumn("From_date");
@@ -1586,6 +1810,203 @@ PreparedStatement preparedStatement = null;
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+       public void setDeleteEmpleados() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM employees WHERE emp_no = " + dato +" ;";
+        String[] datos = new String[1];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+            }
+            System.out.println(datos[0]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0])) {
+              int fila = TablaEmpleados.getSelectedRow();
+              String SQL1 = "DELETE FROM employees WHERE emp_no = " + dato +" ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo.removeRow(fila);
+                    System.out.println("Se elimino el usuario");
+                    dato=null;
+                    
+              }
+          }
+
+    }
+       public void setDeleteDepartamento() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM departments WHERE dept_no = '" + dato +"' ;";
+        String[] datos = new String[1];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+            }
+            System.out.println(datos[0]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0])) {
+              int fila = Tabladepartamentos.getSelectedRow();
+              String SQL1 = "DELETE FROM departments WHERE dept_no = '" + dato +"' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo2.removeRow(fila);
+                    System.out.println("Se elimino el departamento");
+                    dato=null;
+                    
+              }
+          }
+
+    }
+       public void setDeleteTitulos() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM titles WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
+        String[] datos = new String[3];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[2] = resultSet.getDate(3).toString();
+            }
+            System.out.println(datos[0] + " " + datos[2]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0]) && dato1.equals(datos[2])) {
+              int fila = Tablatitulos.getSelectedRow();
+              String SQL1 = "DELETE FROM titles WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo3.removeRow(fila);
+                    System.out.println("Se elimino el titulo");
+                    dato=null;
+                    dato1=null;
+              }
+          }
+
+    }
+       public void setDeleteGerente() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM dept_manager WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
+        String[] datos = new String[2];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getString(2);
+            }
+            System.out.println(datos[0] + " " + datos[1]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+              int fila = Tablagerente.getSelectedRow();
+              String SQL1 = "DELETE FROM dept_manager WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo6.removeRow(fila);
+                    System.out.println("Se elimino el gerente");
+                    dato=null;
+                    dato1=null;
+              }
+          }
+
+    }
+      public void setDeleteSalaries() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM salaries WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
+        String[] datos = new String[3];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[2] = resultSet.getDate(3).toString();
+            }
+            System.out.println(datos[0] + " " + datos[2]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0]) && dato1.equals(datos[2])) {
+              int fila = Tablasalarios.getSelectedRow();
+              String SQL1 = "DELETE FROM salaries WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo5.removeRow(fila);
+                    System.out.println("Se elimino el salario");
+                    dato=null;
+                    dato1=null;
+              }
+          }
+
+    }
+      public void setDeleteDept_emp() throws ParseException, SQLException {
+        String SQL = "SELECT * FROM dept_emp WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
+        String[] datos = new String[2];
+
+        try {
+            preparedStatement = con.prepareStatement(SQL);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getString(2);
+            }
+            System.out.println(datos[0] + " " + datos[1]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+              int fila = Tabladept_emp.getSelectedRow();
+              String SQL1 = "DELETE FROM dept_emp WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              if (fila >= 0) {
+                    modelo4.removeRow(fila);
+                    System.out.println("Se elimino el dept_emp");
+                    dato=null;
+                    dato1=null;
+              }
+          }
+
+    }
+      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
     private javax.swing.JLabel Contratacion;
@@ -1615,6 +2036,11 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JButton Restablecertitle;
     private javax.swing.JTextField Salario;
     private javax.swing.JTable TablaEmpleados;
+    private javax.swing.JTable Tabladepartamentos;
+    private javax.swing.JTable Tabladept_emp;
+    private javax.swing.JTable Tablagerente;
+    private javax.swing.JTable Tablasalarios;
+    private javax.swing.JTable Tablatitulos;
     private javax.swing.JTextField Title;
     private javax.swing.JLabel addtitles;
     private javax.swing.JComboBox<String> birthday;
@@ -1679,11 +2105,6 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JComboBox<String> todateday;
     private javax.swing.JComboBox<String> todateday1;
     private javax.swing.JComboBox<String> todateday2;
