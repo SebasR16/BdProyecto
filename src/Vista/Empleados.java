@@ -6,6 +6,8 @@
 package Vista;
 
 
+
+import controller.*;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
@@ -33,26 +36,31 @@ import javax.swing.table.DefaultTableModel;
 public final class Empleados extends javax.swing.JFrame implements ActionListener{
 PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-     Connection con = null;
+     Connection con = BaseDeDatos.Conexion();
      DateFormat df = null;
-     DefaultTableModel modelo = new DefaultTableModel();
-     DefaultTableModel modelo2 = new DefaultTableModel();
-     DefaultTableModel modelo3 = new DefaultTableModel();
-     DefaultTableModel modelo4 = new DefaultTableModel();
-     DefaultTableModel modelo5 = new DefaultTableModel();
-     DefaultTableModel modelo6 = new DefaultTableModel();
-     String dato= null;
-     String dato1= null;
+     select s= new select(con);
+     insert i=new insert(con);
+     delete d= new delete(con);
+     update u=new update(con);
+     DefaultTableModel modelo =s.getEmpleados();
+     DefaultTableModel modelo2 =s.getDepartamentos();
+     DefaultTableModel modelo3 =s.getTitulos();
+     DefaultTableModel modelo4 =s.getDept_Emp();
+     DefaultTableModel modelo5 =s.getSalarios();
+     DefaultTableModel modelo6 =s.getDept_Manager();
+     String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
+     
      int seleccionar;
+    
     public Empleados() throws SQLException {
         initComponents();
-        con = BaseDeDatos.Conexion();
-        getEmpleados();
-        getSalarios();
-        getDepartamentos();
-        getDept_Emp();
-        getTitulos();
-        getDept_Manager();
+       
+        ArrayList depas=s.listDepartamentos();
+        for (int i = 0; i < depas.size(); i++) {
+            departamento.addItem(depas.get(i).toString());
+            departamento1.addItem(depas.get(i).toString());
+        }
+      
       this.birthmonth.addActionListener(this);
       this.birthyear.addActionListener(this);
       this.conmonth.addActionListener(this);
@@ -447,6 +455,11 @@ PreparedStatement preparedStatement = null;
 
         updatedept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatedept.setText("Actualizar");
+        updatedept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatedeptActionPerformed(evt);
+            }
+        });
 
         Eliminardept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminardept.setText("Eliminar");
@@ -584,6 +597,11 @@ PreparedStatement preparedStatement = null;
 
         updatetitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatetitle.setText("Actualizar");
+        updatetitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatetitleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -747,6 +765,11 @@ PreparedStatement preparedStatement = null;
 
         updateMan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateMan.setText("Actualizar");
+        updateMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateManActionPerformed(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel24.setText("Gerente de departamento");
@@ -912,6 +935,11 @@ PreparedStatement preparedStatement = null;
 
         updatetitle1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updatetitle1.setText("Actualizar");
+        updatetitle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatetitle1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1040,8 +1068,14 @@ PreparedStatement preparedStatement = null;
 
         updateemp.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateemp.setText("Actualizar");
+        updateemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateempActionPerformed(evt);
+            }
+        });
 
         Tabladept_emp.setModel(modelo4);
+        Tabladept_emp.setCellSelectionEnabled(true);
         Tabladept_emp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Tabladept_empMouseClicked(evt);
@@ -1192,10 +1226,37 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_PrimernombreActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-    try {
+    
+        try {
         // TODO add your handling code here:
-        setEmpleados();
+          df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = birthyear.getSelectedItem().toString() + "-" + (birthmonth.getSelectedIndex()+1) + "-" + birthday.getSelectedItem().toString();
+        String birth_date1 =conyear.getSelectedItem().toString() + "-" + (conmonth.getSelectedIndex()+1) + "-" + conday.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+        
+          System.out.println(sqdet);
+     
+            if (Primernombre.getText().isEmpty()||Apellido.getText().isEmpty()) {
+                System.out.println("Introduzca Nombre y Apellido");
+                
+            }else{
+                
+                 i.setEmpleados(userId(), sqdet, Primernombre.getText(), Apellido.getText(), (String) Genero.getSelectedItem(), sqdet1);
+            
+            
+            System.out.println("Se realizo el registro");
+            }
+      
+    
     } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (RemoteException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     
@@ -1257,42 +1318,99 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_RestablecerempActionPerformed
 
     private void RegistrardeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrardeptActionPerformed
-    try {
+   
         // TODO add your handling code here:
-        
-        setDepartamentos();
+         String id = deptId.getText();
+        String name = deptname.getText();
+    try {
+        i.setDepartamentos( id,  name);
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
+   
         
     }//GEN-LAST:event_RegistrardeptActionPerformed
 
     private void RegistrartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrartitleActionPerformed
     try {
-        // TODO add your handling code here:
-        setTitulos();
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear.getSelectedItem().toString() + "-" + (datemonth.getSelectedIndex()+1) + "-" + dateday.getSelectedItem().toString();
+        String birth_date1 =todateyear.getSelectedItem().toString() + "-" + (todatemonth.getSelectedIndex()+1) + "-" + todateday.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
+          System.out.println(sqdet);
+          if (Numemp.getText().isEmpty()||Title.getText().isEmpty()) {
+                System.out.println("Introduzca Numero de empleado y apellido");
+                
+            }else{
+            
+        i.setTitulos(Numemp.getText(),Title.getText(),sqdet,sqdet1);}
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_RegistrartitleActionPerformed
 
     private void RegistrarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarsalActionPerformed
-    try {
-        // TODO add your handling code here:
-        setSalarios();
-    } catch (ParseException ex) {
-        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        try {                                             
+//     df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex()+1) + "-" + dateday1.getSelectedItem().toString();
+String birth_date1 =todateyear1.getSelectedItem().toString() + "-" + (todatemonth1.getSelectedIndex()+1) + "-" + todateday1.getSelectedItem().toString();
+
+Date det = df.parse(birth_date);
+Date det1 = df.parse(birth_date1);
+java.sql.Date sqdet = new java.sql.Date(det.getTime());
+java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+System.out.println(sqdet);
+//String[] empleadoR = new String[6];
+try {
+    if (Numempleado.getText().isEmpty()||Salario.getText().isEmpty()) {
+        System.out.println("Introduzca Numero de empleado y Salario");
+        
+    }else{
+        i.setSalarios(Numempleado.getText(), Salario.getText(), sqdet, sqdet1);
+        
     }
+} catch (SQLException ex) {
+    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+} catch (ParseException ex) {
+    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+}
+        } catch (ParseException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_RegistrarsalActionPerformed
 
     private void RegistrarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarempActionPerformed
-    try {
-        // TODO add your handling code here:
+        try {                                             
+//       df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex()+1) + "-" + dateday2.getSelectedItem().toString();
+String birth_date1 =todateyear2.getSelectedItem().toString() + "-" + (todatemonth2.getSelectedIndex()+1) + "-" + todateday2.getSelectedItem().toString();
+
+Date det = df.parse(birth_date);
+Date det1 = df.parse(birth_date1);
+java.sql.Date sqdet = new java.sql.Date(det.getTime());
+java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+System.out.println(sqdet);
+//String[] empleadoR = new String[6];
+try {
+    if (Numemp1.getText().isEmpty()) {
+        System.out.println("Introduzca Numero de empleado");
         
-        setDept_emp();
-    } catch (ParseException ex) {
+    }else{
+        
+        i.setDept_emp(Numemp1.getText(),(String) departamento.getSelectedItem(), sqdet, sqdet1);
+    }
+} catch (ParseException ex) {
+    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+} catch (SQLException ex) {
+    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+}
+        } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_RegistrarempActionPerformed
@@ -1311,8 +1429,21 @@ PreparedStatement preparedStatement = null;
 
     private void RegistrarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarManActionPerformed
     try {
-        // TODO add your handling code here:
-        setDept_manager();
+        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex()+1) + "-" + dateday3.getSelectedItem().toString();
+        String birth_date1 =todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex()+1) + "-" + todateday3.getSelectedItem().toString();
+        
+        Date det = df.parse(birth_date);
+        Date det1 = df.parse(birth_date1);
+        java.sql.Date sqdet = new java.sql.Date(det.getTime());
+        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+        System.out.println(sqdet);
+        //String[] empleadoR = new String[6];
+        if (Numemp2.getText().isEmpty()) {
+            System.out.println("Introduzca Numero de empleado");
+        } else {
+            i.setDept_manager(Numemp2.getText(),(String) departamento1.getSelectedItem(), sqdet, sqdet1 );
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -1320,14 +1451,21 @@ PreparedStatement preparedStatement = null;
 
     private void EliminarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarsalActionPerformed
     try {
-        // TODO add your handling code here:
-        setDeleteSalaries();
+        if (dato.equals(d.setDeleteSalaries(dato, dato2)[0]) && dato1.equals(d.setDeleteSalaries(dato, dato2)[2])) {
+            int fila = Tablasalarios.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo5.removeRow(fila);
+                System.out.println("Se elimino el salario");
+                dato=null;
+                dato1=null;
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
-        
     }//GEN-LAST:event_EliminarsalActionPerformed
 
     private void TablasalariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasalariosMouseClicked
@@ -1335,22 +1473,32 @@ PreparedStatement preparedStatement = null;
         seleccionar = Tablasalarios.rowAtPoint(evt.getPoint());
         
         dato = String.valueOf(Tablasalarios.getValueAt(seleccionar, 0));
-        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
+        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 3));
         
           
     }//GEN-LAST:event_TablasalariosMouseClicked
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-    /*try {
+
+    try {
+        u.updateEmpleados(dato,java.sql.Date.valueOf(dato1) , dato2, dato3, dato4, java.sql.Date.valueOf(dato5));
+        /*try {
         // TODO add your handling code here:
         int fila = TablaEmpleados.getRowCount();
         for (int i = fila; i >=0; i++) {
-            modelo.removeRow(i);
+        modelo.removeRow(i);
         }
         getEmpleados();
+        } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-    }*/
+    }
     }//GEN-LAST:event_updateActionPerformed
 
     private void TablaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadosMouseClicked
@@ -1358,12 +1506,25 @@ PreparedStatement preparedStatement = null;
         seleccionar = TablaEmpleados.rowAtPoint(evt.getPoint());
         
         dato = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 3));
+        dato4 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 5));
+        
     }//GEN-LAST:event_TablaEmpleadosMouseClicked
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
     try {
-        // TODO add your handling code here:
-        setDeleteEmpleados();
+        if (dato.equals(d.setDeleteEmpleados(dato)[0])) {
+            int fila = TablaEmpleados.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo.removeRow(fila);
+                System.out.println("Se elimino el usuario");
+                dato=null;
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1372,10 +1533,17 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void EliminardeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardeptActionPerformed
-        // TODO add your handling code here:
-        try {
-        // TODO add your handling code here:
-        setDeleteDepartamento();
+    try {
+        if (dato.equals(d.setDeleteDepartamento(dato)[0])) {
+            int fila = Tabladepartamentos.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo2.removeRow(fila);
+                System.out.println("Se elimino el departamento");
+                dato=null;
+                
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1388,14 +1556,22 @@ PreparedStatement preparedStatement = null;
         
         seleccionar = Tabladepartamentos.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 0));
+            dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
         System.out.println(dato);
     }//GEN-LAST:event_TabladepartamentosMouseClicked
 
     private void EliminartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminartitleActionPerformed
-        // TODO add your handling code here:
-        try {
-        
-        setDeleteTitulos();
+    try {
+        if (dato.equals(d.setDeleteTitulos(dato, dato2)[0]) && dato1.equals(d.setDeleteTitulos(dato, dato2)[2])) {
+            int fila = Tablatitulos.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo3.removeRow(fila);
+                System.out.println("Se elimino el titulo");
+                dato=null;
+                dato2=null;
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1407,7 +1583,9 @@ PreparedStatement preparedStatement = null;
         // TODO add your handling code here:
         seleccionar = Tablatitulos.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tablatitulos.getValueAt(seleccionar, 0));
-        dato1 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
+        dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 3));
 
         
     }//GEN-LAST:event_TablatitulosMouseClicked
@@ -1418,17 +1596,22 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_EliminarManMouseClicked
 
     private void EliminarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarManActionPerformed
-        // TODO add your handling code here:
-        
-         try {
-        
-        setDeleteGerente();
+    try {
+        if (dato.equals(d.setDeleteGerente(dato, dato1)[0]) && dato1.equals(d.setDeleteGerente(dato, dato1)[1])) {
+            int fila = Tablagerente.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo6.removeRow(fila);
+                System.out.println("Se elimino el gerente");
+                dato=null;
+                dato1=null;
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
-        
     }//GEN-LAST:event_EliminarManActionPerformed
 
     private void TablagerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablagerenteMouseClicked
@@ -1436,15 +1619,23 @@ PreparedStatement preparedStatement = null;
         seleccionar = Tablagerente.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tablagerente.getValueAt(seleccionar, 0));
         dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
         
     }//GEN-LAST:event_TablagerenteMouseClicked
 
     private void EliminarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarempActionPerformed
-        // TODO add your handling code here:
-        
-        try {
-        
-        setDeleteDept_emp();
+    try {
+        if (dato.equals(d.setDeleteDept_emp(dato, dato1)[0]) && dato1.equals(d.setDeleteDept_emp(dato, dato1)[1])) {
+            int fila = Tabladept_emp.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo4.removeRow(fila);
+                System.out.println("Se elimino el dept_emp");
+                dato=null;
+                dato1=null;
+            }
+        }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1459,8 +1650,61 @@ PreparedStatement preparedStatement = null;
         seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 0));
         dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
         
     }//GEN-LAST:event_Tabladept_empMouseClicked
+
+    private void updatedeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedeptActionPerformed
+    try {
+        // TODO add your handling code here:
+        u.updateDepartamentos(dato, dato1);
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_updatedeptActionPerformed
+
+    private void updatetitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatetitleActionPerformed
+    try {
+        // TODO add your handling code here:
+        u.updateTitulos(dato, dato1, java.sql.Date.valueOf(dato2) , java.sql.Date.valueOf(dato3));
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_updatetitleActionPerformed
+
+    private void updateManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateManActionPerformed
+    try {
+        // TODO add your handling code here:
+        u.updateDept_manager(dato, dato1, java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_updateManActionPerformed
+
+    private void updatetitle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatetitle1ActionPerformed
+    try {
+        // TODO add your handling code here:
+        u.updateSalarios(dato, dato1, java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_updatetitle1ActionPerformed
+
+    private void updateempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateempActionPerformed
+    try {
+        // TODO add your handling code here:
+        u.updateDept_emp(dato, dato1,java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_updateempActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1501,512 +1745,8 @@ PreparedStatement preparedStatement = null;
         });
     }
  
- public void getEmpleados() throws SQLException {
-        String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("birth_date");
-        modelo.addColumn("First_name");
-        modelo.addColumn("Last_name");
-        modelo.addColumn("Gender");
-        modelo.addColumn("HireDate");
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            Object [] fila = new Object[modelo.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo.addRow(fila);
-        }
-    }
-  public void getDepartamentos() throws SQLException {
-        String SQL = "SELECT * FROM departments limit 100";
-        modelo2.addColumn("dept_no");
-        modelo2.addColumn("dept_name");
-       
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            Object [] fila = new Object[modelo2.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo2.addRow(fila);
-        }
-    }
-   public void getTitulos() throws SQLException {
-        String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
-        modelo3.addColumn("emp_no");
-        modelo3.addColumn("title");
-        modelo3.addColumn("From_date");
-        modelo3.addColumn("To_date");
-      
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            Object [] fila = new Object[modelo3.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo3.addRow(fila);
-        }
-    }
-    public void getDept_Emp() throws SQLException {
-        
-        String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
-        modelo4.addColumn("emp_no");
-        modelo4.addColumn("dept_no");
-        modelo4.addColumn("From_date");
-        modelo4.addColumn("To_date");
-     
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            
-           
-            Object [] fila = new Object[modelo4.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo4.addRow(fila);
-        }
-     
-         String SQL2 = "SELECT dept_no FROM departments ";
-          preparedStatement = con.prepareStatement(SQL2);
-        resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-              departamento.addItem(resultSet.getString(1));
-              departamento1.addItem(resultSet.getString(1));
-        }
-    }
+ 
     
-     public void getSalarios() throws SQLException {
-        String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
-        modelo5.addColumn("emp_no");
-        modelo5.addColumn("salary");
-        modelo5.addColumn("From_date");
-        modelo5.addColumn("To_date");
-        
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            Object [] fila = new Object[modelo5.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo5.addRow(fila);
-        }
-    }
-      public void getDept_Manager() throws SQLException {
-        String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
-        modelo6.addColumn("emp_no");
-        modelo6.addColumn("dept_no");
-        modelo6.addColumn("From_date");
-        modelo6.addColumn("To_date");
-        
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            Object [] fila = new Object[modelo6.getColumnCount()];
-            for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
-            }
-         modelo6.addRow(fila);
-        }
-    }
-      public void setEmpleados() throws ParseException {
-        String SQL = "INSERT INTO employees(emp_no,birth_date,first_name,last_name,gender,hire_date)VALUES(?,?,?,?,?,?)";
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = birthyear.getSelectedItem().toString() + "-" + (birthmonth.getSelectedIndex()+1) + "-" + birthday.getSelectedItem().toString();
-        String birth_date1 =conyear.getSelectedItem().toString() + "-" + (conmonth.getSelectedIndex()+1) + "-" + conday.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
-          System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-        try {
-            if (Primernombre.getText().isEmpty()||Apellido.getText().isEmpty()) {
-                System.out.println("Introduzca Nombre y Apellido");
-                
-            }else{
-                
-            
-            PreparedStatement pst = con.prepareStatement(SQL);
-            pst.setInt(1, Integer.parseInt(userId()));
-            pst.setDate(2, sqdet);
-            pst.setString(3, Primernombre.getText());
-            pst.setString(4, Apellido.getText());
-            pst.setString(5, (String) Genero.getSelectedItem());
-            pst.setDate(6, sqdet1);
-            pst.executeUpdate();
-            System.out.println("Se realizo el registro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }
-      public boolean setDepartamentos() throws ParseException, SQLException {
-          
-        boolean exists = false;
-        String SQL1 = "INSERT INTO departments(dept_no,dept_name)VALUES(?,?)";
-        String SQL = "SELECT * FROM departments limit 100;";
-        preparedStatement = con.prepareStatement(SQL);
-        resultSet = preparedStatement.executeQuery();
-
-        String[] datos = new String[2];
-        String id = deptId.getText();
-        String name = deptname.getText();
-        while (resultSet.next()) {
-            datos[0] = resultSet.getString(1);
-            datos[1] = resultSet.getString(2);
-            System.out.println(datos[0]);
-            if (id.equals(datos[0]) || name.equals(datos[1])) {
-                exists = true;
-                System.out.println("ya existe");
-
-            }
-        }
-        if (exists) {
-            return exists;
-        } else {
-
-            PreparedStatement pst = con.prepareStatement(SQL1);
-            pst.setString(1, id);
-            pst.setString(2, name);
-            pst.executeUpdate();
-            System.out.println("Registro exitoso");
-            return false;
-        }
-
-    }
-      public void setTitulos() throws ParseException {
-        String SQL = "INSERT INTO titles(emp_no,title,from_date,to_date)VALUES(?,?,?,?)";
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = dateyear.getSelectedItem().toString() + "-" + (datemonth.getSelectedIndex()+1) + "-" + dateday.getSelectedItem().toString();
-        String birth_date1 =todateyear.getSelectedItem().toString() + "-" + (todatemonth.getSelectedIndex()+1) + "-" + todateday.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
-          System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-        try {
-            if (Numemp.getText().isEmpty()||Title.getText().isEmpty()) {
-                System.out.println("Introduzca Numero de empleado y apellido");
-                
-            }else{
-            
-            PreparedStatement pst = con.prepareStatement(SQL);
-            pst.setInt(1, Integer.parseInt(Numemp.getText()));
-            pst.setString(2, Title.getText());
-            pst.setDate(3, sqdet); 
-            pst.setDate(4, sqdet1);
-            pst.executeUpdate();
-            System.out.println("Se realizo el registro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-      
-      public void setSalarios() throws ParseException {
-        String SQL = "INSERT INTO salaries(emp_no,salary,from_date,to_date)VALUES(?,?,?,?)";
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex()+1) + "-" + dateday1.getSelectedItem().toString();
-        String birth_date1 =todateyear1.getSelectedItem().toString() + "-" + (todatemonth1.getSelectedIndex()+1) + "-" + todateday1.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
-          System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-        try {
-            if (Numempleado.getText().isEmpty()||Salario.getText().isEmpty()) {
-                System.out.println("Introduzca Numero de empleado y Salario");
-                
-            }else{
-            
-            PreparedStatement pst = con.prepareStatement(SQL);
-            pst.setInt(1, Integer.parseInt(Numempleado.getText()));
-            pst.setString(2, Salario.getText());
-            pst.setDate(3, sqdet); 
-            pst.setDate(4, sqdet1);
-            pst.executeUpdate();
-            System.out.println("Se realizo el registro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-      public void setDept_emp() throws ParseException {
-        String SQL = "INSERT INTO dept_emp(emp_no,dept_no,from_date,to_date)VALUES(?,?,?,?)";
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex()+1) + "-" + dateday2.getSelectedItem().toString();
-        String birth_date1 =todateyear2.getSelectedItem().toString() + "-" + (todatemonth2.getSelectedIndex()+1) + "-" + todateday2.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
-          System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-        try {
-            if (Numemp1.getText().isEmpty()) {
-                System.out.println("Introduzca Numero de empleado");
-                
-            }else{
-            
-            PreparedStatement pst = con.prepareStatement(SQL);
-            pst.setInt(1, Integer.parseInt(Numemp1.getText()));
-            pst.setString(2, (String) departamento.getSelectedItem());
-            pst.setDate(3, sqdet); 
-            pst.setDate(4, sqdet1);
-            pst.executeUpdate();
-            System.out.println("Se realizo el registro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-      public void setDept_manager() throws ParseException {
-        String SQL = "INSERT INTO dept_manager(emp_no,dept_no,from_date,to_date)VALUES(?,?,?,?)";
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex()+1) + "-" + dateday3.getSelectedItem().toString();
-        String birth_date1 =todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex()+1) + "-" + todateday3.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime()); 
-          System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-        try {
-            if (Numemp2.getText().isEmpty()) {
-                System.out.println("Introduzca Numero de empleado");
-                
-            }else{
-            
-            PreparedStatement pst = con.prepareStatement(SQL);
-            pst.setInt(1, Integer.parseInt(Numemp2.getText()));
-            pst.setString(2, (String) departamento1.getSelectedItem());
-            pst.setDate(3, sqdet); 
-            pst.setDate(4, sqdet1);
-            pst.executeUpdate();
-            System.out.println("Se realizo el registro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-       public void setDeleteEmpleados() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM employees WHERE emp_no = " + dato +" ;";
-        String[] datos = new String[1];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-            }
-            System.out.println(datos[0]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0])) {
-              int fila = TablaEmpleados.getSelectedRow();
-              String SQL1 = "DELETE FROM employees WHERE emp_no = " + dato +" ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo.removeRow(fila);
-                    System.out.println("Se elimino el usuario");
-                    dato=null;
-                    
-              }
-          }
-
-    }
-       public void setDeleteDepartamento() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM departments WHERE dept_no = '" + dato +"' ;";
-        String[] datos = new String[1];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-            }
-            System.out.println(datos[0]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0])) {
-              int fila = Tabladepartamentos.getSelectedRow();
-              String SQL1 = "DELETE FROM departments WHERE dept_no = '" + dato +"' ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo2.removeRow(fila);
-                    System.out.println("Se elimino el departamento");
-                    dato=null;
-                    
-              }
-          }
-
-    }
-       public void setDeleteTitulos() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM titles WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
-        String[] datos = new String[3];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-                datos[2] = resultSet.getDate(3).toString();
-            }
-            System.out.println(datos[0] + " " + datos[2]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0]) && dato1.equals(datos[2])) {
-              int fila = Tablatitulos.getSelectedRow();
-              String SQL1 = "DELETE FROM titles WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo3.removeRow(fila);
-                    System.out.println("Se elimino el titulo");
-                    dato=null;
-                    dato1=null;
-              }
-          }
-
-    }
-       public void setDeleteGerente() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM dept_manager WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
-        String[] datos = new String[2];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-                datos[1] = resultSet.getString(2);
-            }
-            System.out.println(datos[0] + " " + datos[1]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
-              int fila = Tablagerente.getSelectedRow();
-              String SQL1 = "DELETE FROM dept_manager WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo6.removeRow(fila);
-                    System.out.println("Se elimino el gerente");
-                    dato=null;
-                    dato1=null;
-              }
-          }
-
-    }
-      public void setDeleteSalaries() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM salaries WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
-        String[] datos = new String[3];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-                datos[2] = resultSet.getDate(3).toString();
-            }
-            System.out.println(datos[0] + " " + datos[2]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0]) && dato1.equals(datos[2])) {
-              int fila = Tablasalarios.getSelectedRow();
-              String SQL1 = "DELETE FROM salaries WHERE emp_no = " + dato + " and from_date = '" + dato1 + "' ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo5.removeRow(fila);
-                    System.out.println("Se elimino el salario");
-                    dato=null;
-                    dato1=null;
-              }
-          }
-
-    }
-      public void setDeleteDept_emp() throws ParseException, SQLException {
-        String SQL = "SELECT * FROM dept_emp WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
-        String[] datos = new String[2];
-
-        try {
-            preparedStatement = con.prepareStatement(SQL);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                datos[0] = resultSet.getString(1);
-                datos[1] = resultSet.getString(2);
-            }
-            System.out.println(datos[0] + " " + datos[1]);
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
-              int fila = Tabladept_emp.getSelectedRow();
-              String SQL1 = "DELETE FROM dept_emp WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
-              Statement st = con.createStatement();
-              st.executeUpdate(SQL1);
-              if (fila >= 0) {
-                    modelo4.removeRow(fila);
-                    System.out.println("Se elimino el dept_emp");
-                    dato=null;
-                    dato1=null;
-              }
-          }
-
-    }
-      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Apellido;
     private javax.swing.JLabel Contratacion;
