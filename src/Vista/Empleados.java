@@ -257,6 +257,9 @@ PreparedStatement preparedStatement = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaEmpleadosMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaEmpleadosMouseExited(evt);
+            }
         });
         jScrollPane1.setViewportView(TablaEmpleados);
 
@@ -434,6 +437,9 @@ PreparedStatement preparedStatement = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabladepartamentosMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TabladepartamentosMouseExited(evt);
+            }
         });
         jScrollPane2.setViewportView(Tabladepartamentos);
 
@@ -567,6 +573,9 @@ PreparedStatement preparedStatement = null;
         Tablatitulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablatitulosMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablatitulosMouseExited(evt);
             }
         });
         jScrollPane3.setViewportView(Tablatitulos);
@@ -704,6 +713,9 @@ PreparedStatement preparedStatement = null;
         Tablagerente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablagerenteMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablagerenteMouseExited(evt);
             }
         });
         jScrollPane6.setViewportView(Tablagerente);
@@ -903,6 +915,9 @@ PreparedStatement preparedStatement = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablasalariosMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablasalariosMouseExited(evt);
+            }
         });
         jScrollPane4.setViewportView(Tablasalarios);
 
@@ -1079,6 +1094,9 @@ PreparedStatement preparedStatement = null;
         Tabladept_emp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Tabladept_empMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Tabladept_empMouseExited(evt);
             }
         });
         jScrollPane5.setViewportView(Tabladept_emp);
@@ -1705,6 +1723,65 @@ try {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_updateempActionPerformed
+
+    private void TablaEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadosMouseExited
+        // TODO add your handling code here:        seleccionar = TablaEmpleados.rowAtPoint(evt.getPoint());
+        
+       seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
+        dato1 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 3));
+        dato4 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 5));
+        
+    }//GEN-LAST:event_TablaEmpleadosMouseExited
+
+    private void TabladepartamentosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabladepartamentosMouseExited
+        // TODO add your handling code here:
+           seleccionar = Tabladepartamentos.rowAtPoint(evt.getPoint());
+       
+            dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
+        System.out.println(dato);
+    }//GEN-LAST:event_TabladepartamentosMouseExited
+
+    private void TablatitulosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablatitulosMouseExited
+        // TODO add your handling code here:
+          seleccionar = Tablatitulos.rowAtPoint(evt.getPoint());
+        
+        dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 3));
+    }//GEN-LAST:event_TablatitulosMouseExited
+
+    private void TablagerenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablagerenteMouseExited
+        // TODO add your handling code here:
+          seleccionar = Tablagerente.rowAtPoint(evt.getPoint());
+        
+        dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+        
+    }//GEN-LAST:event_TablagerenteMouseExited
+
+    private void TablasalariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasalariosMouseExited
+        // TODO add your handling code here:
+                seleccionar = Tablasalarios.rowAtPoint(evt.getPoint());
+        
+      
+        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 3));
+    }//GEN-LAST:event_TablasalariosMouseExited
+
+    private void Tabladept_empMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabladept_empMouseExited
+        // TODO add your handling code here:
+         seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
+        
+        dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+        
+    }//GEN-LAST:event_Tabladept_empMouseExited
     
     /**
      * @param args the command line arguments
