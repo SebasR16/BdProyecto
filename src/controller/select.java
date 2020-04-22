@@ -29,16 +29,15 @@ public class select {
     public DefaultTableModel  getEmpleados() throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("birth_date");
-        modelo.addColumn("First_name");
-        modelo.addColumn("Last_name");
-        modelo.addColumn("Gender");
-        modelo.addColumn("HireDate");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Nacimiento");
+        modelo.addColumn("Primer Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Genero");
+        modelo.addColumn("Fecha de Contratación");
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
@@ -50,13 +49,12 @@ public class select {
   public DefaultTableModel  getDepartamentos() throws SQLException {
       DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM departments limit 100";
-        modelo.addColumn("dept_no");
-        modelo.addColumn("dept_name");
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Nombre de Departamento");
        
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
@@ -68,15 +66,14 @@ public class select {
    public DefaultTableModel getTitulos() throws SQLException {
        DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("title");
-        modelo.addColumn("From_date");
-        modelo.addColumn("To_date");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
       
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
@@ -88,16 +85,14 @@ public class select {
     public DefaultTableModel getDept_Emp() throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("dept_no");
-        modelo.addColumn("From_date");
-        modelo.addColumn("To_date");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
      
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
-            
+        while (resultSet.next()) {            
            
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
@@ -116,8 +111,6 @@ public class select {
         resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             datos.add(resultSet.getString(1));
-             //departamento.addItem(resultSet.getString(1));
-              //departamento1.addItem(resultSet.getString(1));
         }
         return datos;
     }
@@ -127,15 +120,15 @@ public class select {
      public DefaultTableModel getSalarios() throws SQLException {
          DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("salary");
-        modelo.addColumn("From_date");
-        modelo.addColumn("To_date");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Salario");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
         
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
+            
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);
@@ -147,15 +140,14 @@ public class select {
       public  DefaultTableModel getDept_Manager() throws SQLException {
           DefaultTableModel modelo = new DefaultTableModel();
         String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("emp_no");
-        modelo.addColumn("dept_no");
-        modelo.addColumn("From_date");
-        modelo.addColumn("To_date");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
         
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            //int id_docente, String nombre, String apellido, String alias
             Object [] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
                 fila[i] = resultSet.getObject(i+1);

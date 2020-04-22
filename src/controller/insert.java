@@ -42,6 +42,8 @@ public class insert {
             pst.setString(5,  Genero);
             pst.setDate(6, sqdet1);
             pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
     }
       public boolean setDepartamentos(String id, String name) throws ParseException, SQLException {
           
@@ -79,7 +81,7 @@ public class insert {
       public void setTitulos(String Numemp, String Title,java.sql.Date  sqdet,java.sql.Date  sqdet1 ) throws ParseException {
         String SQL = "INSERT INTO titles(emp_no,title,from_date,to_date)VALUES(?,?,?,?)";
        
-        //String[] empleadoR = new String[6];
+        
         try {
             
             PreparedStatement pst = con.prepareStatement(SQL);

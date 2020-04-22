@@ -23,11 +23,12 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class update {
-     PreparedStatement preparedStatement = null;
+    PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-     Connection con = null;
-        public update(Connection con) {
-        this.con=con;
+    Connection con = null;
+
+    public update(Connection con) {
+        this.con = con;
     }
           public void updateEmpleados(String userId, java.sql.Date  sqdet, String Primernombre, String Apellido, String Genero,java.sql.Date  sqdet1 ) throws ParseException, SQLException {
        
@@ -42,6 +43,8 @@ public class update {
             pst.setDate(6, sqdet1);
             pst.setInt(7, Integer.parseInt(userId));
             pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
     }
       public boolean updateDepartamentos(String id, String name) throws ParseException, SQLException {
           
@@ -80,7 +83,6 @@ public class update {
       public void updateTitulos(String Numemp, String Title,java.sql.Date  sqdet,java.sql.Date  sqdet1 ) throws ParseException {
         String SQL = "UPDATE titles SET emp_no=?,title=?,from_date=?,to_date=? WHERE emp_no=?";
        
-        //String[] empleadoR = new String[6];
         try {
             
             PreparedStatement pst = con.prepareStatement(SQL);
