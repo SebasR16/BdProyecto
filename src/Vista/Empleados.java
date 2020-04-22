@@ -1322,7 +1322,11 @@ PreparedStatement preparedStatement = null;
             }else{
                 
                  i.setEmpleados(userId(), sqdet, Primernombre.getText(), Apellido.getText(), (String) Genero.getSelectedItem(), sqdet1);
-            
+             modelo=s.getEmpleados();
+     
+            TablaEmpleados.setModel(modelo);
+             modelo.fireTableDataChanged();
+             
             
             System.out.println("Se realizo el registro");
             }
@@ -1400,6 +1404,9 @@ PreparedStatement preparedStatement = null;
         String name = deptname.getText();
     try {
         i.setDepartamentos( id,  name);
+          modelo2 =s.getDepartamentos();
+            Tabladepartamentos.setModel(modelo2);
+             modelo2.fireTableDataChanged();
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1426,10 +1433,15 @@ PreparedStatement preparedStatement = null;
             } else {
 
                 i.setTitulos(Numemp.getText(), Title.getText(), sqdet, sqdet1);
+                    modelo3 =s.getTitulos();
+             Tablatitulos.setModel(modelo3);
+             modelo3.fireTableDataChanged();
             }
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_RegistrartitleActionPerformed
 
     private void RegistrarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarsalActionPerformed
@@ -1449,7 +1461,9 @@ PreparedStatement preparedStatement = null;
 
                 } else {
                     i.setSalarios(Numempleado.getText(), Salario.getText(), sqdet, sqdet1);
-
+         modelo5 =s.getSalarios();
+            Tablasalarios.setModel(modelo5);
+             modelo5.fireTableDataChanged();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1479,6 +1493,9 @@ PreparedStatement preparedStatement = null;
                 } else {
 
                     i.setDept_emp(Numemp1.getText(), (String) departamento.getSelectedItem(), sqdet, sqdet1);
+                       modelo4 =s.getDept_Emp();
+            Tabladept_emp.setModel(modelo4);
+             modelo4.fireTableDataChanged();
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1518,8 +1535,13 @@ PreparedStatement preparedStatement = null;
             System.out.println("Introduzca Numero de empleado");
         } else {
             i.setDept_manager(Numemp2.getText(),(String) departamento1.getSelectedItem(), sqdet, sqdet1 );
+              modelo6 =s.getDept_Manager();
+             Tablagerente.setModel(modelo6);
+             modelo6.fireTableDataChanged();
         }
     } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_RegistrarManActionPerformed
