@@ -1601,9 +1601,9 @@ try {
         // TODO add your handling code here:
         seleccionar = Tablatitulos.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tablatitulos.getValueAt(seleccionar, 0));
-        dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
+        dato1 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 3));
+        dato3 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 3));
 
         
     }//GEN-LAST:event_TablatitulosMouseClicked
@@ -1668,8 +1668,8 @@ try {
         seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
         dato = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 0));
         dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+        dato2 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 3));
         
     }//GEN-LAST:event_Tabladept_empMouseClicked
 
@@ -1727,59 +1727,55 @@ try {
     private void TablaEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadosMouseExited
         // TODO add your handling code here:        seleccionar = TablaEmpleados.rowAtPoint(evt.getPoint());
         
-       seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
-        dato1 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 3));
-        dato4 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 4));
-        dato5 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 5));
+//       seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
+//        dato1 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 1));
+//        dato2 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 2));
+//        dato3 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 3));
+//        dato4 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 4));
+//        dato5 = String.valueOf(TablaEmpleados.getValueAt(seleccionar, 5));
         
     }//GEN-LAST:event_TablaEmpleadosMouseExited
 
     private void TabladepartamentosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabladepartamentosMouseExited
         // TODO add your handling code here:
-           seleccionar = Tabladepartamentos.rowAtPoint(evt.getPoint());
-       
-            dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
-        System.out.println(dato);
+//           seleccionar = Tabladepartamentos.rowAtPoint(evt.getPoint());
+//       
+//            dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
+//        System.out.println(dato);
     }//GEN-LAST:event_TabladepartamentosMouseExited
 
     private void TablatitulosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablatitulosMouseExited
         // TODO add your handling code here:
-          seleccionar = Tablatitulos.rowAtPoint(evt.getPoint());
-        
-        dato1 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tabladepartamentos.getValueAt(seleccionar, 3));
+   
     }//GEN-LAST:event_TablatitulosMouseExited
 
     private void TablagerenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablagerenteMouseExited
         // TODO add your handling code here:
-          seleccionar = Tablagerente.rowAtPoint(evt.getPoint());
-        
-        dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+//          seleccionar = Tablagerente.rowAtPoint(evt.getPoint());
+//        
+//        dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
+//        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+//        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
         
     }//GEN-LAST:event_TablagerenteMouseExited
 
     private void TablasalariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasalariosMouseExited
         // TODO add your handling code here:
-                seleccionar = Tablasalarios.rowAtPoint(evt.getPoint());
-        
-      
-        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 3));
+//                seleccionar = Tablasalarios.rowAtPoint(evt.getPoint());
+//        
+//      
+//        dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 1));
+//        dato2 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
+//        dato3 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 3));
     }//GEN-LAST:event_TablasalariosMouseExited
 
     private void Tabladept_empMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabladept_empMouseExited
         // TODO add your handling code here:
-         seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
-        
-        dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
-        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
-        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+//         seleccionar = Tabladept_emp.rowAtPoint(evt.getPoint());
+//        
+//        dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
+//        dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
+//        dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
         
     }//GEN-LAST:event_Tabladept_empMouseExited
     

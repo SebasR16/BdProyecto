@@ -98,13 +98,14 @@ public class update {
     }
       
       public void updateSalarios(String Numempleado, String Salario,java.sql.Date sqdet, java.sql.Date sqdet1) throws ParseException, SQLException {
-        String SQL = "UPDATE salaries SET emp_no=?,salary=?,from_date=?,to_date=? WHERE emp_no=?";
+        String SQL = "UPDATE salaries SET emp_no=?,salary=?,from_date=?,to_date=? WHERE emp_no=? AND salary=?";
          PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(Numempleado));
-            pst.setString(2, Salario);
+            pst.setInt(2, Integer.parseInt(Salario));
             pst.setDate(3, sqdet); 
             pst.setDate(4, sqdet1);
                 pst.setInt(5, Integer.parseInt(Numempleado));
+                      pst.setInt(6, Integer.parseInt(Salario));
             pst.executeUpdate();
             System.out.println("Se realizo el registro");
     }

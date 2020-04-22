@@ -14,26 +14,35 @@ import java.sql.DriverManager;
  * @author sebas
  */
 public class BaseDeDatos {
+//Esto porque soy estupido xd
+    static public String DRIVER = "org.postgresql.Driver";
+    static public String DBNAME = "Empleados";
+    static public String HOSTNAME = "localhost";
+    static public String PORT = "5432";
+    static public String URL = "jdbc:postgresql://" + HOSTNAME + ":" + PORT + "/" + DBNAME;
+    static public String USERNAME = "AdminDB";
+    static public String PASSWORD = "1234";
 
-    static public String DRIVER = "com.mysql.jdbc.Driver";
-    static public String DBNAME = "by3zohsmnt9wsbuuywue";
-    static public String HOSTNAME = "by3zohsmnt9wsbuuywue-mysql.services.clever-cloud.com";
-    static public String PORT = "3306";
-    static public String URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DBNAME;
-    static public String USERNAME = "uxe6qbbaxvktdfyn";
-    static public String PASSWORD = "w1I6jPbJJgscJH8AFt9y";
+    
+//    static public String DRIVER = "com.mysql.jdbc.Driver";
+//    static public String DBNAME = "by3zohsmnt9wsbuuywue";
+//    static public String HOSTNAME = "by3zohsmnt9wsbuuywue-mysql.services.clever-cloud.com";
+//    static public String PORT = "3306";
+//    static public String URL = "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DBNAME;
+//    static public String USERNAME = "uxe6qbbaxvktdfyn";
+//    static public String PASSWORD = "w1I6jPbJJgscJH8AFt9y";
 /*
     static public String DBNAME   = "employees";
    static public String HOSTNAME = "localhost";
    static  public String PORT="3306";
    static public String URL="jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DBNAME;
    static public String USERNAME = "root";
-   static public String PASSWORD = "Sebas1699";
+   static public String PASSWORD = "1234";*/
     
     public String BorraEstoSebas(){
     return "Solo Fue para que se hicera el commit xddd";
     }
-   */
+   
     //public abstract boolean ConnectDB();
     public static Connection Conexion() {
         Connection cn = null;
