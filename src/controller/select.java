@@ -22,7 +22,8 @@ import javax.swing.table.DefaultTableModel;
 public class select {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-     Connection con = null;
+    Connection con = null;
+    
     public select(Connection con) {
         this.con=con;
     }
@@ -154,6 +155,132 @@ public class select {
             }
          modelo.addRow(fila);
         }
+        return modelo;
+    }
+      public DefaultTableModel FindEmpleados(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM employees WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Nacimiento");
+        modelo.addColumn("Primer Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Genero");
+        modelo.addColumn("Fecha de Contratación");
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            
+        
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+      public DefaultTableModel  FindDepartamentos(String id) throws SQLException {
+      DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM departments WHERE dept_no = '" + id +"'";
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Nombre de Departamento");
+       
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+    }
+      public DefaultTableModel FindTitulos(int id) throws SQLException {
+       DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM titles WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Titulo");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+      
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+   return modelo;
+    }
+     public  DefaultTableModel FindDept_Manager(int id) throws SQLException {
+          DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM dept_manager WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+    }
+     public DefaultTableModel FindSalarios(int id) throws SQLException {
+         DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM salaries WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Salario");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+    }
+      public DefaultTableModel FindDept_Emp(int id) throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM dept_emp WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Número de Departamento");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+     
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {            
+           
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+     
+        
         return modelo;
     }
 }
