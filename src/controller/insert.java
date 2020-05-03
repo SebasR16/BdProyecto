@@ -70,7 +70,7 @@ public class insert {
         } else {
 
             PreparedStatement pst = con.prepareStatement(SQL1);
-            pst.setString(1, id);
+            pst.setString(1, "d"+id);
             pst.setString(2, name);
             pst.executeUpdate();
             System.out.println("Registro exitoso");

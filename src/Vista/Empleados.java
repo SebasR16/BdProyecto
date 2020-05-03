@@ -28,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import validators.*;
 
 /**
  *
@@ -49,7 +50,7 @@ PreparedStatement preparedStatement = null;
      DefaultTableModel modelo5 =s.getSalarios();
      DefaultTableModel modelo6 =s.getDept_Manager();
      String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
-     
+      validator validator= new validator();
      int seleccionar;
     
     public Empleados() throws SQLException {
@@ -1425,7 +1426,17 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_PrimernombreActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-    
+   
+    var errores=validator.CheckEmp(Primernombre.getText(),Apellido.getText());
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
         try {
         // TODO add your handling code here:
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -1439,10 +1450,7 @@ PreparedStatement preparedStatement = null;
         
           System.out.println(sqdet);
      
-            if (Primernombre.getText().isEmpty()||Apellido.getText().isEmpty()) {
-                System.out.println("Introduzca Nombre y Apellido");
-                
-            }else{
+            
                 
                  i.setEmpleados(userId(), sqdet, Primernombre.getText(), Apellido.getText(), (String) Genero.getSelectedItem(), sqdet1);
              modelo=s.getEmpleados();
@@ -1452,7 +1460,7 @@ PreparedStatement preparedStatement = null;
              
             
             System.out.println("Se realizo el registro");
-            }
+            
       
     
     } catch (ParseException ex) {
@@ -1462,7 +1470,7 @@ PreparedStatement preparedStatement = null;
     } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
+    }
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void RestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerActionPerformed
@@ -1531,6 +1539,16 @@ PreparedStatement preparedStatement = null;
         // TODO add your handling code here:
          String id = deptId.getText();
         String name = deptname.getText();
+         var errores=validator.CheckDept(name,id);
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
     try {
         i.setDepartamentos( id,  name);
           modelo2 =s.getDepartamentos();
@@ -1542,10 +1560,20 @@ PreparedStatement preparedStatement = null;
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
    
-        
+        }
     }//GEN-LAST:event_RegistrardeptActionPerformed
 
     private void RegistrartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrartitleActionPerformed
+         var errores=validator.CheckDept(Title.getText(),Numemp.getText());
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
         try {
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             String birth_date = dateyear.getSelectedItem().toString() + "-" + (datemonth.getSelectedIndex() + 1) + "-" + dateday.getSelectedItem().toString();
@@ -1556,24 +1584,30 @@ PreparedStatement preparedStatement = null;
             java.sql.Date sqdet = new java.sql.Date(det.getTime());
             java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
             System.out.println(sqdet);
-            if (Numemp.getText().isEmpty() || Title.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Introduzca Numero de empleado y apellido");
-
-            } else {
-
+    
                 i.setTitulos(Numemp.getText(), Title.getText(), sqdet, sqdet1);
                     modelo3 =s.getTitulos();
              Tablatitulos.setModel(modelo3);
              modelo3.fireTableDataChanged();
-            }
+            
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    }}
     }//GEN-LAST:event_RegistrartitleActionPerformed
 
     private void RegistrarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarsalActionPerformed
+          var errores=validator.CheckSalaries(Numempleado.getText(), Salario.getText());
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
         try {                                             
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex() + 1) + "-" + dateday1.getSelectedItem().toString();
@@ -1585,15 +1619,12 @@ PreparedStatement preparedStatement = null;
             java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
             System.out.println(sqdet);
             try {
-                if (Numempleado.getText().isEmpty() || Salario.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Introduzca Numero de empleado y Salario");
-
-                } else {
+               
                     i.setSalarios(Numempleado.getText(), Salario.getText(), sqdet, sqdet1);
          modelo5 =s.getSalarios();
             Tablasalarios.setModel(modelo5);
              modelo5.fireTableDataChanged();
-                }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
@@ -1601,10 +1632,20 @@ PreparedStatement preparedStatement = null;
             }
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_RegistrarsalActionPerformed
 
     private void RegistrarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarempActionPerformed
+          var errores=validator.CheckDeptEmp(Numemp1.getText());
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
         try {
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex() + 1) + "-" + dateday2.getSelectedItem().toString();
@@ -1616,16 +1657,13 @@ PreparedStatement preparedStatement = null;
             java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
             System.out.println(sqdet);
             try {
-                if (Numemp1.getText().isEmpty()) {
-                  JOptionPane.showMessageDialog(null, "Introduzca Numero de empleado");
-
-                } else {
+               
 
                     i.setDept_emp(Numemp1.getText(), (String) departamento.getSelectedItem(), sqdet, sqdet1);
                        modelo4 =s.getDept_Emp();
             Tabladept_emp.setModel(modelo4);
              modelo4.fireTableDataChanged();
-                }
+                
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -1633,7 +1671,7 @@ PreparedStatement preparedStatement = null;
             }
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_RegistrarempActionPerformed
 
     private void RestablecerManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestablecerManActionPerformed
@@ -1650,7 +1688,17 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_RestablecerManActionPerformed
 
     private void RegistrarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarManActionPerformed
-    try {
+      var errores=validator.CheckDeptEmp(Numemp2.getText());
+    String txt=" ";
+            for (String error:errores) {
+                txt=txt+error+"\n";
+            }
+        if (!txt.equals(" ")) {
+            
+         JOptionPane.showMessageDialog(null, txt);
+
+        }else{
+        try {
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex()+1) + "-" + dateday3.getSelectedItem().toString();
         String birth_date1 =todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex()+1) + "-" + todateday3.getSelectedItem().toString();
@@ -1661,19 +1709,17 @@ PreparedStatement preparedStatement = null;
         java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
         System.out.println(sqdet);
         //String[] empleadoR = new String[6];
-        if (Numemp2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Introduzca Numero de empleado");
-        } else {
+     
             i.setDept_manager(Numemp2.getText(),(String) departamento1.getSelectedItem(), sqdet, sqdet1 );
               modelo6 =s.getDept_Manager();
              Tablagerente.setModel(modelo6);
              modelo6.fireTableDataChanged();
-        }
+        
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }catch (SQLException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    }}
     }//GEN-LAST:event_RegistrarManActionPerformed
 
     private void EliminarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarsalActionPerformed
