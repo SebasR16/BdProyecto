@@ -6,6 +6,7 @@
 package bdproyecto;
 
 import Vista.Empleados;
+import Vista.Menu;
 import java.sql.SQLException;
 
 /**
@@ -19,8 +20,8 @@ public class BDproyecto {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        new Empleados().setVisible(true);
-        
+        //new Empleados().setVisible(true);
+        new Menu().setVisible(true);
     }
     
 }

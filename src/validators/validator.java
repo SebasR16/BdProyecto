@@ -96,6 +96,27 @@ public class validator {
       
         return errores;
     }
+          public List<String> Bonus(String Num, String cantidad,String tipo){
+        List <String> errores=new ArrayList();
+        if (Num.isEmpty()) {
+       errores.add("El campo nombre no puede estar vacio");
+        
+        }
+        if (!isNumeric(Num)){
+              errores.add("El campo de Numero de empleado debe ser solo numeros");
+          }
+        if (cantidad.isEmpty()) {
+           errores.add("El campo cantidad de bonus no puede estar vacio");
+        }
+        if (!isNumeric(cantidad)){
+              errores.add("El campo de Cantidad de bonus debe ser solo numeros");
+          }
+        if (tipo.isEmpty()) {
+           errores.add("El campo Tipo de bonus no puede estar vacio");
+        }
+      
+        return errores;
+    }
       public Boolean isLetter(String txt){
     	for (int i = 0; i < txt.length(); i++)
 		{

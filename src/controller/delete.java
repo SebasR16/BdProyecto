@@ -169,5 +169,27 @@ return datos;
           }
 return datos;
       }
+        public String[] setDeleteBonus(String dato) throws ParseException, SQLException {
+        String SQL = "SELECT * FROM bonus WHERE emp_no = " + dato + " ;";
 
+        String[] datos = new String[1];
+
+        preparedStatement = con.prepareStatement(SQL);
+
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+        }
+        System.out.println(datos[0]);
+
+        if (dato.equals(datos[0])) {
+
+            String SQL1 = "DELETE FROM bonus WHERE emp_no = " + dato + " ;";
+            Statement st = con.createStatement();
+            st.executeUpdate(SQL1);
+
+        }
+
+        return datos;
+    }
     }

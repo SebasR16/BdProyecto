@@ -131,5 +131,18 @@ public class insert {
          } catch (SQLException ex) {
              Logger.getLogger(insert.class.getName()).log(Level.SEVERE, null, ex);
          }
-    } 
+    }
+      public void setBonus(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
+       
+        String SQL = "INSERT INTO bonus(emp_no,bonus_date,bonus_amount,bonus_type_no)VALUES(?,?,?,?)";
+    
+        PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(userId));
+            pst.setDate(2, sqdet);
+            pst.setString(3, Cantidad);
+            pst.setInt(4, Integer.parseInt(Tipo));
+            pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
+    }
 }

@@ -289,4 +289,73 @@ public class select {
         
         return modelo;
     }
-}
+      public DefaultTableModel  getBonus() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT TOP 100 * FROM bonus ORDER by emp_no DESC;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Bonus");
+        modelo.addColumn("Cantidad de Bonus");
+        modelo.addColumn("Tipo de Bonus");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel FindEmpleadosB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM bonus WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Bonus");
+        modelo.addColumn("Cantidad de Bonus");
+        modelo.addColumn("Tipo de Bonus");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            
+        
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        public DefaultTableModel  getDeduccion() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT TOP 100 * FROM deduction ORDER by emp_no DESC;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Deducción");
+        modelo.addColumn("Cantidad de Deducción");
+        modelo.addColumn("Tipo de Deducción");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+    }
+
