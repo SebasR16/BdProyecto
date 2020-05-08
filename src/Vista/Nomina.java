@@ -45,9 +45,9 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
      update u=new update(con);
      DefaultTableModel modelo = s.getBonus();
      DefaultTableModel modelo2 =s.getDeduccion();
-     /*DefaultTableModel modelo3 =s.getTitulos();
-     DefaultTableModel modelo4 =s.getDept_Emp();
-     DefaultTableModel modelo5 =s.getSalarios();
+     DefaultTableModel modelo3 =s.getHoliday();
+     DefaultTableModel modelo4 =s.getSickleave();
+     /*DefaultTableModel modelo5 =s.getSalarios();
      DefaultTableModel modelo6 =s.getDept_Manager();*/
      String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
       validator validator= new validator();
@@ -60,6 +60,14 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         this.bonusyear.addActionListener(this);
         this.deduccionmonth.addActionListener(this);
         this.deduccionyear.addActionListener(this);
+        this.holidaymonth.addActionListener(this);
+        this.holidayyear.addActionListener(this);
+        this.holidaymonth1.addActionListener(this);
+        this.holidayyear1.addActionListener(this);
+        this.sickmonth.addActionListener(this);
+        this.sickyear.addActionListener(this);
+        this.sickmonth1.addActionListener(this);
+        this.sickyear1.addActionListener(this);
     }
     
     /**
@@ -117,10 +125,45 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        NumeroEmpleado2 = new javax.swing.JTextField();
+        holiday = new javax.swing.JComboBox<>();
+        holidaymonth = new javax.swing.JComboBox<>();
+        holidayyear = new javax.swing.JComboBox<>();
+        holiday1 = new javax.swing.JComboBox<>();
+        holidaymonth1 = new javax.swing.JComboBox<>();
+        holidayyear1 = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaHoliday = new javax.swing.JTable();
+        Restablecer2 = new javax.swing.JButton();
+        Registrar2 = new javax.swing.JButton();
+        update2 = new javax.swing.JButton();
+        Eliminar2 = new javax.swing.JButton();
+        Findemployee2 = new javax.swing.JTextField();
+        BuscarHoliday = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        NumeroEmpleado3 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        Razon = new javax.swing.JTextField();
+        sickday = new javax.swing.JComboBox<>();
+        sickmonth = new javax.swing.JComboBox<>();
+        sickyear = new javax.swing.JComboBox<>();
+        sickday1 = new javax.swing.JComboBox<>();
+        sickmonth1 = new javax.swing.JComboBox<>();
+        sickyear1 = new javax.swing.JComboBox<>();
+        Findemployee3 = new javax.swing.JTextField();
+        BuscarSick = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TablaHoliday1 = new javax.swing.JTable();
+        Restablecer3 = new javax.swing.JButton();
+        Registrar3 = new javax.swing.JButton();
+        update3 = new javax.swing.JButton();
+        Eliminar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1150, 600));
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -228,12 +271,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(update)
-                        .addGap(81, 81, 81)
-                        .addComponent(Eliminar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -241,35 +279,33 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                                         .addComponent(jLabel1)
                                         .addGap(18, 18, 18)
                                         .addComponent(NumeroEmpleado))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(86, 86, 86)
+                                        .addComponent(Restablecer)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Registrar))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(CantidadBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabel2)
-                                                        .addGap(29, 29, 29))
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(bonusday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(12, 12, 12)
-                                                        .addComponent(bonusmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(10, 10, 10)
-                                                        .addComponent(bonusyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(TipoBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 266, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
-                                                .addComponent(Restablecer)
+                                                .addComponent(jLabel2)
+                                                .addGap(29, 29, 29))
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(Registrar)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addComponent(bonusday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(bonusmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(bonusyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(39, 39, 39)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(CantidadBonus)
+                                                    .addComponent(TipoBonus))))))
                                 .addGap(72, 72, 72))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
@@ -280,7 +316,12 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Findemployee, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(update)
+                        .addGap(75, 75, 75)
+                        .addComponent(Eliminar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -292,10 +333,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addComponent(Findemployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update)
-                    .addComponent(Eliminar)))
+                    .addComponent(Eliminar))
+                .addGap(43, 43, 43))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel5)
@@ -452,20 +494,19 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                                     .addComponent(NumeroEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TipoDeduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CantidadDeduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGap(58, 58, 58)
-                                    .addComponent(Restablecer1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Registrar1))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(deduccionday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(deduccionmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(deduccionyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(Restablecer1)
+                                .addGap(91, 91, 91)
+                                .addComponent(Registrar1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(deduccionday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(deduccionmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(deduccionyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -486,8 +527,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(jLabel7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -521,7 +561,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update1)
                     .addComponent(Eliminar1))
@@ -540,50 +580,405 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel13.setText("Desde:");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Hasta");
+        jLabel14.setText("Hasta:");
+
+        NumeroEmpleado2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        NumeroEmpleado2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroEmpleado2ActionPerformed(evt);
+            }
+        });
+
+        holiday.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holiday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        holidaymonth.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holidaymonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        holidaymonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                holidaymonthActionPerformed(evt);
+            }
+        });
+
+        holidayyear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holidayyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        holiday1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holiday1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        holidaymonth1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holidaymonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        holidaymonth1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                holidaymonth1ActionPerformed(evt);
+            }
+        });
+
+        holidayyear1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        holidayyear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        TablaHoliday.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaHoliday.setModel(modelo3);
+        TablaHoliday.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaHoliday.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHolidayMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaHolidayMouseExited(evt);
+            }
+        });
+        jScrollPane4.setViewportView(TablaHoliday);
+
+        Restablecer2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Restablecer2.setText("Restablecer");
+        Restablecer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Restablecer2ActionPerformed(evt);
+            }
+        });
+
+        Registrar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Registrar2.setText("Registrar");
+        Registrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Registrar2ActionPerformed(evt);
+            }
+        });
+
+        update2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        update2.setText("Actualizar");
+        update2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update2ActionPerformed(evt);
+            }
+        });
+
+        Eliminar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Eliminar2.setText("Eliminar");
+        Eliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Eliminar2ActionPerformed(evt);
+            }
+        });
+
+        BuscarHoliday.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BuscarHoliday.setText("Buscar");
+        BuscarHoliday.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarHolidayActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel11))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(update2)
+                        .addGap(75, 75, 75)
+                        .addComponent(Eliminar2))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel14))))
-                .addContainerGap(824, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14)
+                                    .addComponent(Restablecer2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(holiday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(holidaymonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(holidayyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addComponent(holiday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(holidaymonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(holidayyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(NumeroEmpleado2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Registrar2))
+                                .addGap(68, 68, 68))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(Findemployee2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BuscarHoliday))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(36, 36, 36))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel11)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel12)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel13)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel14)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Findemployee2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BuscarHoliday, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(NumeroEmpleado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(holiday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(holidaymonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(holidayyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(holiday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(holidaymonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(holidayyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Restablecer2)
+                            .addComponent(Registrar2))
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(update2)
+                            .addComponent(Eliminar2)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Holiday", jPanel3);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setText("Registrar Baja por Enfermedad");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Número de Empleado: ");
+
+        NumeroEmpleado3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        NumeroEmpleado3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroEmpleado3ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("Desde:");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("Hasta:");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Razon: ");
+
+        Razon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Razon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RazonActionPerformed(evt);
+            }
+        });
+
+        sickday.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        sickmonth.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        sickmonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sickmonthActionPerformed(evt);
+            }
+        });
+
+        sickyear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        sickday1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickday1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        sickmonth1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickmonth1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        sickmonth1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sickmonth1ActionPerformed(evt);
+            }
+        });
+
+        sickyear1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sickyear1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950" }));
+
+        BuscarSick.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BuscarSick.setText("Buscar");
+        BuscarSick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarSickActionPerformed(evt);
+            }
+        });
+
+        TablaHoliday1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaHoliday1.setModel(modelo4);
+        TablaHoliday1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaHoliday1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHoliday1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaHoliday1MouseExited(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TablaHoliday1);
+
+        Restablecer3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Restablecer3.setText("Restablecer");
+        Restablecer3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Restablecer3ActionPerformed(evt);
+            }
+        });
+
+        Registrar3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Registrar3.setText("Registrar");
+        Registrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Registrar3ActionPerformed(evt);
+            }
+        });
+
+        update3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        update3.setText("Actualizar");
+        update3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update3ActionPerformed(evt);
+            }
+        });
+
+        Eliminar3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Eliminar3.setText("Eliminar");
+        Eliminar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Eliminar3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1125, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel15))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Razon, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Restablecer3)
+                                        .addComponent(jLabel16))
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                                    .addComponent(sickday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(sickmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(sickyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(NumeroEmpleado3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                                    .addComponent(sickday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(sickmonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(sickyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(Registrar3))))))))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(399, 399, 399)
+                        .addComponent(update3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Eliminar3))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(Findemployee3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(BuscarSick))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(65, 65, 65))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel15)
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(NumeroEmpleado3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(sickday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sickmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sickyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(sickday1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sickmonth1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sickyear1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(Razon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Restablecer3)
+                            .addComponent(Registrar3)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Findemployee3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BuscarSick))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update3)
+                    .addComponent(Eliminar3))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sickleave", jPanel4);
@@ -602,7 +997,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -793,6 +1188,106 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_Eliminar1ActionPerformed
 
+    private void NumeroEmpleado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroEmpleado2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroEmpleado2ActionPerformed
+
+    private void holidaymonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holidaymonthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_holidaymonthActionPerformed
+
+    private void holidaymonth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holidaymonth1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_holidaymonth1ActionPerformed
+
+    private void TablaHolidayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHolidayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaHolidayMouseClicked
+
+    private void TablaHolidayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHolidayMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaHolidayMouseExited
+
+    private void Restablecer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restablecer2ActionPerformed
+        // TODO add your handling code here:
+        NumeroEmpleado2.setText("");
+        holiday.setSelectedIndex(0);
+        holidaymonth.setSelectedIndex(0);
+        holidayyear.setSelectedIndex(0);
+        holiday1.setSelectedIndex(0);
+        holidaymonth1.setSelectedIndex(0);
+        holidayyear1.setSelectedIndex(0);
+        Findemployee2.setText("");
+    }//GEN-LAST:event_Restablecer2ActionPerformed
+
+    private void Registrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registrar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Registrar2ActionPerformed
+
+    private void update2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_update2ActionPerformed
+
+    private void Eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Eliminar2ActionPerformed
+
+    private void BuscarHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarHolidayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarHolidayActionPerformed
+
+    private void NumeroEmpleado3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroEmpleado3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroEmpleado3ActionPerformed
+
+    private void RazonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RazonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RazonActionPerformed
+
+    private void sickmonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sickmonthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sickmonthActionPerformed
+
+    private void sickmonth1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sickmonth1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sickmonth1ActionPerformed
+
+    private void BuscarSickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarSickActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarSickActionPerformed
+
+    private void TablaHoliday1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHoliday1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaHoliday1MouseClicked
+
+    private void TablaHoliday1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHoliday1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaHoliday1MouseExited
+
+    private void Restablecer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restablecer3ActionPerformed
+        // TODO add your handling code here:
+        NumeroEmpleado3.setText("");
+        sickday.setSelectedIndex(0);
+        sickmonth.setSelectedIndex(0);
+        sickyear.setSelectedIndex(0);
+        sickday1.setSelectedIndex(0);
+        sickmonth1.setSelectedIndex(0);
+        sickyear1.setSelectedIndex(0);
+        Findemployee3.setText("");
+    }//GEN-LAST:event_Restablecer3ActionPerformed
+
+    private void Registrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registrar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Registrar3ActionPerformed
+
+    private void update3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_update3ActionPerformed
+
+    private void Eliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Eliminar3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -835,20 +1330,35 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarDeduccion;
     private javax.swing.JButton BuscarEmpleado;
+    private javax.swing.JButton BuscarHoliday;
+    private javax.swing.JButton BuscarSick;
     private javax.swing.JTextField CantidadBonus;
     private javax.swing.JTextField CantidadDeduccion;
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Eliminar1;
+    private javax.swing.JButton Eliminar2;
+    private javax.swing.JButton Eliminar3;
     private javax.swing.JTextField Findemployee;
     private javax.swing.JTextField Findemployee1;
+    private javax.swing.JTextField Findemployee2;
+    private javax.swing.JTextField Findemployee3;
     private javax.swing.JTextField NumeroEmpleado;
     private javax.swing.JTextField NumeroEmpleado1;
+    private javax.swing.JTextField NumeroEmpleado2;
+    private javax.swing.JTextField NumeroEmpleado3;
+    private javax.swing.JTextField Razon;
     private javax.swing.JButton Registrar;
     private javax.swing.JButton Registrar1;
+    private javax.swing.JButton Registrar2;
+    private javax.swing.JButton Registrar3;
     private javax.swing.JButton Restablecer;
     private javax.swing.JButton Restablecer1;
+    private javax.swing.JButton Restablecer2;
+    private javax.swing.JButton Restablecer3;
     private javax.swing.JTable TablaBonus;
     private javax.swing.JTable TablaDeduccion;
+    private javax.swing.JTable TablaHoliday;
+    private javax.swing.JTable TablaHoliday1;
     private javax.swing.JTextField TipoBonus;
     private javax.swing.JTextField TipoDeduccion;
     private javax.swing.JComboBox<String> bonusday;
@@ -857,12 +1367,23 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JComboBox<String> deduccionday;
     private javax.swing.JComboBox<String> deduccionmonth;
     private javax.swing.JComboBox<String> deduccionyear;
+    private javax.swing.JComboBox<String> holiday;
+    private javax.swing.JComboBox<String> holiday1;
+    private javax.swing.JComboBox<String> holidaymonth;
+    private javax.swing.JComboBox<String> holidaymonth1;
+    private javax.swing.JComboBox<String> holidayyear;
+    private javax.swing.JComboBox<String> holidayyear1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -877,9 +1398,19 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> sickday;
+    private javax.swing.JComboBox<String> sickday1;
+    private javax.swing.JComboBox<String> sickmonth;
+    private javax.swing.JComboBox<String> sickmonth1;
+    private javax.swing.JComboBox<String> sickyear;
+    private javax.swing.JComboBox<String> sickyear1;
     private javax.swing.JButton update;
     private javax.swing.JButton update1;
+    private javax.swing.JButton update2;
+    private javax.swing.JButton update3;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -1014,6 +1545,270 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             deduccionday.removeAllItems();
             for (int i = 1; i < days; i++) {
                deduccionday.addItem("" + i);
+            }
+         }
+        if (e.getSource() == holidaymonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (holidaymonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(holidayyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (holidaymonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            holiday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               holiday.addItem("" + i);
+            }
+         } else if (e.getSource() == holidayyear) {
+            int days = holiday.getItemCount() + 1;
+            if (holidaymonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(holidayyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            holiday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               holiday.addItem("" + i);
+            }
+         }
+        if (e.getSource() == holidaymonth1) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (holidaymonth1.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(holidayyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (holidaymonth1.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            holiday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               holiday1.addItem("" + i);
+            }
+         } else if (e.getSource() == holidayyear1) {
+            int days = holiday1.getItemCount() + 1;
+            if (holidaymonth1.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(holidayyear1.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            holiday1.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               holiday1.addItem("" + i);
+            }
+         }
+        if (e.getSource() == sickmonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (sickmonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(sickyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            sickday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               sickday.addItem("" + i);
+            }
+         } else if (e.getSource() == sickyear) {
+            int days = sickday.getItemCount() + 1;
+            if (sickmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(sickyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            sickday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               sickday.addItem("" + i);
+            }
+         }
+        if (e.getSource() == sickmonth) {
+        
+            int days = 31;
+            System.out.println("months");
+            if (sickmonth.getSelectedItem().toString().equals("Enero")) {
+               days = 32;
+               System.out.println("january");
+
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(sickyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Marzo")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Abril")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Mayo")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Junio")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Julio")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Agosto")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Septiembre")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Octubre")) {
+               days = 32;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Noviembre")) {
+               days = 31;
+            }
+            if (sickmonth.getSelectedItem().toString().equals("Diciembre")) {
+               days = 32;
+            }
+            sickday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               sickday.addItem("" + i);
+            }
+         } else if (e.getSource() == sickyear) {
+            int days = sickday.getItemCount() + 1;
+            if (sickmonth.getSelectedItem().toString().equals("Febrero")) {
+               if (Integer.parseInt(sickyear.getSelectedItem().toString()) % 4 == 0) {
+                  days = 30;
+               } else {
+                  days = 29;
+               }
+
+            }
+            sickday.removeAllItems();
+            for (int i = 1; i < days; i++) {
+               sickday.addItem("" + i);
             }
          }
     }

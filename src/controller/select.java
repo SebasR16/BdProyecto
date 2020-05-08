@@ -357,5 +357,44 @@ public class select {
         }
         return modelo;
       }
+        public DefaultTableModel  getHoliday() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT TOP 100 * FROM holiday ORDER by emp_no DESC;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel  getSickleave() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT TOP 100 * FROM sickleave ORDER by emp_no DESC;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+        modelo.addColumn("Razon");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
     }
 
