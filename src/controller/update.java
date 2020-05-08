@@ -50,7 +50,7 @@ public class update {
           
         boolean exists = false;
         String SQL1 = "UPDATE departments SET dept_no=?, dept_name=? WHERE dept_no=?";
-        String SQL = "SELECT * FROM departments limit 100;";
+        String SQL = "SELECT TOP 100* FROM departments;";
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
 

@@ -49,7 +49,8 @@ public class insert {
           
         boolean exists = false;
         String SQL1 = "INSERT INTO departments(dept_no,dept_name)VALUES(?,?)";
-        String SQL = "SELECT * FROM departments limit 100;";
+        String SQL = "SELECT TOP 100 * FROM departments;";
+        //String SQL = "SELECT * FROM departments limit 100;";
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
 
