@@ -135,12 +135,86 @@ public class insert {
       public void setBonus(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
        
         String SQL = "INSERT INTO bonus(emp_no,bonus_date,bonus_amount,bonus_type_no)VALUES(?,?,?,?)";
-    
+        String SQL1 = "SELECT TOP 100 * FROM bonustype;";
+        preparedStatement = con.prepareStatement(SQL1);
+        resultSet = preparedStatement.executeQuery();
+
+        String[] datos = new String[2];
+        
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos[1] = resultSet.getString(2);
+            
+            if (Tipo.equals(datos[1])) {
+                
+                break;
+            }
+        }
+        
         PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(userId));
             pst.setDate(2, sqdet);
             pst.setString(3, Cantidad);
-            pst.setInt(4, Integer.parseInt(Tipo));
+            pst.setInt(4, Integer.parseInt(datos[0]));
+            pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
+    }
+      public void setDeduccion(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
+       
+        String SQL = "INSERT INTO deduction(emp_no,deduct_date,deduct_amount,deduct_type_no)VALUES(?,?,?,?)";
+        String SQL1 = "SELECT TOP 100 * FROM deducttype;";
+        preparedStatement = con.prepareStatement(SQL1);
+        resultSet = preparedStatement.executeQuery();
+
+        String[] datos = new String[2];
+        
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos[1] = resultSet.getString(2);
+            
+            if (Tipo.equals(datos[1])) {
+                
+                break;
+            }
+        }
+        
+        PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(userId));
+            pst.setDate(2, sqdet);
+            pst.setString(3, Cantidad);
+            pst.setInt(4, Integer.parseInt(datos[0]));
+            pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
+    }
+      public void setHoliday(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1) throws ParseException, SQLException {
+       
+        String SQL = "INSERT INTO holiday(emp_no,start_date,end_date)VALUES(?,?,?)";
+        //String SQL1 = "SELECT TOP 100 * FROM deducttype;";
+        //preparedStatement = con.prepareStatement(SQL1);
+        //resultSet = preparedStatement.executeQuery();
+
+        PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(userId));
+            pst.setDate(2, sqdet);
+            pst.setDate(3, sqdet1);
+            pst.executeUpdate();
+            System.out.println("Registro exitoso");
+            
+    }
+      public void setSickLeave(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1, String razon) throws ParseException, SQLException {
+       
+        String SQL = "INSERT INTO sickleave(emp_no,start_date,end_date,reason)VALUES(?,?,?,?)";
+        //String SQL1 = "SELECT TOP 100 * FROM deducttype;";
+        //preparedStatement = con.prepareStatement(SQL1);
+        //resultSet = preparedStatement.executeQuery();
+
+        PreparedStatement pst = con.prepareStatement(SQL);
+            pst.setInt(1, Integer.parseInt(userId));
+            pst.setDate(2, sqdet);
+            pst.setDate(3, sqdet1);
+            pst.setString(4, razon);
             pst.executeUpdate();
             System.out.println("Registro exitoso");
             

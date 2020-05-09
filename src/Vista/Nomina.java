@@ -59,6 +59,18 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     public Nomina() throws SQLException {
         initComponents();
         
+        ArrayList Bono=s.listBonus();
+        for (int i = 0; i < Bono.size(); i++) {
+            Tipobonus.addItem(Bono.get(i).toString());
+            //departamento1.addItem(depas.get(i).toString());
+        }
+        ArrayList Deduccion=s.listDeduccion();
+        for (int i = 0; i < Deduccion.size(); i++) {
+            TipoDeduccion.addItem(Deduccion.get(i).toString());
+            
+        }
+        
+        
         this.bonusmonth.addActionListener(this);
         this.bonusyear.addActionListener(this);
         this.deduccionmonth.addActionListener(this);
@@ -92,7 +104,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel6 = new javax.swing.JLabel();
         NumeroEmpleado = new javax.swing.JTextField();
         CantidadBonus = new javax.swing.JTextField();
-        TipoBonus = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         bonusday = new javax.swing.JComboBox<>();
         bonusmonth = new javax.swing.JComboBox<>();
@@ -103,6 +114,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         Eliminar = new javax.swing.JButton();
         BuscarEmpleado = new javax.swing.JButton();
         Findemployee = new javax.swing.JTextField();
+        Tipobonus = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         Findemployee1 = new javax.swing.JTextField();
@@ -114,7 +126,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel9 = new javax.swing.JLabel();
         NumeroEmpleado1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        TipoDeduccion = new javax.swing.JTextField();
         CantidadDeduccion = new javax.swing.JTextField();
         deduccionday = new javax.swing.JComboBox<>();
         deduccionmonth = new javax.swing.JComboBox<>();
@@ -123,6 +134,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         Registrar1 = new javax.swing.JButton();
         update1 = new javax.swing.JButton();
         Eliminar1 = new javax.swing.JButton();
+        TipoDeduccion = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -160,7 +172,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         Findemployee3 = new javax.swing.JTextField();
         BuscarSick = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        TablaHoliday1 = new javax.swing.JTable();
+        TablaSick = new javax.swing.JTable();
         Restablecer3 = new javax.swing.JButton();
         Registrar3 = new javax.swing.JButton();
         update3 = new javax.swing.JButton();
@@ -226,13 +238,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         CantidadBonus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CantidadBonusActionPerformed(evt);
-            }
-        });
-
-        TipoBonus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        TipoBonus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoBonusActionPerformed(evt);
             }
         });
 
@@ -328,7 +333,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                                                 .addGap(39, 39, 39)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(CantidadBonus)
-                                                    .addComponent(TipoBonus))))))
+                                                    .addComponent(Tipobonus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addGap(72, 72, 72))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
@@ -356,7 +361,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addComponent(Findemployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update)
                     .addComponent(Eliminar))
@@ -368,10 +373,10 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(NumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TipoBonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Tipobonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -433,13 +438,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Fecha de Deducción:");
-
-        TipoDeduccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        TipoDeduccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoDeduccionActionPerformed(evt);
-            }
-        });
 
         CantidadDeduccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         CantidadDeduccion.addActionListener(new java.awt.event.ActionListener() {
@@ -507,16 +505,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NumeroEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TipoDeduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CantidadDeduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
                                 .addComponent(Restablecer1)
@@ -529,7 +517,17 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                                 .addGap(14, 14, 14)
                                 .addComponent(deduccionmonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(deduccionyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(deduccionyear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NumeroEmpleado1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                    .addComponent(CantidadDeduccion, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                    .addComponent(TipoDeduccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -563,7 +561,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(NumeroEmpleado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(TipoDeduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -584,7 +582,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update1)
                     .addComponent(Eliminar1))
@@ -785,7 +783,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Holiday", jPanel3);
@@ -855,18 +853,18 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        TablaHoliday1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        TablaHoliday1.setModel(modelo4);
-        TablaHoliday1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        TablaHoliday1.addMouseListener(new java.awt.event.MouseAdapter() {
+        TablaSick.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaSick.setModel(modelo4);
+        TablaSick.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaSick.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaHoliday1MouseClicked(evt);
+                TablaSickMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                TablaHoliday1MouseExited(evt);
+                TablaSickMouseExited(evt);
             }
         });
-        jScrollPane5.setViewportView(TablaHoliday1);
+        jScrollPane5.setViewportView(TablaSick);
 
         Restablecer3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Restablecer3.setText("Restablecer");
@@ -1001,7 +999,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update3)
                     .addComponent(Eliminar3))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sickleave", jPanel4);
@@ -1043,7 +1041,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addComponent(jLabel20)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tipos de Bonus", jPanel5);
@@ -1083,12 +1081,12 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel21)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addGap(92, 92, 92)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(92, Short.MAX_VALUE)))
+                    .addContainerGap(85, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Tipos de deducción", jPanel6);
@@ -1128,12 +1126,12 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel22)
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(431, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(92, 92, 92)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(92, Short.MAX_VALUE)))
+                    .addContainerGap(85, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Tipos de pago", jPanel7);
@@ -1173,12 +1171,12 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(jLabel23)
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(431, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(92, 92, 92)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(65, Short.MAX_VALUE)))
+                    .addContainerGap(58, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Detalles de pago", jPanel8);
@@ -1220,7 +1218,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 .addComponent(jLabel24)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Historial de pago", jPanel9);
@@ -1237,9 +1235,9 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addComponent(jTabbedPane1)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
 
         pack();
@@ -1270,13 +1268,9 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_CantidadBonusActionPerformed
 
-    private void TipoBonusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoBonusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoBonusActionPerformed
-
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
 
-        var errores=validator.Bonus(NumeroEmpleado.getText(),CantidadBonus.getText(),TipoBonus.getText());
+        var errores=validator.Bonus(NumeroEmpleado.getText(),CantidadBonus.getText());
         String txt=" ";
         for (String error:errores) {
             txt=txt+error+"\n";
@@ -1295,8 +1289,8 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 java.sql.Date sqdet = new java.sql.Date(det.getTime());
 
                 System.out.println(sqdet);
-
-                i.setBonus(NumeroEmpleado.getText(),sqdet, CantidadBonus.getText(), TipoBonus.getText());
+                System.out.println(Tipobonus.getSelectedIndex()+1);
+                i.setBonus(NumeroEmpleado.getText(),sqdet, CantidadBonus.getText(), (Tipobonus.getSelectedItem().toString()));
                 modelo=s.getBonus();
 
                 TablaBonus.setModel(modelo);
@@ -1319,7 +1313,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         bonusday.setSelectedIndex(0);
         bonusmonth.setSelectedIndex(0);
         bonusyear.setSelectedIndex(0);
-        TipoBonus.setText("");
+        Tipobonus.setSelectedIndex(0);
         Findemployee.setText("");
     }//GEN-LAST:event_RestablecerActionPerformed
 
@@ -1367,11 +1361,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
             // TODO add your handling code here:
             if (Findemployee.getText().isEmpty()) {
                 modelo =s.getBonus();
-                TablaDeduccion.setModel(modelo);
+                TablaBonus.setModel(modelo);
             }else{
 
                 modelo =s.FindEmpleadosB(Integer.parseInt(Findemployee.getText()));
-                TablaDeduccion.setModel(modelo);
+                TablaBonus.setModel(modelo);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1394,10 +1388,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroEmpleado1ActionPerformed
 
-    private void TipoDeduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoDeduccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoDeduccionActionPerformed
-
     private void CantidadDeduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadDeduccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CantidadDeduccionActionPerformed
@@ -1413,13 +1403,49 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         deduccionday.setSelectedIndex(0);
         deduccionmonth.setSelectedIndex(0);
         deduccionyear.setSelectedIndex(0);
-        TipoDeduccion.setText("");
+        TipoDeduccion.setSelectedIndex(0);
         Findemployee1.setText("");
         
     }//GEN-LAST:event_Restablecer1ActionPerformed
 
     private void Registrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registrar1ActionPerformed
         // TODO add your handling code here:
+        
+        var errores=validator.Deduccion(NumeroEmpleado1.getText(),CantidadDeduccion.getText());
+        String txt=" ";
+        for (String error:errores) {
+            txt=txt+error+"\n";
+        }
+        if (!txt.equals(" ")) {
+
+            JOptionPane.showMessageDialog(null, txt);
+
+        }else{
+            try {
+                // TODO add your handling code here:
+                df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                String birth_date = deduccionyear.getSelectedItem().toString() + "-" + (deduccionmonth.getSelectedIndex()+1) + "-" + deduccionday.getSelectedItem().toString();
+
+                Date det = df.parse(birth_date);
+                java.sql.Date sqdet = new java.sql.Date(det.getTime());
+
+                System.out.println(sqdet);
+                
+                i.setDeduccion(NumeroEmpleado1.getText(),sqdet, CantidadDeduccion.getText(), (TipoDeduccion.getSelectedItem().toString()));
+                modelo2=s.getDeduccion();
+
+                TablaDeduccion.setModel(modelo2);
+                modelo2.fireTableDataChanged();
+
+                System.out.println("Se realizo el registro");
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_Registrar1ActionPerformed
 
     private void update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update1ActionPerformed
@@ -1464,6 +1490,46 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void Registrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registrar2ActionPerformed
         // TODO add your handling code here:
+        
+        
+        var errores=validator.Holiday(NumeroEmpleado2.getText());
+        String txt=" ";
+        for (String error:errores) {
+            txt=txt+error+"\n";
+        }
+        if (!txt.equals(" ")) {
+
+            JOptionPane.showMessageDialog(null, txt);
+
+        }else{
+            try {
+                // TODO add your handling code here:
+                df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                
+                String birth_date = holidayyear.getSelectedItem().toString() + "-" + (holidaymonth.getSelectedIndex()+1) + "-" + holiday.getSelectedItem().toString();
+                String birth_date1 = holidayyear1.getSelectedItem().toString() + "-" + (holidaymonth1.getSelectedIndex()+1) + "-" + holiday1.getSelectedItem().toString();
+
+                Date det = df.parse(birth_date);
+                Date det1 = df.parse(birth_date1);
+                java.sql.Date sqdet = new java.sql.Date(det.getTime());
+                java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+                System.out.println(sqdet);
+                
+                i.setHoliday(NumeroEmpleado2.getText(),sqdet, sqdet1);
+                modelo3=s.getHoliday();
+
+                TablaHoliday.setModel(modelo3);
+                modelo3.fireTableDataChanged();
+
+                System.out.println("Se realizo el registro");
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_Registrar2ActionPerformed
 
     private void update2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update2ActionPerformed
@@ -1498,13 +1564,13 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_BuscarSickActionPerformed
 
-    private void TablaHoliday1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHoliday1MouseClicked
+    private void TablaSickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaSickMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_TablaHoliday1MouseClicked
+    }//GEN-LAST:event_TablaSickMouseClicked
 
-    private void TablaHoliday1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHoliday1MouseExited
+    private void TablaSickMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaSickMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_TablaHoliday1MouseExited
+    }//GEN-LAST:event_TablaSickMouseExited
 
     private void Restablecer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Restablecer3ActionPerformed
         // TODO add your handling code here:
@@ -1516,10 +1582,51 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         sickmonth1.setSelectedIndex(0);
         sickyear1.setSelectedIndex(0);
         Findemployee3.setText("");
+        Razon.setText("");
     }//GEN-LAST:event_Restablecer3ActionPerformed
 
     private void Registrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registrar3ActionPerformed
         // TODO add your handling code here:
+        
+        var errores=validator.Holiday(NumeroEmpleado3.getText());
+        String txt=" ";
+        for (String error:errores) {
+            txt=txt+error+"\n";
+        }
+        if (!txt.equals(" ")) {
+
+            JOptionPane.showMessageDialog(null, txt);
+
+        }else{
+            try {
+                // TODO add your handling code here:
+                df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                
+                String birth_date = sickyear.getSelectedItem().toString() + "-" + (sickmonth.getSelectedIndex()+1) + "-" + sickday.getSelectedItem().toString();
+                String birth_date1 = sickyear1.getSelectedItem().toString() + "-" + (sickmonth1.getSelectedIndex()+1) + "-" + sickday1.getSelectedItem().toString();
+
+                Date det = df.parse(birth_date);
+                Date det1 = df.parse(birth_date1);
+                java.sql.Date sqdet = new java.sql.Date(det.getTime());
+                java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+                System.out.println(sqdet);
+                
+                i.setSickLeave(NumeroEmpleado3.getText(),sqdet, sqdet1,Razon.getText());
+                modelo4=s.getSickleave();
+
+                TablaSick.setModel(modelo4);
+                modelo4.fireTableDataChanged();
+
+                System.out.println("Se realizo el registro");
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
     }//GEN-LAST:event_Registrar3ActionPerformed
 
     private void update3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update3ActionPerformed
@@ -1640,14 +1747,14 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTable TablaBonus;
     private javax.swing.JTable TablaDeduccion;
     private javax.swing.JTable TablaHoliday;
-    private javax.swing.JTable TablaHoliday1;
+    private javax.swing.JTable TablaSick;
     private javax.swing.JTable TablaTipobonus;
     private javax.swing.JTable TablaTipobonus1;
     private javax.swing.JTable TablaTipobonus2;
     private javax.swing.JTable TablaTipobonus3;
     private javax.swing.JTable TablaTipobonus4;
-    private javax.swing.JTextField TipoBonus;
-    private javax.swing.JTextField TipoDeduccion;
+    private javax.swing.JComboBox<String> TipoDeduccion;
+    private javax.swing.JComboBox<String> Tipobonus;
     private javax.swing.JComboBox<String> bonusday;
     private javax.swing.JComboBox<String> bonusmonth;
     private javax.swing.JComboBox<String> bonusyear;

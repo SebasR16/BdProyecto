@@ -497,5 +497,25 @@ public class select {
         }
         return modelo;
       }
+        public ArrayList listBonus() throws SQLException {
+        ArrayList datos = new ArrayList();
+        String SQL2 = "SELECT bonus_description FROM bonustype";
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            datos.add(resultSet.getString(1));
+        }
+        return datos;
+    }
+        public ArrayList listDeduccion() throws SQLException {
+        ArrayList datos = new ArrayList();
+        String SQL2 = "SELECT deduct_description FROM deducttype";
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            datos.add(resultSet.getString(1));
+        }
+        return datos;
+    }
     }
 

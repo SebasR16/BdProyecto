@@ -96,25 +96,55 @@ public class validator {
       
         return errores;
     }
-          public List<String> Bonus(String Num, String cantidad,String tipo){
-        List <String> errores=new ArrayList();
+          public List<String> Bonus(String Num, String cantidad) {
+        List<String> errores = new ArrayList();
         if (Num.isEmpty()) {
-       errores.add("El campo nombre no puede estar vacio");
-        
+            errores.add("El campo Numero de empleado no puede estar vacio");
+
         }
-        if (!isNumeric(Num)){
-              errores.add("El campo de Numero de empleado debe ser solo numeros");
-          }
+        if (!isNumeric(Num)) {
+            errores.add("El campo de Numero de empleado debe ser solo numeros");
+        }
         if (cantidad.isEmpty()) {
-           errores.add("El campo cantidad de bonus no puede estar vacio");
+            errores.add("El campo cantidad de bonus no puede estar vacio");
         }
-        if (!isNumeric(cantidad)){
-              errores.add("El campo de Cantidad de bonus debe ser solo numeros");
-          }
-        if (tipo.isEmpty()) {
-           errores.add("El campo Tipo de bonus no puede estar vacio");
+        if (!isNumeric(cantidad)) {
+            errores.add("El campo de Cantidad de bonus debe ser solo numeros");
         }
-      
+
+        return errores;
+    }
+          public List<String> Deduccion(String Num, String cantidad) {
+        List<String> errores = new ArrayList();
+        if (Num.isEmpty()) {
+            errores.add("El campo Numero de empleado no puede estar vacio");
+
+        }
+        if (!isNumeric(Num)) {
+            errores.add("El campo de Numero de empleado debe ser solo numeros");
+        }
+        if (cantidad.isEmpty()) {
+            errores.add("El campo cantidad de deduccion no puede estar vacio");
+        }
+        if (!isNumeric(cantidad)) {
+            errores.add("El campo de Cantidad de deduccion debe ser solo numeros");
+        }
+
+        return errores;
+    }
+        public List<String> Holiday(String Num) {
+        List<String> errores = new ArrayList();
+        
+        if (Num.isEmpty()) {
+            errores.add("El campo Numero de empleado no puede estar vacio");
+
+        }
+        
+        if (!isNumeric(Num)) {
+            errores.add("El campo de Numero de empleado debe ser solo numeros");
+        }
+        
+
         return errores;
     }
       public Boolean isLetter(String txt){
