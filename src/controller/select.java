@@ -396,5 +396,106 @@ public class select {
         }
         return modelo;
       }
+        public DefaultTableModel  getTipoBonus() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM bonustype;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número tipo de Bonus");
+        modelo.addColumn("Descripción de Bonus");
+
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel  getTipoDeduccion() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM deducttype;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número tipo de Deducción");
+        modelo.addColumn("Descripción de Deducción");
+
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel  getTipoPago() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM paytype;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número tipo de Pago");
+        modelo.addColumn("Descripción tipo de Pago");
+
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel  getDetallesPago() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM paydetails;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Número de Ruta");
+        modelo.addColumn("Tipo de Cuenta");
+        modelo.addColumn("Nombre de Banco");
+        modelo.addColumn("Dirección de banco");
+        modelo.addColumn("Número tipo de Pago");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
+        public DefaultTableModel  getHistorialPago() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String SQL = "SELECT * FROM payhistory;";
+        //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
+        modelo.addColumn("Número de Pago");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Pago");
+        modelo.addColumn("Número de Cheque");
+        modelo.addColumn("Cantidad de Pago");
+        
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+                fila[i] = resultSet.getObject(i+1);
+            }
+         modelo.addRow(fila);
+        }
+        return modelo;
+      }
     }
 

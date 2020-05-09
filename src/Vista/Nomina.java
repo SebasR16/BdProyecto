@@ -47,8 +47,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
      DefaultTableModel modelo2 =s.getDeduccion();
      DefaultTableModel modelo3 =s.getHoliday();
      DefaultTableModel modelo4 =s.getSickleave();
-     /*DefaultTableModel modelo5 =s.getSalarios();
-     DefaultTableModel modelo6 =s.getDept_Manager();*/
+     DefaultTableModel modelo5 =s.getTipoBonus();
+     DefaultTableModel modelo6 =s.getTipoDeduccion();
+     DefaultTableModel modelo7 =s.getTipoPago();
+     DefaultTableModel modelo8 =s.getDetallesPago();
+     DefaultTableModel modelo9 =s.getHistorialPago();
      String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
       validator validator= new validator();
      int seleccionar;
@@ -162,6 +165,26 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         Registrar3 = new javax.swing.JButton();
         update3 = new javax.swing.JButton();
         Eliminar3 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TablaTipobonus = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TablaTipobonus1 = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        TablaTipobonus2 = new javax.swing.JTable();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        TablaTipobonus3 = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        TablaTipobonus4 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -983,6 +1006,225 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
         jTabbedPane1.addTab("Sickleave", jPanel4);
 
+        TablaTipobonus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaTipobonus.setModel(modelo5);
+        TablaTipobonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaTipobonus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaTipobonusMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaTipobonusMouseExited(evt);
+            }
+        });
+        jScrollPane6.setViewportView(TablaTipobonus);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel20.setText("Tipos de Bonus");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(473, 473, 473)
+                        .addComponent(jLabel20)))
+                .addContainerGap(259, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel20)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Tipos de Bonus", jPanel5);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("Tipos de deducción");
+
+        TablaTipobonus1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaTipobonus1.setModel(modelo6);
+        TablaTipobonus1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaTipobonus1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaTipobonus1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaTipobonus1MouseExited(evt);
+            }
+        });
+        jScrollPane7.setViewportView(TablaTipobonus1);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(470, 470, 470)
+                .addComponent(jLabel21)
+                .addContainerGap(483, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(252, 252, 252)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(253, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel21)
+                .addContainerGap(437, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(92, 92, 92)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(92, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Tipos de deducción", jPanel6);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel22.setText("Tipos de Pago");
+
+        TablaTipobonus2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaTipobonus2.setModel(modelo7);
+        TablaTipobonus2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaTipobonus2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaTipobonus2MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaTipobonus2MouseExited(evt);
+            }
+        });
+        jScrollPane8.setViewportView(TablaTipobonus2);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(497, 497, 497)
+                .addComponent(jLabel22)
+                .addContainerGap(504, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(252, 252, 252)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(253, Short.MAX_VALUE)))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel22)
+                .addContainerGap(438, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(92, 92, 92)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(92, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Tipos de pago", jPanel7);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel23.setText("Detalles de pago");
+
+        TablaTipobonus3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaTipobonus3.setModel(modelo8);
+        TablaTipobonus3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaTipobonus3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaTipobonus3MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaTipobonus3MouseExited(evt);
+            }
+        });
+        jScrollPane9.setViewportView(TablaTipobonus3);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(484, 484, 484)
+                .addComponent(jLabel23)
+                .addContainerGap(492, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(96, 96, 96)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 955, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(74, Short.MAX_VALUE)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel23)
+                .addContainerGap(438, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(92, 92, 92)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(65, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Detalles de pago", jPanel8);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel24.setText("Historial de pago");
+
+        TablaTipobonus4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaTipobonus4.setModel(modelo9);
+        TablaTipobonus4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaTipobonus4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaTipobonus4MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TablaTipobonus4MouseExited(evt);
+            }
+        });
+        jScrollPane10.setViewportView(TablaTipobonus4);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(476, 476, 476)
+                        .addComponent(jLabel24))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 955, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel24)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Historial de pago", jPanel9);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1288,6 +1530,46 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_Eliminar3ActionPerformed
 
+    private void TablaTipobonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonusMouseClicked
+
+    private void TablaTipobonusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonusMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonusMouseExited
+
+    private void TablaTipobonus1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus1MouseClicked
+
+    private void TablaTipobonus1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus1MouseExited
+
+    private void TablaTipobonus2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus2MouseClicked
+
+    private void TablaTipobonus2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus2MouseExited
+
+    private void TablaTipobonus3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus3MouseClicked
+
+    private void TablaTipobonus3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus3MouseExited
+
+    private void TablaTipobonus4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus4MouseClicked
+
+    private void TablaTipobonus4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonus4MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaTipobonus4MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1359,6 +1641,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTable TablaDeduccion;
     private javax.swing.JTable TablaHoliday;
     private javax.swing.JTable TablaHoliday1;
+    private javax.swing.JTable TablaTipobonus;
+    private javax.swing.JTable TablaTipobonus1;
+    private javax.swing.JTable TablaTipobonus2;
+    private javax.swing.JTable TablaTipobonus3;
+    private javax.swing.JTable TablaTipobonus4;
     private javax.swing.JTextField TipoBonus;
     private javax.swing.JTextField TipoDeduccion;
     private javax.swing.JComboBox<String> bonusday;
@@ -1385,6 +1672,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1396,10 +1688,20 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> sickday;
     private javax.swing.JComboBox<String> sickday1;
