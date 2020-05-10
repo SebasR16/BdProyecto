@@ -1289,7 +1289,8 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
         dato1 = String.valueOf(TablaBonus.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(TablaBonus.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(TablaBonus.getValueAt(seleccionar, 3));
-        
+        TablaBonus.isCellEditable(seleccionar, 0);
+       
 
     }//GEN-LAST:event_TablaBonusMouseClicked
 
@@ -1357,23 +1358,12 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
 
-        /*try {
-            u.updateEmpleados(dato,java.sql.Date.valueOf(dato1) , dato2, dato3, dato4, java.sql.Date.valueOf(dato5));
-            /*try {
-                // TODO add your handling code here:
-                int fila = TablaEmpleados.getRowCount();
-                for (int i = fila; i >=0; i++) {
-                    modelo.removeRow(i);
-                }
-                getEmpleados();
-            } catch (SQLException ex) {
-                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (ParseException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            u.updateBonus(dato,java.sql.Date.valueOf(dato1) , dato2, dato3);
+            
         } catch (SQLException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_updateActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -1496,7 +1486,13 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
     }//GEN-LAST:event_Registrar1ActionPerformed
 
     private void update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update1ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            u.updateDeduction(dato,java.sql.Date.valueOf(dato1) , dato2, dato3);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_update1ActionPerformed
 
     private void Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar1ActionPerformed
@@ -1602,7 +1598,12 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
     }//GEN-LAST:event_Registrar2ActionPerformed
 
     private void update2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update2ActionPerformed
-        // TODO add your handling code here:
+  try {
+            u.updateHolliday(dato,java.sql.Date.valueOf(dato1) , java.sql.Date.valueOf(dato2));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_update2ActionPerformed
 
     private void Eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar2ActionPerformed
@@ -1719,7 +1720,12 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
     }//GEN-LAST:event_Registrar3ActionPerformed
 
     private void update3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update3ActionPerformed
-        // TODO add your handling code here:
+ try {
+            u.updateSick(dato,java.sql.Date.valueOf(dato1) , java.sql.Date.valueOf(dato2), dato3);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }                   // TODO add your handling code here:
     }//GEN-LAST:event_update3ActionPerformed
 
     private void Eliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar3ActionPerformed

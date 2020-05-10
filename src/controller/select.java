@@ -28,7 +28,23 @@ public class select {
         this.con=con;
     }
     public DefaultTableModel  getEmpleados() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                            case 1:
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}
+		
+};
         String SQL = "SELECT TOP 100 * FROM employees ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
@@ -49,7 +65,21 @@ public class select {
         return modelo;
     }
   public DefaultTableModel  getDepartamentos() throws SQLException {
-      DefaultTableModel modelo = new DefaultTableModel();
+       DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
+		
         String SQL = "SELECT TOP 100* FROM departments";
         //String SQL = "SELECT * FROM departments limit 100";
         modelo.addColumn("Número de Departamento");
@@ -67,7 +97,20 @@ public class select {
         return modelo;
     }
    public DefaultTableModel getTitulos() throws SQLException {
-       DefaultTableModel modelo = new DefaultTableModel();
+              DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         //String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM titles ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
@@ -87,7 +130,20 @@ public class select {
    return modelo;
     }
     public DefaultTableModel getDept_Emp() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+               DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         //String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM dept_emp ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
@@ -123,7 +179,20 @@ public class select {
     }
     
      public DefaultTableModel getSalarios() throws SQLException {
-         DefaultTableModel modelo = new DefaultTableModel();
+              DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         //String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM salaries ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
@@ -144,7 +213,20 @@ public class select {
         return modelo;
     }
       public  DefaultTableModel getDept_Manager() throws SQLException {
-          DefaultTableModel modelo = new DefaultTableModel();
+              DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                         
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         //String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM dept_manager ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
@@ -290,7 +372,20 @@ public class select {
         return modelo;
     }
       public DefaultTableModel  getBonus() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+              DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                            case 1:
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         String SQL = "SELECT TOP 100 * FROM bonus ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
@@ -338,7 +433,20 @@ public class select {
       
     }
         public DefaultTableModel  getDeduccion() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+               DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                            case 1:
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         String SQL = "SELECT TOP 100 * FROM deduction ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
@@ -358,7 +466,20 @@ public class select {
         return modelo;
       }
         public DefaultTableModel  getHoliday() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+           DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                            case 1:
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         String SQL = "SELECT TOP 100 * FROM holiday ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
@@ -377,7 +498,20 @@ public class select {
         return modelo;
       }
         public DefaultTableModel  getSickleave() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel();
+          DefaultTableModel modelo = new DefaultTableModel(){
+@Override
+			public boolean isCellEditable(int row, int column) {
+                        switch(column){
+                            case 0:
+                            case 1:
+                                return false;
+                               
+                            default:
+                                return true;
+                           
+                        }
+				
+			}};
         String SQL = "SELECT TOP 100 * FROM sickleave ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");

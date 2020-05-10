@@ -24,12 +24,12 @@ public class BaseDeDatos {
     static public String PASSWORD = "1234";
 */
     static public String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static public String DBNAME = "employees";
+    static public String DBNAME = "ejemplo";
     static public String HOSTNAME = "localhost";
     static public String PORT = "1433";
     
-    static public String USERNAME = "Sebastian";/*integratedSecurity=true*/
-    static public String PASSWORD = "Sebas1699";
+    static public String USERNAME = "Admin";/*integratedSecurity=true*/
+    static public String PASSWORD = "1234 ";
     static public String URL = "jdbc:sqlserver://" + HOSTNAME + ":" + PORT + ";databaseName=" + DBNAME + ";user=" + USERNAME + ";password=" + PASSWORD;
     
 //    static public String DRIVER = "com.mysql.jdbc.Driver";
