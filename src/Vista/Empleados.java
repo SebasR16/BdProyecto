@@ -1816,7 +1816,7 @@ PreparedStatement preparedStatement = null;
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_updateActionPerformed
-
+//s
     private void TablaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEmpleadosMouseClicked
         // TODO add your handling code here:
         seleccionar = TablaEmpleados.rowAtPoint(evt.getPoint());
