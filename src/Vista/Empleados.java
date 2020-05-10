@@ -1459,10 +1459,6 @@ PreparedStatement preparedStatement = null;
             TablaEmpleados.setModel(modelo);
              modelo.fireTableDataChanged();
              
-            
-            System.out.println("Se realizo el registro");
-            
-      
     
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);

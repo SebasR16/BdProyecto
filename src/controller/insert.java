@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +43,7 @@ public class insert {
             pst.setString(5,  Genero);
             pst.setDate(6, sqdet1);
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
             
     }
       public boolean setDepartamentos(String id, String name) throws ParseException, SQLException {
@@ -62,7 +63,7 @@ public class insert {
             System.out.println(datos[0]);
             if (id.equals(datos[0]) || name.equals(datos[1])) {
                 exists = true;
-                System.out.println("ya existe");
+                JOptionPane.showMessageDialog(null,"Ya existe este departamento");
 
             }
         }
@@ -74,7 +75,7 @@ public class insert {
             pst.setString(1, "d"+id);
             pst.setString(2, name);
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
             return false;
         }
 
@@ -91,7 +92,7 @@ public class insert {
             pst.setDate(3, sqdet); 
             pst.setDate(4, sqdet1);
             pst.executeUpdate();
-            System.out.println("Se realizo el registro");
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
             
         } catch (SQLException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,17 +107,17 @@ public class insert {
             pst.setDate(3, sqdet); 
             pst.setDate(4, sqdet1);
             pst.executeUpdate();
-            System.out.println("Se realizo el registro");
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
     }
       public void setDept_emp(String Numemp1, String departamento, java.sql.Date  sqdet,java.sql.Date  sqdet1) throws ParseException, SQLException {
         String SQL = "INSERT INTO dept_emp(emp_no,dept_no,from_date,to_date)VALUES(?,?,?,?)";
-    PreparedStatement pst = con.prepareStatement(SQL);
+        PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(Numemp1));
             pst.setString(2, departamento);
             pst.setDate(3, sqdet); 
             pst.setDate(4, sqdet1);
             pst.executeUpdate();
-            System.out.println("Se realizo el registro");
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
     }
       public void setDept_manager(String Numemp2, String departamento1, java.sql.Date  sqdet,java.sql.Date  sqdet1) throws ParseException {
          try {
@@ -127,48 +128,93 @@ public class insert {
              pst.setDate(3, sqdet);
              pst.setDate(4, sqdet1);
              pst.executeUpdate();
-             System.out.println("Se realizo el registro");
+             JOptionPane.showMessageDialog(null,"Se realizo el registro");
          } catch (SQLException ex) {
              Logger.getLogger(insert.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
-      public void setBonus(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
+      public boolean setBonus(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
        
         String SQL = "INSERT INTO bonus(emp_no,bonus_date,bonus_amount,bonus_type_no)VALUES(?,?,?,?)";
         String SQL1 = "SELECT TOP 100 * FROM bonustype;";
-        preparedStatement = con.prepareStatement(SQL1);
+        String SQL2 = "SELECT emp_no, bonus_date FROM bonus WHERE emp_no= " + userId;
+        boolean exists = false;
+        preparedStatement = con.prepareStatement(SQL2);
         resultSet = preparedStatement.executeQuery();
-
         String[] datos = new String[2];
-        
+        Date[]datos2 = new Date[2];
         while (resultSet.next()) {
             datos[0] = resultSet.getString(1);
-            datos[1] = resultSet.getString(2);
-            
-            if (Tipo.equals(datos[1])) {
+            datos2[0] = resultSet.getDate(2);
+            System.out.println(datos[0]);
+            System.out.println(datos2[0]);
+            if (userId.equals(datos[0]) && sqdet.equals(datos2[0])) {
+                exists = true;
+                JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
                 
-                break;
             }
         }
-        
-        PreparedStatement pst = con.prepareStatement(SQL);
+        if (exists) {
+            return exists;
+        } else {
+            preparedStatement = con.prepareStatement(SQL1);
+            resultSet = preparedStatement.executeQuery();
+
+            String[] datos1 = new String[2];
+
+            while (resultSet.next()) {
+                datos1[0] = resultSet.getString(1);
+                datos1[1] = resultSet.getString(2);
+
+                if (Tipo.equals(datos1[1])) {
+
+                    break;
+                }
+            }
+
+            PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(userId));
             pst.setDate(2, sqdet);
             pst.setString(3, Cantidad);
-            pst.setInt(4, Integer.parseInt(datos[0]));
+            pst.setInt(4, Integer.parseInt(datos1[0]));
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
-            
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
+            return false;
+        }
+        
     }
-      public void setDeduccion(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
+        
+        
+      public boolean setDeduccion(String userId, java.sql.Date  sqdet, String Cantidad, String Tipo) throws ParseException, SQLException {
        
         String SQL = "INSERT INTO deduction(emp_no,deduct_date,deduct_amount,deduct_type_no)VALUES(?,?,?,?)";
         String SQL1 = "SELECT TOP 100 * FROM deducttype;";
+        String SQL2 = "SELECT emp_no, deduct_date FROM deduction WHERE emp_no= " + userId;
+        boolean exists = false;
+        
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        String[] datos = new String[2];
+        Date[]datos2 = new Date[2];
+        
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos2[0] = resultSet.getDate(2);
+            System.out.println(datos[0]);
+            System.out.println(datos2[0]);
+            if (userId.equals(datos[0]) && sqdet.equals(datos2[0])) {
+                exists = true;
+                JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
+                
+            }
+        }if (exists) {
+            return exists;
+        } else {
+            
+        
         preparedStatement = con.prepareStatement(SQL1);
         resultSet = preparedStatement.executeQuery();
 
-        String[] datos = new String[2];
-        
         while (resultSet.next()) {
             datos[0] = resultSet.getString(1);
             datos[1] = resultSet.getString(2);
@@ -185,38 +231,83 @@ public class insert {
             pst.setString(3, Cantidad);
             pst.setInt(4, Integer.parseInt(datos[0]));
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
-            
+            JOptionPane.showMessageDialog(null,"Se realizo el registro");
+            return false;
+        }   
     }
-      public void setHoliday(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1) throws ParseException, SQLException {
+      public boolean setHoliday(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1) throws ParseException, SQLException {
        
         String SQL = "INSERT INTO holiday(emp_no,start_date,end_date)VALUES(?,?,?)";
-        //String SQL1 = "SELECT TOP 100 * FROM deducttype;";
-        //preparedStatement = con.prepareStatement(SQL1);
-        //resultSet = preparedStatement.executeQuery();
-
-        PreparedStatement pst = con.prepareStatement(SQL);
+        String SQL2 = "SELECT emp_no, start_date FROM holiday WHERE emp_no= " + userId;
+        boolean exists = false;
+        
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        String[] datos = new String[2];
+        Date[]datos2 = new Date[2];
+        
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos2[0] = resultSet.getDate(2);
+            System.out.println(datos[0]);
+            System.out.println(datos2[0]);
+            if (userId.equals(datos[0]) && sqdet.equals(datos2[0])) {
+                exists = true;
+                JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
+                
+            }
+        }if (exists) {
+            return exists;
+            
+        } else {
+            PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(userId));
             pst.setDate(2, sqdet);
             pst.setDate(3, sqdet1);
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null, "Se realizo el registro");
+            return false;
+            
+        }
+        
             
     }
-      public void setSickLeave(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1, String razon) throws ParseException, SQLException {
+      public boolean setSickLeave(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1, String razon) throws ParseException, SQLException {
        
         String SQL = "INSERT INTO sickleave(emp_no,start_date,end_date,reason)VALUES(?,?,?,?)";
-        //String SQL1 = "SELECT TOP 100 * FROM deducttype;";
-        //preparedStatement = con.prepareStatement(SQL1);
-        //resultSet = preparedStatement.executeQuery();
-
-        PreparedStatement pst = con.prepareStatement(SQL);
+        String SQL2 = "SELECT emp_no, start_date FROM sickleave WHERE emp_no= " + userId;
+        boolean exists = false;
+        
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        String[] datos = new String[2];
+        Date[]datos2 = new Date[2];
+        
+        while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos2[0] = resultSet.getDate(2);
+            System.out.println(datos[0]);
+            System.out.println(datos2[0]);
+            if (userId.equals(datos[0]) && sqdet.equals(datos2[0])) {
+                exists = true;
+                JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
+                
+            }
+        }
+        if (exists) {
+            return exists;
+            
+        } else {
+            PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(userId));
             pst.setDate(2, sqdet);
             pst.setDate(3, sqdet1);
             pst.setString(4, razon);
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null, "Se realizo el registro");
+            return false;
+        }
+        
             
     }
 }

@@ -336,7 +336,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                                                     .addComponent(Tipobonus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addGap(72, 72, 72))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
+                                .addGap(142, 142, 142)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,10 +355,11 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Findemployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Findemployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -367,9 +368,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addComponent(Eliminar))
                 .addGap(43, 43, 43))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel5)
-                .addGap(35, 35, 35)
+                .addGap(87, 87, 87)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(NumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -780,9 +779,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(update2)
                             .addComponent(Eliminar2)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -1296,7 +1293,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 TablaBonus.setModel(modelo);
                 modelo.fireTableDataChanged();
 
-                System.out.println("Se realizo el registro");
+                //System.out.println("Se realizo el registro");
 
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1437,7 +1434,7 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 TablaDeduccion.setModel(modelo2);
                 modelo2.fireTableDataChanged();
 
-                System.out.println("Se realizo el registro");
+                
 
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1521,7 +1518,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
                 TablaHoliday.setModel(modelo3);
                 modelo3.fireTableDataChanged();
 
-                System.out.println("Se realizo el registro");
 
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -1616,8 +1612,6 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
                 TablaSick.setModel(modelo4);
                 modelo4.fireTableDataChanged();
-
-                System.out.println("Se realizo el registro");
 
             } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
