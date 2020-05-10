@@ -1796,8 +1796,12 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
     }//GEN-LAST:event_EmpleadosBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        new Nomina().setVisible(true);
+        try {
+            // TODO add your handling code here:
+            new Nomina().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SistemaNomina.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

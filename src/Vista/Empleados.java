@@ -2173,8 +2173,12 @@ PreparedStatement preparedStatement = null;
     }//GEN-LAST:event_EmpleadosBtnActionPerformed
 
     private void NominaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaBtnActionPerformed
+    try {
         // TODO add your handling code here:
         new Nomina().setVisible(true);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
         dispose();
     }//GEN-LAST:event_NominaBtnActionPerformed
     

@@ -517,5 +517,15 @@ public class select {
         }
         return datos;
     }
+        public ArrayList listPago() throws SQLException {
+        ArrayList datos = new ArrayList();
+        String SQL2 = "SELECT pay_type_description FROM paytype";
+        preparedStatement = con.prepareStatement(SQL2);
+        resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            datos.add(resultSet.getString(1));
+        }
+        return datos;
+    }
     }
 
