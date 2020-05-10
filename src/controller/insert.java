@@ -291,12 +291,10 @@ public class insert {
             if (userId.equals(datos[0]) && sqdet.equals(datos2[0])) {
                 exists = true;
                 JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
-                
             }
         }
         if (exists) {
             return exists;
-            
         } else {
             PreparedStatement pst = con.prepareStatement(SQL);
             pst.setInt(1, Integer.parseInt(userId));

@@ -1337,20 +1337,22 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         try {
-            if (dato.equals(d.setDeleteBonus(dato)[0])) {
-                int fila = TablaBonus.getSelectedRow();
-                
-                if (fila >= 0) {
-                    modelo.removeRow(fila);
-                    JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
-                    dato=null;
-                }
+        //if (dato.equals(d.setDeleteBonus(dato, dato1)[0]) && dato1.equals(d.setDeleteBonus(dato, dato1)[1])) {
+            d.setDeleteBonus(dato, dato1);
+            int fila = TablaBonus.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo.removeRow(fila);
+                JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
+                dato=null;
+                dato1=null;
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //}
+    } catch (ParseException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void BuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEmpleadoActionPerformed
@@ -1375,6 +1377,13 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void TablaDeduccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDeduccionMouseClicked
         // TODO add your handling code here:
+        seleccionar = TablaDeduccion.rowAtPoint(evt.getPoint());
+
+        dato = String.valueOf(TablaDeduccion.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(TablaDeduccion.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(TablaDeduccion.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(TablaDeduccion.getValueAt(seleccionar, 3));
+        
     }//GEN-LAST:event_TablaDeduccionMouseClicked
 
     private void TablaDeduccionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDeduccionMouseExited
@@ -1450,7 +1459,23 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_update1ActionPerformed
 
     private void Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            d.setDeleteDeduction(dato, dato1);
+            int fila = TablaDeduccion.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo2.removeRow(fila);
+                //JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
+                dato=null;
+                dato1=null;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_Eliminar1ActionPerformed
 
     private void NumeroEmpleado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroEmpleado2ActionPerformed
@@ -1467,6 +1492,13 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void TablaHolidayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHolidayMouseClicked
         // TODO add your handling code here:
+        seleccionar = TablaHoliday.rowAtPoint(evt.getPoint());
+
+        dato = String.valueOf(TablaHoliday.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 3));
+        
     }//GEN-LAST:event_TablaHolidayMouseClicked
 
     private void TablaHolidayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHolidayMouseExited
@@ -1534,6 +1566,22 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void Eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar2ActionPerformed
         // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            d.setDeleteHoliday(dato, dato1);
+            int fila = TablaHoliday.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo3.removeRow(fila);
+                //JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
+                dato=null;
+                dato1=null;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Eliminar2ActionPerformed
 
     private void BuscarHolidayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarHolidayActionPerformed
@@ -1562,6 +1610,12 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void TablaSickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaSickMouseClicked
         // TODO add your handling code here:
+        seleccionar = TablaSick.rowAtPoint(evt.getPoint());
+
+        dato = String.valueOf(TablaSick.getValueAt(seleccionar, 0));
+        dato1 = String.valueOf(TablaSick.getValueAt(seleccionar, 1));
+        dato2 = String.valueOf(TablaSick.getValueAt(seleccionar, 2));
+        dato3 = String.valueOf(TablaSick.getValueAt(seleccionar, 3));
     }//GEN-LAST:event_TablaSickMouseClicked
 
     private void TablaSickMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaSickMouseExited
@@ -1629,6 +1683,22 @@ public final class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void Eliminar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar3ActionPerformed
         // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            d.setDeleteSick(dato, dato1);
+            int fila = TablaSick.getSelectedRow();
+            
+            if (fila >= 0) {
+                modelo4.removeRow(fila);
+                //JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
+                dato=null;
+                dato1=null;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Eliminar3ActionPerformed
 
     private void TablaTipobonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaTipobonusMouseClicked

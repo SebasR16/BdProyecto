@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,7 +98,7 @@ public class delete {
               st.executeUpdate(SQL1);
             
           }
-return datos;
+        return datos;
     }
        public String[]setDeleteGerente(String dato, String dato1) throws ParseException, SQLException {
         String SQL = "SELECT * FROM dept_manager WHERE emp_no = " + dato + " and dept_no = '" + dato1 + "' ;";
@@ -167,29 +168,94 @@ return datos;
               st.executeUpdate(SQL1);
               
           }
-return datos;
+            return datos;
       }
-        public String[] setDeleteBonus(String dato) throws ParseException, SQLException {
-        String SQL = "SELECT * FROM bonus WHERE emp_no = " + dato + " ;";
+        public String[] setDeleteBonus(String dato,String dato1) throws ParseException, SQLException {
+        String SQL = "SELECT * FROM bonus WHERE emp_no = " + dato + " and bonus_date = '" + dato1 + "' ;";
 
-        String[] datos = new String[1];
-
-        preparedStatement = con.prepareStatement(SQL);
-
-        resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            datos[0] = resultSet.getString(1);
+        String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+       
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getDate(2).toString();
+            }
+            //System.out.println(datos[0] + " " + datos[1]);
+       
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+         
+              String SQL1 = "DELETE FROM bonus WHERE emp_no = " + dato + " and bonus_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              JOptionPane.showMessageDialog(null, "Se elimino el Bonus");
+          }
+            return datos;
         }
-        System.out.println(datos[0]);
+        public String[] setDeleteDeduction(String dato,String dato1) throws ParseException, SQLException {
+        String SQL = "SELECT * FROM deduction WHERE emp_no = " + dato + " and deduct_date = '" + dato1 + "' ;";
 
-        if (dato.equals(datos[0])) {
-
-            String SQL1 = "DELETE FROM bonus WHERE emp_no = " + dato + " ;";
-            Statement st = con.createStatement();
-            st.executeUpdate(SQL1);
-
+            String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+       
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getDate(2).toString();
+            }
+            System.out.println(datos[0] + " " + datos[1]);
+       
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+         
+              String SQL1 = "DELETE FROM deduction WHERE emp_no = " + dato + " and deduct_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              JOptionPane.showMessageDialog(null, "Se elimino la deduccion");
+          }
+            return datos;
         }
+        public String[] setDeleteHoliday(String dato,String dato1) throws ParseException, SQLException {
+        String SQL = "SELECT * FROM holiday WHERE emp_no = " + dato + " and start_date = '" + dato1 + "' ;";
 
-        return datos;
-    }
+            String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+       
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getDate(2).toString();
+            }
+            System.out.println(datos[0] + " " + datos[1]);
+       
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+         
+              String SQL1 = "DELETE FROM holiday WHERE emp_no = " + dato + " and start_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              JOptionPane.showMessageDialog(null, "Se elimino el registro");
+          }
+            return datos;
+        }
+        public String[] setDeleteSick(String dato,String dato1) throws ParseException, SQLException {
+        String SQL = "SELECT * FROM sickleave WHERE emp_no = " + dato + " and start_date = '" + dato1 + "' ;";
+
+            String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+       
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                datos[0] = resultSet.getString(1);
+                datos[1] = resultSet.getDate(2).toString();
+            }
+            //System.out.println(datos[0] + " " + datos[1]);
+       
+          if (dato.equals(datos[0]) && dato1.equals(datos[1])) {
+         
+              String SQL1 = "DELETE FROM sickleave WHERE emp_no = " + dato + " and start_date = '" + dato1 + "' ;";
+              Statement st = con.createStatement();
+              st.executeUpdate(SQL1);
+              JOptionPane.showMessageDialog(null, "Se elimino el registro");
+          }
+            return datos;
+        }
     }

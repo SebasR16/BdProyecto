@@ -52,7 +52,7 @@ PreparedStatement preparedStatement = null;
      String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
       validator validator= new validator();
      int seleccionar;
-    
+     
     public Empleados() throws SQLException {
         initComponents();
        
@@ -1686,7 +1686,7 @@ PreparedStatement preparedStatement = null;
 
     private void RegistrarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarManActionPerformed
       var errores=validator.CheckDeptEmp(Numemp2.getText());
-    String txt=" ";
+        String txt=" ";
             for (String error:errores) {
                 txt=txt+error+"\n";
             }
@@ -1721,7 +1721,8 @@ PreparedStatement preparedStatement = null;
 
     private void EliminarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarsalActionPerformed
     try {
-        if (dato.equals(d.setDeleteSalaries(dato, dato2)[0]) && dato1.equals(d.setDeleteSalaries(dato, dato2)[2])) {
+        //if (dato.equals(d.setDeleteSalaries(dato, dato2)[0]) && dato1.equals(d.setDeleteSalaries(dato, dato2)[2])) {
+            d.setDeleteSalaries(dato, dato2);
             int fila = Tablasalarios.getSelectedRow();
             
             if (fila >= 0) {
@@ -1730,7 +1731,7 @@ PreparedStatement preparedStatement = null;
                 dato=null;
                 dato1=null;
             }
-        }
+        //}
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1832,7 +1833,8 @@ PreparedStatement preparedStatement = null;
 
     private void EliminartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminartitleActionPerformed
     try {
-        if (dato.equals(d.setDeleteTitulos(dato, dato2)[0]) && dato1.equals(d.setDeleteTitulos(dato, dato2)[2])) {
+        //if (dato.equals(d.setDeleteTitulos(dato, dato2)[0]) && dato1.equals(d.setDeleteTitulos(dato, dato2)[2])) {
+            d.setDeleteTitulos(dato, dato2);
             int fila = Tablatitulos.getSelectedRow();
             
             if (fila >= 0) {
@@ -1841,7 +1843,7 @@ PreparedStatement preparedStatement = null;
                 dato=null;
                 dato2=null;
             }
-        }
+        //}
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1856,7 +1858,7 @@ PreparedStatement preparedStatement = null;
         dato1 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 3));
-
+        
         
     }//GEN-LAST:event_TablatitulosMouseClicked
 
@@ -1867,16 +1869,17 @@ PreparedStatement preparedStatement = null;
 
     private void EliminarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarManActionPerformed
     try {
-        if (dato.equals(d.setDeleteGerente(dato, dato1)[0]) && dato1.equals(d.setDeleteGerente(dato, dato1)[1])) {
+        //if (dato.equals(d.setDeleteGerente(dato, dato1)[0]) && dato1.equals(d.setDeleteGerente(dato, dato1)[1])) {
+            d.setDeleteGerente(dato, dato2);
             int fila = Tablagerente.getSelectedRow();
             
             if (fila >= 0) {
                 modelo6.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el gerente");
                 dato=null;
-                dato1=null;
+                dato2=null;
             }
-        }
+        //}
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -1896,16 +1899,17 @@ PreparedStatement preparedStatement = null;
 
     private void EliminarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarempActionPerformed
     try {
-        if (dato.equals(d.setDeleteDept_emp(dato, dato1)[0]) && dato1.equals(d.setDeleteDept_emp(dato, dato1)[1])) {
+        //if (dato.equals(d.setDeleteDept_emp(dato, dato1)[0]) && dato1.equals(d.setDeleteDept_emp(dato, dato1)[1])) {
+            d.setDeleteDept_emp(dato, dato2);
             int fila = Tabladept_emp.getSelectedRow();
             
             if (fila >= 0) {
                 modelo4.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el dept_emp");
                 dato=null;
-                dato1=null;
+                dato2=null;
             }
-        }
+        //}
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
