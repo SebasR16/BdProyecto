@@ -246,6 +246,9 @@ PreparedStatement preparedStatement = null;
         jLabel27 = new javax.swing.JLabel();
         Findemp = new javax.swing.JTextField();
         BuscarEmp = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        NominaBtn = new javax.swing.JButton();
+        EmpleadosBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1402,6 +1405,42 @@ PreparedStatement preparedStatement = null;
 
         jTabbedPane2.addTab("Departamento Empleados", jPanel6);
 
+        NominaBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        NominaBtn.setText("Nomina");
+        NominaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NominaBtnActionPerformed(evt);
+            }
+        });
+
+        EmpleadosBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        EmpleadosBtn.setText("Sistema Nomina");
+        EmpleadosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpleadosBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(EmpleadosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NominaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(NominaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(EmpleadosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 255, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1409,6 +1448,8 @@ PreparedStatement preparedStatement = null;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1417,6 +1458,10 @@ PreparedStatement preparedStatement = null;
                 .addContainerGap()
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -2115,6 +2160,23 @@ PreparedStatement preparedStatement = null;
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_BuscarSalarioActionPerformed
+
+    private void EmpleadosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadosBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            new SistemaNomina().setVisible(true);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_EmpleadosBtnActionPerformed
+
+    private void NominaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaBtnActionPerformed
+        // TODO add your handling code here:
+        new Nomina().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_NominaBtnActionPerformed
     
     /**
      * @param args the command line arguments
@@ -2172,6 +2234,7 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JButton Eliminaremp;
     private javax.swing.JButton Eliminarsal;
     private javax.swing.JButton Eliminartitle;
+    private javax.swing.JButton EmpleadosBtn;
     private javax.swing.JTextField FindDepartment;
     private javax.swing.JTextField FindGerente;
     private javax.swing.JTextField FindTitle;
@@ -2179,6 +2242,7 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JTextField Findemployee;
     private javax.swing.JTextField Findsalario;
     private javax.swing.JComboBox<String> Genero;
+    private javax.swing.JButton NominaBtn;
     private javax.swing.JTextField Numemp;
     private javax.swing.JTextField Numemp1;
     private javax.swing.JTextField Numemp2;
@@ -2260,6 +2324,7 @@ PreparedStatement preparedStatement = null;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
