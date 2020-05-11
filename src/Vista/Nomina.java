@@ -198,7 +198,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel10.setText("= $");
 
         CantidadLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        CantidadLabel.setText("100");
+        CantidadLabel.setText("00.00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,12 +301,53 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
             String birth_date = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + Desdeday.getSelectedItem().toString();
             Date det = df.parse(birth_date);
             java.sql.Date sqdet = new java.sql.Date(det.getTime());
-             if (s.getExisteemployee(NumeroEmpleado.getText(), sqdet.toString())== true) {
+            //if (s.getExisteemployee(NumeroEmpleado.getText())== false) {
+                
+          //}else{
+                
+            
+            if (s.getEmployee(NumeroEmpleado.getText(), sqdet.toString())== true) {
                  
             }else{
+            String SQL = "SELECT * FROM salaries WHERE emp_no = " + NumeroEmpleado.getText() + " ORDER by from_date DESC;";
+            String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+            
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos[1] = resultSet.getString(2);
+            if (NumeroEmpleado.getText().equals(datos[0])) {
+                //JOptionPane.showMessageDialog(null, "Si hay usuario");
+                break;
+            }else{
+                JOptionPane.showMessageDialog(null, "Este usuaio no tiene salarios registrados");
+                
+            }
+
+        }
+        //System.out.println(datos[0] + " " + datos[1]);
+                 
+                 if (TipoPago.getSelectedItem().equals("Mensual")) {
+                     double temp = Double.parseDouble(datos[1]);
+                     temp = temp/12;
+                     CantidadLabel.setText(""+temp);
+                 }
+                 if (TipoPago.getSelectedItem().equals("Quincenal")) {
+                     double temp = Double.parseDouble(datos[1]);
+                     temp = (temp/12)/2;
+                     CantidadLabel.setText(""+temp);
+                 }
+                 if (TipoPago.getSelectedItem().equals( "Semanal")) {
+                     double temp = Double.parseDouble(datos[1]);
+                     temp = ((temp/12)/2)/2;
+                     CantidadLabel.setText(""+temp);
+                 }
+                 
                  i.setNomina(NumeroEmpleado.getText(), sqdet, sqdet, Rutatxt.getText(), TipoCuenta.getSelectedItem().toString(), NombreBanco.getText()
                          , BancoDescripcion.getText(), TipoPago.getSelectedItem().toString(), PayId(), CheckId(), Double.parseDouble(CantidadLabel.getText()));
             }
+            //}
         } catch (ParseException ex) {
             Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
