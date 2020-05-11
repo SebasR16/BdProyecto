@@ -305,7 +305,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                 
           //}else{
                 
-            
+            //4
             if (s.getEmployee(NumeroEmpleado.getText(), sqdet.toString())== true) {
                  
             }else{
