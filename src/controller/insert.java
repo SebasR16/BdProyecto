@@ -305,7 +305,54 @@ public class insert {
             JOptionPane.showMessageDialog(null, "Se realizo el registro");
             return false;
         }
-        
-            
+             
     }
+      public void setNomina(String userId, java.sql.Date  sqdet,java.sql.Date  sqdet1, String Ruta, 
+              String Cuenta, String Banco, String Banco_Direccion,String Tipo, 
+              String payid,String checkid,Double Cantidad) throws ParseException, SQLException {
+       
+          String SQL = "INSERT INTO paydetails(emp_no,start_date,routing_number,account_type,bank_name,bank_address,pay_type_no)"
+                  + "VALUES(?,?,?,?,?,?,?)";
+          String SQL1 = "INSERT INTO payhistory(pay_no,emp_no,pay_date, check_number,pay_amount)VALUES(?,?,?,?,?)";
+          String SQL2 = "SELECT  * FROM paytype;";
+          //String SQL2 = "SELECT emp_no, start_date FROM paydetails WHERE emp_no= " + userId;
+          
+          preparedStatement = con.prepareStatement(SQL2);
+          resultSet = preparedStatement.executeQuery();
+
+            String[] datos1 = new String[2];
+
+            while (resultSet.next()) {
+                datos1[0] = resultSet.getString(1);
+                datos1[1] = resultSet.getString(2);
+
+                if (Tipo.equals(datos1[1])) {
+
+                    break;
+                }
+            }
+          
+          PreparedStatement pst = con.prepareStatement(SQL);
+          pst.setInt(1, Integer.parseInt(userId));
+          pst.setDate(2, sqdet);
+          pst.setString(3, Ruta);
+          pst.setString(4, Cuenta);
+          pst.setString(5, Banco);
+          pst.setString(6, Banco_Direccion);
+          pst.setInt(7, Integer.parseInt(datos1[0]));
+          pst.executeUpdate();
+          JOptionPane.showMessageDialog(null, "Se realizo el registro");
+          
+          PreparedStatement pst2 = con.prepareStatement(SQL1);
+          pst2.setInt(1, Integer.parseInt(payid));
+          pst2.setInt(2, Integer.parseInt(userId));
+          pst2.setDate(3, sqdet1);
+          pst2.setString(4, checkid);
+          pst2.setDouble(5, Cantidad);
+          pst2.executeUpdate();
+          JOptionPane.showMessageDialog(null, "Se realizo el registro");
+
+        }
+             
+    
 }

@@ -11,8 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -660,6 +663,31 @@ public class select {
             datos.add(resultSet.getString(1));
         }
         return datos;
+    }
+        public boolean getExisteemployee(String userId,String  sqdet) throws ParseException, SQLException {
+        String SQL = "SELECT emp_no, start_date FROM paydetails WHERE emp_no = " + userId + " and start_date = '" + sqdet + "' ;";
+            String[] datos = new String[2];
+            preparedStatement = con.prepareStatement(SQL);
+            boolean exists = false;
+            
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+            datos[0] = resultSet.getString(1);
+            datos[1] = resultSet.getDate(2).toString();
+
+            if (userId.equals(datos[0]) && sqdet.equals(datos[1])) {
+                exists = true;
+                JOptionPane.showMessageDialog(null, "Este usuaio ya se registro en esta Fecha");
+            }
+
+        }
+        System.out.println(datos[0] + " " + datos[1]);
+        if (exists) {
+            return exists;
+        } else {
+            return false;
+        }
+
     }
     }
 
