@@ -1662,7 +1662,7 @@ PreparedStatement preparedStatement = null;
             
         try {    
             try {
-                if (!s.getExisteemployee(Numempleado.getText())==false) {
+                if (!s.getExisteemployee(Numempleado.getText())==true) {
                     JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
                     
                 }else{
@@ -1712,7 +1712,7 @@ PreparedStatement preparedStatement = null;
         }else{
         try {
             try {
-                if (!s.getExisteemployee(Numemp1.getText())==false) {
+                if (!s.getExisteemployee(Numemp1.getText())==true) {
                     JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
                     
                 }else{
@@ -1775,7 +1775,7 @@ PreparedStatement preparedStatement = null;
         }else{
             
         try {
-            if (!s.getExisteemployee(Numemp2.getText()) == false) {
+            if (!s.getExisteemployee(Numemp2.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             } else {

@@ -1354,7 +1354,7 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
 
         }else{
             try {
-                if (!s.getExisteemployee(NumeroEmpleado.getText())==false) {
+                if (!s.getExisteemployee(NumeroEmpleado.getText())==true) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             }else{
@@ -1512,7 +1512,7 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
 
         }else{
             try {
-                if (!s.getExisteemployee(NumeroEmpleado1.getText())==false) {
+                if (!s.getExisteemployee(NumeroEmpleado1.getText())==true) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             }else{
@@ -1629,7 +1629,7 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
 
         }else{
             try {
-                if (!s.getExisteemployee(NumeroEmpleado2.getText())==false) {
+                if (!s.getExisteemployee(NumeroEmpleado2.getText())==true) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             }else{
@@ -1788,7 +1788,7 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
         }else{
             try {
                 // TODO add your handling code here:
-                if (!s.getExisteemployee(NumeroEmpleado.getText())==false) {
+                if (!s.getExisteemployee(NumeroEmpleado.getText())==true) {
                 JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             }else{
