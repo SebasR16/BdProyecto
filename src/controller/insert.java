@@ -327,7 +327,6 @@ public class insert {
                 datos1[1] = resultSet.getString(2);
 
                 if (Tipo.equals(datos1[1])) {
-
                     break;
                 }
             }
@@ -341,7 +340,6 @@ public class insert {
           pst.setString(6, Banco_Direccion);
           pst.setInt(7, Integer.parseInt(datos1[0]));
           pst.executeUpdate();
-          JOptionPane.showMessageDialog(null, "Se realizo el registro");
           
           PreparedStatement pst2 = con.prepareStatement(SQL1);
           pst2.setInt(1, Integer.parseInt(payid));

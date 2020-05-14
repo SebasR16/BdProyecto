@@ -30,24 +30,24 @@ public class select {
     public select(Connection con) {
         this.con=con;
     }
-    public DefaultTableModel  getEmpleados() throws SQLException {
-        DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                            case 1:
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}
-		
-};
+    public DefaultTableModel getEmpleados() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                    case 1:
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+
+        };
         String SQL = "SELECT TOP 100 * FROM employees ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
@@ -59,177 +59,187 @@ public class select {
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Object [] fila = new Object[modelo.getColumnCount()];
+            Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
+                fila[i] = resultSet.getObject(i + 1);
             }
-         modelo.addRow(fila);
+            modelo.addRow(fila);
         }
         return modelo;
     }
-  public DefaultTableModel  getDepartamentos() throws SQLException {
-       DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}};
-		
+
+    public DefaultTableModel getDepartamentos() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+        };
+
         String SQL = "SELECT TOP 100* FROM departments";
         //String SQL = "SELECT * FROM departments limit 100";
         modelo.addColumn("Número de Departamento");
         modelo.addColumn("Nombre de Departamento");
-       
+
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Object [] fila = new Object[modelo.getColumnCount()];
+            Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
+                fila[i] = resultSet.getObject(i + 1);
             }
-         modelo.addRow(fila);
+            modelo.addRow(fila);
         }
         return modelo;
     }
-   public DefaultTableModel getTitulos() throws SQLException {
-              DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}};
+
+    public DefaultTableModel getTitulos() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+        };
         //String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM titles ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
         modelo.addColumn("Titulo");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
-      
+
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            Object [] fila = new Object[modelo.getColumnCount()];
+            Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
+                fila[i] = resultSet.getObject(i + 1);
             }
-         modelo.addRow(fila);
+            modelo.addRow(fila);
         }
-   return modelo;
+        return modelo;
     }
+
     public DefaultTableModel getDept_Emp() throws SQLException {
-               DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}};
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+        };
         //String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM dept_emp ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
         modelo.addColumn("Número de Departamento");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
-     
+
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {            
-           
-            Object [] fila = new Object[modelo.getColumnCount()];
+        while (resultSet.next()) {
+
+            Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
+                fila[i] = resultSet.getObject(i + 1);
             }
-         modelo.addRow(fila);
+            modelo.addRow(fila);
         }
-     
-        
+
         return modelo;
     }
- public ArrayList listDepartamentos() throws SQLException{
-     ArrayList datos=new ArrayList();
-     String SQL2 = "SELECT dept_no FROM departments";
-          preparedStatement = con.prepareStatement(SQL2);
+
+    public ArrayList listDepartamentos() throws SQLException {
+        ArrayList datos = new ArrayList();
+        String SQL2 = "SELECT dept_no FROM departments";
+        preparedStatement = con.prepareStatement(SQL2);
         resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
+        while (resultSet.next()) {
             datos.add(resultSet.getString(1));
         }
         return datos;
     }
+
     public select() {
     }
-    
-     public DefaultTableModel getSalarios() throws SQLException {
-              DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}};
+
+    public DefaultTableModel getSalarios() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+        };
         //String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM salaries ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
         modelo.addColumn("Salario");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
-        
+
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            
-            Object [] fila = new Object[modelo.getColumnCount()];
+
+            Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < fila.length; i++) {
-                fila[i] = resultSet.getObject(i+1);
+                fila[i] = resultSet.getObject(i + 1);
             }
-         modelo.addRow(fila);
+            modelo.addRow(fila);
         }
         return modelo;
     }
-      public  DefaultTableModel getDept_Manager() throws SQLException {
-              DefaultTableModel modelo = new DefaultTableModel(){
-@Override
-			public boolean isCellEditable(int row, int column) {
-                        switch(column){
-                            case 0:
-                         
-                                return false;
-                               
-                            default:
-                                return true;
-                           
-                        }
-				
-			}};
+
+    public DefaultTableModel getDept_Manager() throws SQLException {
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                switch (column) {
+                    case 0:
+
+                        return false;
+
+                    default:
+                        return true;
+
+                }
+
+            }
+        };
         //String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
         String SQL = "SELECT TOP 100* FROM dept_manager ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
@@ -722,11 +732,10 @@ public class select {
             
             if (!userId.equals(datos[0])) {
                 exists = true;
-                JOptionPane.showMessageDialog(null, "Este usuario no ha sido registrado");
             }
 
         }
-        System.out.println(datos[0] + " " + datos[1]);
+        //System.out.println(datos[0]);
         if (exists) {
             return exists;
         } else {
@@ -734,5 +743,139 @@ public class select {
         }
 
     }
+        public DefaultTableModel FindDeduccionB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM deduction WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Deducción");
+        modelo.addColumn("Cantidad de Deducción");
+        modelo.addColumn("Tipo de Deducción");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        public DefaultTableModel FindHolidayB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM holiday WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        public DefaultTableModel FindSickB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM sickleave WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Hasta");
+        modelo.addColumn("Razon");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        public DefaultTableModel FindDetallesB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM paydetails WHERE emp_no = " + id;
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Desde");
+        modelo.addColumn("Número de Ruta");
+        modelo.addColumn("Tipo de Cuenta");
+        modelo.addColumn("Nombre de Banco");
+        modelo.addColumn("Dirección de banco");
+        modelo.addColumn("Número tipo de Pago");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        public DefaultTableModel FindHistorialB(int id) throws SQLException {
+          
+        DefaultTableModel modelo = new DefaultTableModel();
+          
+        
+        String SQL = "SELECT * FROM payhistory WHERE emp_no = " + id;
+        modelo.addColumn("Número de Pago");
+        modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Fecha de Pago");
+        modelo.addColumn("Número de Cheque");
+        modelo.addColumn("Cantidad de Pago");
+
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Object [] fila = new Object[modelo.getColumnCount()];
+            for (int i = 0; i < fila.length; i++) {
+               
+                fila[i] = resultSet.getObject(i+1);
+                
+            }
+         modelo.addRow(fila);
+         
+        } 
+        return modelo;
+      
+    }
+        
 }
 

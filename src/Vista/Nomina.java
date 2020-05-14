@@ -296,11 +296,21 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void RegistrarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarNominaActionPerformed
         try {
+            if (s.getExisteemployee(NumeroEmpleado.getText())==false) {
+            JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+
+            }else{
+                
+            
             // TODO add your handling code here:
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             String birth_date = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + Desdeday.getSelectedItem().toString();
             Date det = df.parse(birth_date);
             java.sql.Date sqdet = new java.sql.Date(det.getTime());
+            
+            String birth_date1 = null;
+            Date det1 = null;//df.parse(birth_date1);
+            java.sql.Date sqdet1 = null;//new java.sql.Date(det1.getTime());
             //if (s.getExisteemployee(NumeroEmpleado.getText())== false) {
                 
           //}else{
@@ -332,22 +342,31 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                      double temp = Double.parseDouble(datos[1]);
                      temp = temp/12;
                      CantidadLabel.setText(""+temp);
+                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+2) + "-" + Desdeday.getSelectedItem().toString();
+                     det1 = df.parse(birth_date1);
+                     sqdet1 = new java.sql.Date(det1.getTime());
                  }
                  if (TipoPago.getSelectedItem().equals("Quincenal")) {
                      double temp = Double.parseDouble(datos[1]);
                      temp = (temp/12)/2;
+                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+15);
+                     det1 = df.parse(birth_date1);
+                     sqdet1 = new java.sql.Date(det1.getTime());
                      CantidadLabel.setText(""+temp);
                  }
                  if (TipoPago.getSelectedItem().equals( "Semanal")) {
                      double temp = Double.parseDouble(datos[1]);
                      temp = ((temp/12)/2)/2;
+                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+7);
+                     det1 = df.parse(birth_date1);
+                     sqdet1 = new java.sql.Date(det1.getTime());
                      CantidadLabel.setText(""+temp);
                  }
                  
-                 i.setNomina(NumeroEmpleado.getText(), sqdet, sqdet, Rutatxt.getText(), TipoCuenta.getSelectedItem().toString(), NombreBanco.getText()
+                 i.setNomina(NumeroEmpleado.getText(), sqdet, sqdet1, Rutatxt.getText(), TipoCuenta.getSelectedItem().toString(), NombreBanco.getText()
                          , BancoDescripcion.getText(), TipoPago.getSelectedItem().toString(), PayId(), CheckId(), Double.parseDouble(CantidadLabel.getText()));
             }
-            //}
+            }
         } catch (ParseException ex) {
             Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -1484,6 +1484,7 @@ PreparedStatement preparedStatement = null;
 
         }else{
         try {
+            
         // TODO add your handling code here:
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         String birth_date = birthyear.getSelectedItem().toString() + "-" + (birthmonth.getSelectedIndex()+1) + "-" + birthday.getSelectedItem().toString();
@@ -1616,7 +1617,15 @@ PreparedStatement preparedStatement = null;
          JOptionPane.showMessageDialog(null, txt);
 
         }else{
+            
         try {
+            if (s.getExisteemployee(Numemp.getText())==false) {
+            JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+
+            }
+            else{
+                
+            
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             String birth_date = dateyear.getSelectedItem().toString() + "-" + (datemonth.getSelectedIndex() + 1) + "-" + dateday.getSelectedItem().toString();
             String birth_date1 = todateyear.getSelectedItem().toString() + "-" + (todatemonth.getSelectedIndex() + 1) + "-" + todateday.getSelectedItem().toString();
@@ -1631,7 +1640,7 @@ PreparedStatement preparedStatement = null;
                     modelo3 =s.getTitulos();
              Tablatitulos.setModel(modelo3);
              modelo3.fireTableDataChanged();
-            
+            }
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1650,31 +1659,44 @@ PreparedStatement preparedStatement = null;
          JOptionPane.showMessageDialog(null, txt);
 
         }else{
-        try {                                             
-            df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex() + 1) + "-" + dateday1.getSelectedItem().toString();
-            String birth_date1 = todateyear1.getSelectedItem().toString() + "-" + (todatemonth1.getSelectedIndex() + 1) + "-" + todateday1.getSelectedItem().toString();
-
-            Date det = df.parse(birth_date);
-            Date det1 = df.parse(birth_date1);
-            java.sql.Date sqdet = new java.sql.Date(det.getTime());
-            java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
-            System.out.println(sqdet);
+            
+        try {    
             try {
-               
-                    i.setSalarios(Numempleado.getText(), Salario.getText(), sqdet, sqdet1);
-         modelo5 =s.getSalarios();
-            Tablasalarios.setModel(modelo5);
-             modelo5.fireTableDataChanged();
-                
+                if (s.getExisteemployee(Numempleado.getText())==false) {
+                    JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+                    
+                }else{
+                    
+                    
+                    df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                    String birth_date = dateyear1.getSelectedItem().toString() + "-" + (datemonth1.getSelectedIndex() + 1) + "-" + dateday1.getSelectedItem().toString();
+                    String birth_date1 = todateyear1.getSelectedItem().toString() + "-" + (todatemonth1.getSelectedIndex() + 1) + "-" + todateday1.getSelectedItem().toString();
+                    
+                    Date det = df.parse(birth_date);
+                    Date det1 = df.parse(birth_date1);
+                    java.sql.Date sqdet = new java.sql.Date(det.getTime());
+                    java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+                    System.out.println(sqdet);
+                    try {
+                        
+                        i.setSalarios(Numempleado.getText(), Salario.getText(), sqdet, sqdet1);
+                        modelo5 =s.getSalarios();
+                        Tablasalarios.setModel(modelo5);
+                        modelo5.fireTableDataChanged();
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+        }
+        }
     }//GEN-LAST:event_RegistrarsalActionPerformed
 
     private void RegistrarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarempActionPerformed
@@ -1689,25 +1711,36 @@ PreparedStatement preparedStatement = null;
 
         }else{
         try {
-            df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex() + 1) + "-" + dateday2.getSelectedItem().toString();
-            String birth_date1 = todateyear2.getSelectedItem().toString() + "-" + (todatemonth2.getSelectedIndex() + 1) + "-" + todateday2.getSelectedItem().toString();
-
-            Date det = df.parse(birth_date);
-            Date det1 = df.parse(birth_date1);
-            java.sql.Date sqdet = new java.sql.Date(det.getTime());
-            java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
-            System.out.println(sqdet);
             try {
-               
-
-                    i.setDept_emp(Numemp1.getText(), (String) departamento.getSelectedItem(), sqdet, sqdet1);
-                       modelo4 =s.getDept_Emp();
-            Tabladept_emp.setModel(modelo4);
-             modelo4.fireTableDataChanged();
-                
-            } catch (ParseException ex) {
-                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                if (s.getExisteemployee(Numemp1.getText())==false) {
+                    JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+                    
+                }else{
+                    
+                    
+                    df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                    String birth_date = dateyear2.getSelectedItem().toString() + "-" + (datemonth2.getSelectedIndex() + 1) + "-" + dateday2.getSelectedItem().toString();
+                    String birth_date1 = todateyear2.getSelectedItem().toString() + "-" + (todatemonth2.getSelectedIndex() + 1) + "-" + todateday2.getSelectedItem().toString();
+                    
+                    Date det = df.parse(birth_date);
+                    Date det1 = df.parse(birth_date1);
+                    java.sql.Date sqdet = new java.sql.Date(det.getTime());
+                    java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+                    System.out.println(sqdet);
+                    try {
+                        
+                        
+                        i.setDept_emp(Numemp1.getText(), (String) departamento.getSelectedItem(), sqdet, sqdet1);
+                        modelo4 =s.getDept_Emp();
+                        Tabladept_emp.setModel(modelo4);
+                        modelo4.fireTableDataChanged();
+                        
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -1740,23 +1773,29 @@ PreparedStatement preparedStatement = null;
          JOptionPane.showMessageDialog(null, txt);
 
         }else{
+            
         try {
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex()+1) + "-" + dateday3.getSelectedItem().toString();
-        String birth_date1 =todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex()+1) + "-" + todateday3.getSelectedItem().toString();
-        
-        Date det = df.parse(birth_date);
-        Date det1 = df.parse(birth_date1);
-        java.sql.Date sqdet = new java.sql.Date(det.getTime());
-        java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
-        System.out.println(sqdet);
-        //String[] empleadoR = new String[6];
-     
-            i.setDept_manager(Numemp2.getText(),(String) departamento1.getSelectedItem(), sqdet, sqdet1 );
-              modelo6 =s.getDept_Manager();
-             Tablagerente.setModel(modelo6);
-             modelo6.fireTableDataChanged();
-        
+            if (s.getExisteemployee(Numemp2.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+
+            } else {
+
+                df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                String birth_date = dateyear3.getSelectedItem().toString() + "-" + (datemonth3.getSelectedIndex() + 1) + "-" + dateday3.getSelectedItem().toString();
+                String birth_date1 = todateyear3.getSelectedItem().toString() + "-" + (todatemonth3.getSelectedIndex() + 1) + "-" + todateday3.getSelectedItem().toString();
+
+                Date det = df.parse(birth_date);
+                Date det1 = df.parse(birth_date1);
+                java.sql.Date sqdet = new java.sql.Date(det.getTime());
+                java.sql.Date sqdet1 = new java.sql.Date(det1.getTime());
+                System.out.println(sqdet);
+                //String[] empleadoR = new String[6];
+
+                i.setDept_manager(Numemp2.getText(), (String) departamento1.getSelectedItem(), sqdet, sqdet1);
+                modelo6 = s.getDept_Manager();
+                Tablagerente.setModel(modelo6);
+                modelo6.fireTableDataChanged();
+            }
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }catch (SQLException ex) {
