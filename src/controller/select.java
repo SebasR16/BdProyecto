@@ -730,7 +730,7 @@ public class select {
             while (resultSet.next()) {
             datos[0] = resultSet.getString(1);
             
-            if (!userId.equals(datos[0])) {
+            if (userId.equals(datos[0])) {
                 exists = true;
             }
 

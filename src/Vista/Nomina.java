@@ -296,7 +296,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
 
     private void RegistrarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarNominaActionPerformed
         try {
-            if (s.getExisteemployee(NumeroEmpleado.getText())==false) {
+            if (!s.getExisteemployee(NumeroEmpleado.getText())==false) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
 
             }else{
