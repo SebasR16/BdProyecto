@@ -147,6 +147,32 @@ public class validator {
 
         return errores;
     }
+        public List<String> Nomina(String Num, String ruta, String banco,String descripcion) {
+        List<String> errores = new ArrayList();
+        if (Num.isEmpty()) {
+            errores.add("El campo Número de empleado no puede estar vacio");
+
+        }
+        if (!isNumeric(Num)) {
+            errores.add("El campo de Numero de empleado debe ser solo numeros");
+        }
+        if (banco.isEmpty()) {
+            errores.add("El campo Nombre del banco no puede estar vacio");
+
+        }
+        if (descripcion.isEmpty()) {
+            errores.add("El campo Descripción del banco no puede estar vacio");
+
+        }
+        if (ruta.isEmpty()) {
+            errores.add("El campo Numero de ruta no puede estar vacio");
+        }
+        if (!isNumeric(ruta)) {
+            errores.add("El campo Numero de ruta debe ser solo numeros");
+        }
+
+        return errores;
+    }
       public Boolean isLetter(String txt){
     	for (int i = 0; i < txt.length(); i++)
 		{

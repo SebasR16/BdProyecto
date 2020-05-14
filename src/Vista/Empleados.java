@@ -1497,7 +1497,7 @@ PreparedStatement preparedStatement = null;
         
           System.out.println(sqdet);
      
-            
+  
                 
                  i.setEmpleados(userId(), sqdet, Primernombre.getText(), Apellido.getText(), (String) Genero.getSelectedItem(), sqdet1);
              modelo=s.getEmpleados();
@@ -1593,10 +1593,10 @@ PreparedStatement preparedStatement = null;
 
         }else{
     try {
-        i.setDepartamentos( id,  name);
-          modelo2 =s.getDepartamentos();
-            Tabladepartamentos.setModel(modelo2);
-             modelo2.fireTableDataChanged();
+        i.setDepartamentos(id, name);
+        modelo2 = s.getDepartamentos();
+        Tabladepartamentos.setModel(modelo2);
+        modelo2.fireTableDataChanged();
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {

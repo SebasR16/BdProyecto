@@ -42,6 +42,14 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
      insert i=new insert(con);
      validator validator= new validator();
      
+     String birth_date1 = null;
+     Date det1 = null;
+     java.sql.Date sqdet1 = null;
+     
+     String birth_date = null;
+     Date det = null;
+     java.sql.Date sqdet = null;       
+            
     public Nomina() throws SQLException {
         initComponents();
 
@@ -52,6 +60,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         }
       this.Desdemonth.addActionListener(this);
       this.Desdeyear.addActionListener(this);
+      RegistrarNomina.setEnabled(false);
     }
     public String PayId() throws RemoteException {
         String n = null;
@@ -97,7 +106,6 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                     num = Integer.parseInt(u) + 1;
                 }
                 
-
             }
             n = "" + num;
         } catch (SQLException ex) {
@@ -138,6 +146,8 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         RegistrarNomina = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         CantidadLabel = new javax.swing.JLabel();
+        Comprobar = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,7 +196,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Cantidad de Pago:");
 
-        RegistrarNomina.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        RegistrarNomina.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         RegistrarNomina.setText("Registrar");
         RegistrarNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +209,22 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
 
         CantidadLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         CantidadLabel.setText("00.00");
+
+        Comprobar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Comprobar.setText("Comprobar");
+        Comprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarActionPerformed(evt);
+            }
+        });
+
+        Cancelar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,14 +265,22 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RegistrarNomina)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(331, 331, 331))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(331, 331, 331))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Comprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(RegistrarNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,40 +320,82 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(CantidadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
-                .addComponent(RegistrarNomina)
-                .addGap(80, 80, 80))
+                .addGap(116, 116, 116)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RegistrarNomina, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Comprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarNominaActionPerformed
+        
+                 
         try {
-            if (!s.getExisteemployee(NumeroEmpleado.getText())==true) {
-            JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+            try {
+                i.setNomina(NumeroEmpleado.getText(), sqdet, sqdet1, Rutatxt.getText(), TipoCuenta.getSelectedItem().toString(), NombreBanco.getText()
+                        , BancoDescripcion.getText(), TipoPago.getSelectedItem().toString(), PayId(), CheckId(), Double.parseDouble(CantidadLabel.getText()));
+                NumeroEmpleado.setText("");
+                NombreBanco.setText("");
+                BancoDescripcion.setText("");
+                Rutatxt.setText("");
+                CantidadLabel.setText("00.00");
+                Desdeday.setSelectedIndex(0);
+                Desdemonth.setSelectedIndex(0);
+                Desdeyear.setSelectedIndex(0);
+                TipoCuenta.setSelectedIndex(0);
+                TipoPago.setSelectedIndex(0);
+                RegistrarNomina.setEnabled(false);
+        
+            } catch (RemoteException ex) {
+                Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }//GEN-LAST:event_RegistrarNominaActionPerformed
 
+    private void ComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            String id = NumeroEmpleado.getText();
+            String banco = NombreBanco.getText();
+            String ruta = Rutatxt.getText();
+            String descbBanco = BancoDescripcion.getText();
+            var errores = validator.Nomina(id,ruta,banco,descbBanco);
+            String txt = " ";
+            for (String error : errores) {
+                txt = txt + error + "\n";
+            }
+            if (!txt.equals(" ")) {
+
+                JOptionPane.showMessageDialog(null, txt);
+                RegistrarNomina.setEnabled(false);
             }else{
                 
             
-            // TODO add your handling code here:
+            if (!s.getExisteemployee(id)==true) {
+            JOptionPane.showMessageDialog(null, "Este usuario no existe, por favor ingrese un usuario valido");
+            RegistrarNomina.setEnabled(false);
+            }
+            else{
+ 
             df = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            String birth_date = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + Desdeday.getSelectedItem().toString();
-            Date det = df.parse(birth_date);
-            java.sql.Date sqdet = new java.sql.Date(det.getTime());
+            birth_date = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + Desdeday.getSelectedItem().toString();
+            det = df.parse(birth_date);
+            sqdet = new java.sql.Date(det.getTime());
             
-            String birth_date1 = null;
-            Date det1 = null;//df.parse(birth_date1);
-            java.sql.Date sqdet1 = null;//new java.sql.Date(det1.getTime());
-            //if (s.getExisteemployee(NumeroEmpleado.getText())== false) {
-                
-          //}else{
-                
-            //4
-            if (s.getEmployee(NumeroEmpleado.getText(), sqdet.toString())== true) {
+            if (s.getEmployee(id, sqdet.toString())== true) {
                  
             }else{
-            String SQL = "SELECT * FROM salaries WHERE emp_no = " + NumeroEmpleado.getText() + " ORDER by from_date DESC;";
+            String SQL = "SELECT * FROM salaries WHERE emp_no = " + id + " ORDER by from_date DESC;";
             String[] datos = new String[2];
             preparedStatement = con.prepareStatement(SQL);
             
@@ -327,17 +403,16 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
             while (resultSet.next()) {
             datos[0] = resultSet.getString(1);
             datos[1] = resultSet.getString(2);
-            if (NumeroEmpleado.getText().equals(datos[0])) {
+            if (id.equals(datos[0])) {
                 //JOptionPane.showMessageDialog(null, "Si hay usuario");
                 break;
             }else{
                 JOptionPane.showMessageDialog(null, "Este usuaio no tiene salarios registrados");
-                
+                RegistrarNomina.setEnabled(false);
             }
 
         }
-        //System.out.println(datos[0] + " " + datos[1]);
-                 
+            
                  if (TipoPago.getSelectedItem().equals("Mensual")) {
                      double temp = Double.parseDouble(datos[1]);
                      temp = temp/12;
@@ -362,19 +437,35 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                      sqdet1 = new java.sql.Date(det1.getTime());
                      CantidadLabel.setText(""+temp);
                  }
-                 
-                 i.setNomina(NumeroEmpleado.getText(), sqdet, sqdet1, Rutatxt.getText(), TipoCuenta.getSelectedItem().toString(), NombreBanco.getText()
-                         , BancoDescripcion.getText(), TipoPago.getSelectedItem().toString(), PayId(), CheckId(), Double.parseDouble(CantidadLabel.getText()));
+                 RegistrarNomina.setEnabled(true);
             }
+            
+            }
+            
             }
         } catch (ParseException ex) {
             Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Nomina.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_RegistrarNominaActionPerformed
+    }//GEN-LAST:event_ComprobarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        
+        NumeroEmpleado.setText("");
+        NombreBanco.setText("");
+        BancoDescripcion.setText("");
+        Rutatxt.setText("");
+        CantidadLabel.setText("00.00");
+        Desdeday.setSelectedIndex(0);
+        Desdemonth.setSelectedIndex(0);
+        Desdeyear.setSelectedIndex(0);
+        TipoCuenta.setSelectedIndex(0);
+        TipoPago.setSelectedIndex(0);
+        RegistrarNomina.setEnabled(false);
+        
+    }//GEN-LAST:event_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,7 +508,9 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea BancoDescripcion;
+    private javax.swing.JButton Cancelar;
     private javax.swing.JLabel CantidadLabel;
+    private javax.swing.JButton Comprobar;
     private javax.swing.JComboBox<String> Desdeday;
     private javax.swing.JComboBox<String> Desdemonth;
     private javax.swing.JComboBox<String> Desdeyear;
