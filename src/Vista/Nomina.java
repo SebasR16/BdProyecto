@@ -36,6 +36,8 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
      */
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    PreparedStatement preparedStatement1 = null;
+    ResultSet resultSet1 = null;
      Connection con = BaseDeDatos.Conexion();
      DateFormat df = null;
      select s= new select(con);
@@ -49,7 +51,12 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
      String birth_date = null;
      Date det = null;
      java.sql.Date sqdet = null;       
-            
+     
+     Date det2 = null;
+     java.sql.Date sqdet2 = null; 
+     
+     Date det3 = null;
+     java.sql.Date sqdet3 = null; 
     public Nomina() throws SQLException {
         initComponents();
 
@@ -412,14 +419,67 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
             }
 
         }
+            String SQL1 = "SELECT * FROM bonus WHERE emp_no = " + id ;//+ " ORDER by bonus_date DESC;";
+            String[] datos1 = new String[3];
+            preparedStatement = con.prepareStatement(SQL1);
             
+            resultSet = preparedStatement.executeQuery();
+            
+            String SQL2 = "SELECT * FROM deduction WHERE emp_no = " + id ;//+ " ORDER by bonus_date DESC;";
+            String[] datos2 = new String[3];
+            preparedStatement1 = con.prepareStatement(SQL2);
+            
+            resultSet1 = preparedStatement1.executeQuery();
+        
                  if (TipoPago.getSelectedItem().equals("Mensual")) {
+                     
+                     
                      double temp = Double.parseDouble(datos[1]);
                      temp = temp/12;
-                     CantidadLabel.setText(""+temp);
+                     
                      birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+2) + "-" + Desdeday.getSelectedItem().toString();
                      det1 = df.parse(birth_date1);
                      sqdet1 = new java.sql.Date(det1.getTime());
+                     
+                     while (resultSet.next()) {
+                         datos1[0] = resultSet.getString(1);
+                         datos1[1] = resultSet.getString(2);
+                         datos1[2] = resultSet.getString(3);
+                         det2 = df.parse(datos1[1]);
+                         sqdet2 = new java.sql.Date(det2.getTime());
+                         System.out.println(sqdet2);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos1[0])) && ((sqdet2.after(sqdet))&&(sqdet2.before(sqdet1)))) {
+                             temp = temp + Double.parseDouble(datos1[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene bonus en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
+                     while (resultSet1.next()) {
+                         datos2[0] = resultSet1.getString(1);
+                         datos2[1] = resultSet1.getString(2);
+                         datos2[2] = resultSet1.getString(3);
+                         det3 = df.parse(datos2[1]);
+                         sqdet3 = new java.sql.Date(det3.getTime());
+                         System.out.println(sqdet3);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos2[0])) && ((sqdet3.after(sqdet))&&(sqdet3.before(sqdet1)))) {
+                             temp = temp - Double.parseDouble(datos2[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene Deducciones en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
+                     CantidadLabel.setText(""+temp);
                  }
                  if (TipoPago.getSelectedItem().equals("Quincenal")) {
                      double temp = Double.parseDouble(datos[1]);
@@ -427,6 +487,44 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                      birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+15);
                      det1 = df.parse(birth_date1);
                      sqdet1 = new java.sql.Date(det1.getTime());
+                     while (resultSet.next()) {
+                         datos1[0] = resultSet.getString(1);
+                         datos1[1] = resultSet.getString(2);
+                         datos1[2] = resultSet.getString(3);
+                         det2 = df.parse(datos1[1]);
+                         sqdet2 = new java.sql.Date(det2.getTime());
+                         System.out.println(sqdet2);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos1[0])) && ((sqdet2.after(sqdet))&&(sqdet2.before(sqdet1)))) {
+                             temp = temp + Double.parseDouble(datos1[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene bonus en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
+                     while (resultSet1.next()) {
+                         datos2[0] = resultSet1.getString(1);
+                         datos2[1] = resultSet1.getString(2);
+                         datos2[2] = resultSet1.getString(3);
+                         det3 = df.parse(datos2[1]);
+                         sqdet3 = new java.sql.Date(det3.getTime());
+                         System.out.println(sqdet3);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos2[0])) && ((sqdet3.after(sqdet))&&(sqdet3.before(sqdet1)))) {
+                             temp = temp - Double.parseDouble(datos2[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene Deducciones en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
                      CantidadLabel.setText(""+temp);
                  }
                  if (TipoPago.getSelectedItem().equals( "Semanal")) {
@@ -435,6 +533,44 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                      birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+7);
                      det1 = df.parse(birth_date1);
                      sqdet1 = new java.sql.Date(det1.getTime());
+                     while (resultSet.next()) {
+                         datos1[0] = resultSet.getString(1);
+                         datos1[1] = resultSet.getString(2);
+                         datos1[2] = resultSet.getString(3);
+                         det2 = df.parse(datos1[1]);
+                         sqdet2 = new java.sql.Date(det2.getTime());
+                         System.out.println(sqdet2);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos1[0])) && ((sqdet2.after(sqdet))&&(sqdet2.before(sqdet1)))) {
+                             temp = temp + Double.parseDouble(datos1[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene bonus en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
+                     while (resultSet1.next()) {
+                         datos2[0] = resultSet1.getString(1);
+                         datos2[1] = resultSet1.getString(2);
+                         datos2[2] = resultSet1.getString(3);
+                         det3 = df.parse(datos2[1]);
+                         sqdet3 = new java.sql.Date(det3.getTime());
+                         System.out.println(sqdet3);
+                         System.out.println(sqdet);
+                         System.out.println(sqdet1);
+                         if ((id.equals(datos2[0])) && ((sqdet3.after(sqdet))&&(sqdet3.before(sqdet1)))) {
+                             temp = temp - Double.parseDouble(datos2[2]);
+                             JOptionPane.showMessageDialog(null, "Si hay usuario");
+                             break;
+                         } else {
+                             
+                             JOptionPane.showMessageDialog(null, "Este usuaio no tiene Deducciones en esa fecha");
+                             //RegistrarNomina.setEnabled(false);
+                         }
+                     }
                      CantidadLabel.setText(""+temp);
                  }
                  RegistrarNomina.setEnabled(true);
