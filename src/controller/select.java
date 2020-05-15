@@ -176,7 +176,7 @@ public class select {
 
     public ArrayList listDepartamentos() throws SQLException {
         ArrayList datos = new ArrayList();
-        String SQL2 = "SELECT dept_no FROM departments";
+        String SQL2 = "EXEC getdepas";
         preparedStatement = con.prepareStatement(SQL2);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -656,7 +656,7 @@ public class select {
     }
         public ArrayList listDeduccion() throws SQLException {
         ArrayList datos = new ArrayList();
-        String SQL2 = "SELECT deduct_description FROM deducttype";
+        String SQL2 = "EXEC getdeduction";
         preparedStatement = con.prepareStatement(SQL2);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -666,7 +666,7 @@ public class select {
     }
         public ArrayList listPago() throws SQLException {
         ArrayList datos = new ArrayList();
-        String SQL2 = "SELECT pay_type_description FROM paytype";
+        String SQL2 = "EXEC getbonus";
         preparedStatement = con.prepareStatement(SQL2);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

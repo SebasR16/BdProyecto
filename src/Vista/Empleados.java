@@ -91,7 +91,7 @@ PreparedStatement preparedStatement = null;
         String n = null;
         int num = 0;
         con = BaseDeDatos.Conexion();
-        String SQL = "SELECT MAX(employees.emp_no) FROM employees";
+        String SQL = "EXEC getMaxEmp";
 
         try {
             Statement st = con.createStatement();

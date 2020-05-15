@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import validators.validator;
 import java.sql.Statement;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 /**
  *
  * @author sebas
@@ -73,7 +74,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         String n = null;
         int num = 0;
         con = BaseDeDatos.Conexion();
-        String SQL = "SELECT MAX(payhistory.pay_no) FROM payhistory";
+        String SQL = "EXEC getMaxPay_no";
 
         try {
             Statement st = con.createStatement();
@@ -99,7 +100,7 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
         String n = null;
         int num = 0;
         con = BaseDeDatos.Conexion();
-        String SQL = "SELECT MAX(payhistory.check_number) FROM payhistory";
+        String SQL = "EXEC getMaxCheck";
 
         try {
             Statement st = con.createStatement();
@@ -538,9 +539,9 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                  }
                  if (TipoPago.getSelectedItem().equals( "Semanal")) {
                      double temp = Double.parseDouble(datos[1]);
-                     //temp = ((temp/12)/2)/2;
+                     temp = ((temp/12)/2)/2;
                      //birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+7);
-                     det1 = df.parse(birth_date1);
+                     //det1 = df.parse(birth_date1);
                       Calendar c=Calendar.getInstance();
                     c.setTime(det);
                     c.add(Calendar.DAY_OF_YEAR, 7);
