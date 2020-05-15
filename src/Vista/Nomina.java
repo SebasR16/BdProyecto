@@ -431,15 +431,20 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
             
             resultSet1 = preparedStatement1.executeQuery();
         
-                 if (TipoPago.getSelectedItem().equals("Mensual")) {
+               if (TipoPago.getSelectedItem().equals("Mensual")) {
                      
                      
                      double temp = Double.parseDouble(datos[1]);
                      temp = temp/12;
                      
-                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+2) + "-" + Desdeday.getSelectedItem().toString();
-                     det1 = df.parse(birth_date1);
-                     sqdet1 = new java.sql.Date(det1.getTime());
+                     //birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+2) + "-" + Desdeday.getSelectedItem().toString();
+                  //   det1 = df.parse(birth_date1);
+                    
+                    Calendar c=Calendar.getInstance();
+                    c.setTime(det);
+                    c.add(Calendar.MONTH, 1);
+                     det1=c.getTime();
+                     sqdet1=new java.sql.Date(det1.getTime());
                      
                      while (resultSet.next()) {
                          datos1[0] = resultSet.getString(1);
@@ -484,9 +489,13 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                  if (TipoPago.getSelectedItem().equals("Quincenal")) {
                      double temp = Double.parseDouble(datos[1]);
                      temp = (temp/12)/2;
-                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+15);
-                     det1 = df.parse(birth_date1);
-                     sqdet1 = new java.sql.Date(det1.getTime());
+                     //birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+15);
+                     //det1 = df.parse(birth_date1);
+                       Calendar c=Calendar.getInstance();
+                    c.setTime(det);
+                    c.add(Calendar.DAY_OF_YEAR, 15);
+                     det1=c.getTime();
+                     sqdet1=new java.sql.Date(det1.getTime());
                      while (resultSet.next()) {
                          datos1[0] = resultSet.getString(1);
                          datos1[1] = resultSet.getString(2);
@@ -529,10 +538,14 @@ public class Nomina extends javax.swing.JFrame implements ActionListener{
                  }
                  if (TipoPago.getSelectedItem().equals( "Semanal")) {
                      double temp = Double.parseDouble(datos[1]);
-                     temp = ((temp/12)/2)/2;
-                     birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+7);
+                     //temp = ((temp/12)/2)/2;
+                     //birth_date1 = Desdeyear.getSelectedItem().toString() + "-" + (Desdemonth.getSelectedIndex()+1) + "-" + (Desdeday.getSelectedIndex()+7);
                      det1 = df.parse(birth_date1);
-                     sqdet1 = new java.sql.Date(det1.getTime());
+                      Calendar c=Calendar.getInstance();
+                    c.setTime(det);
+                    c.add(Calendar.DAY_OF_YEAR, 7);
+                     det1=c.getTime();
+                     sqdet1=new java.sql.Date(det1.getTime());
                      while (resultSet.next()) {
                          datos1[0] = resultSet.getString(1);
                          datos1[1] = resultSet.getString(2);
