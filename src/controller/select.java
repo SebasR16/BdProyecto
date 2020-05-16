@@ -107,7 +107,9 @@ public class select {
             @Override
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
-                    case 0:
+                    case 0  :
+                    case 1:
+                    case 2:
 
                         return false;
 
@@ -119,8 +121,10 @@ public class select {
             }
         };
         //String SQL = "SELECT * FROM titles ORDER by emp_no DESC limit 100;";
-        String SQL = "SELECT TOP 100* FROM titles ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100* FROM empTitles ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Titulo");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -143,7 +147,8 @@ public class select {
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
                     case 0:
-
+                    case 1:
+                     case 2:
                         return false;
 
                     default:
@@ -154,9 +159,11 @@ public class select {
             }
         };
         //String SQL = "SELECT * FROM dept_emp ORDER by emp_no DESC limit 100;";
-        String SQL = "SELECT TOP 100* FROM dept_emp ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100* FROM empDepartaments ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
-        modelo.addColumn("Número de Departamento");
+         modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Departamento");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
 
@@ -194,6 +201,8 @@ public class select {
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
                     case 0:
+                    case 1:
+                     case 2:
 
                         return false;
 
@@ -205,8 +214,10 @@ public class select {
             }
         };
         //String SQL = "SELECT * FROM salaries ORDER by emp_no DESC limit 100;";
-        String SQL = "SELECT TOP 100* FROM salaries ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100* FROM empSalaries ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
+            modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Salario");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -229,7 +240,9 @@ public class select {
             @Override
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
-                    case 0:
+                   case 0:
+                    case 1:
+                     case 2:
 
                         return false;
 
@@ -241,9 +254,11 @@ public class select {
             }
         };
         //String SQL = "SELECT * FROM dept_manager ORDER by emp_no DESC limit 100;";
-        String SQL = "SELECT TOP 100* FROM dept_manager ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100* FROM managerDepartments ORDER by emp_no DESC;";
         modelo.addColumn("Número de Empleado");
-        modelo.addColumn("Número de Departamento");
+         modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Departamento");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
         
@@ -399,13 +414,15 @@ public class select {
                         }
 				
 			}};
-        String SQL = "SELECT TOP 100 * FROM bonus ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100 * FROM empBonus ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Primer Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Fecha de Bonus");
-        modelo.addColumn("Cantidad de Bonus");
+      
         modelo.addColumn("Tipo de Bonus");
-        
+          modelo.addColumn("Cantidad de Bonus");
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -460,12 +477,15 @@ public class select {
                         }
 				
 			}};
-        String SQL = "SELECT TOP 100 * FROM deduction ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100 * FROM empDeduction ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
+          modelo.addColumn("Primer Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Fecha de Deducción");
-        modelo.addColumn("Cantidad de Deducción");
+   
         modelo.addColumn("Tipo de Deducción");
+             modelo.addColumn("Cantidad de Deducción");
         
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
