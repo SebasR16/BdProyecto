@@ -21,6 +21,7 @@ BEGIN
 	   DELETE FROM dbo.deduction WHERE dbo.deduction.emp_no in (SELECT deleted.emp_no FROM deleted);
 	    DELETE FROM dbo.holiday WHERE dbo.holiday.emp_no in (SELECT deleted.emp_no FROM deleted);
 		 DELETE FROM dbo.sickleave WHERE  dbo.sickleave.emp_no in (SELECT deleted.emp_no FROM deleted);
+		  DELETE FROM dbo.employees WHERE dbo.employees.emp_no in (SELECT deleted.emp_no FROM deleted);
   /** ROLLBACK TRANSACTION**/
 END
 GO
