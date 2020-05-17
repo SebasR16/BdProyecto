@@ -50,7 +50,7 @@ PreparedStatement preparedStatement = null;
      DefaultTableModel modelo5 =s.getSalarios();
      DefaultTableModel modelo6 =s.getDept_Manager();
      String dato= null, dato1= null,dato2= null,dato3= null,dato4= null,dato5= null;
-      validator validator= new validator();
+     validator validator= new validator();
      int seleccionar;
      
     public Empleados() throws SQLException {
@@ -1806,14 +1806,14 @@ PreparedStatement preparedStatement = null;
     private void EliminarsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarsalActionPerformed
     try {
         //if (dato.equals(d.setDeleteSalaries(dato, dato2)[0]) && dato1.equals(d.setDeleteSalaries(dato, dato2)[2])) {
-            d.setDeleteSalaries(dato, dato2);
+            d.setDeleteSalaries(dato, dato4);
             int fila = Tablasalarios.getSelectedRow();
             
             if (fila >= 0) {
                 modelo5.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el salario");
                 dato=null;
-                dato1=null;
+                dato4=null;
             }
         //}
     } catch (ParseException ex) {
@@ -1831,7 +1831,8 @@ PreparedStatement preparedStatement = null;
         dato1 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 3));
-        
+        dato4 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(Tablasalarios.getValueAt(seleccionar, 5));
           
     }//GEN-LAST:event_TablasalariosMouseClicked
 
@@ -1918,14 +1919,14 @@ PreparedStatement preparedStatement = null;
     private void EliminartitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminartitleActionPerformed
     try {
         //if (dato.equals(d.setDeleteTitulos(dato, dato2)[0]) && dato1.equals(d.setDeleteTitulos(dato, dato2)[2])) {
-            d.setDeleteTitulos(dato, dato2);
+            d.setDeleteTitulos(dato, dato4);
             int fila = Tablatitulos.getSelectedRow();
             
             if (fila >= 0) {
                 modelo3.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el titulo");
                 dato=null;
-                dato2=null;
+                dato4=null;
             }
         //}
     } catch (ParseException ex) {
@@ -1942,6 +1943,9 @@ PreparedStatement preparedStatement = null;
         dato1 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 3));
+        dato4 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(Tablatitulos.getValueAt(seleccionar, 5));
+        
         
         
     }//GEN-LAST:event_TablatitulosMouseClicked
@@ -1954,14 +1958,14 @@ PreparedStatement preparedStatement = null;
     private void EliminarManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarManActionPerformed
     try {
         //if (dato.equals(d.setDeleteGerente(dato, dato1)[0]) && dato1.equals(d.setDeleteGerente(dato, dato1)[1])) {
-            d.setDeleteGerente(dato, dato2);
+            d.setDeleteGerente(dato, dato4);
             int fila = Tablagerente.getSelectedRow();
             
             if (fila >= 0) {
                 modelo6.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el gerente");
                 dato=null;
-                dato2=null;
+                dato4=null;
             }
         //}
     } catch (ParseException ex) {
@@ -1978,20 +1982,22 @@ PreparedStatement preparedStatement = null;
         dato1 = String.valueOf(Tablagerente.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tablagerente.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(Tablagerente.getValueAt(seleccionar, 3));
+        dato4 = String.valueOf(Tablagerente.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(Tablagerente.getValueAt(seleccionar, 5));
         
     }//GEN-LAST:event_TablagerenteMouseClicked
 
     private void EliminarempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarempActionPerformed
     try {
         //if (dato.equals(d.setDeleteDept_emp(dato, dato1)[0]) && dato1.equals(d.setDeleteDept_emp(dato, dato1)[1])) {
-            d.setDeleteDept_emp(dato, dato2);
+            d.setDeleteDept_emp(dato, dato4);
             int fila = Tabladept_emp.getSelectedRow();
             
             if (fila >= 0) {
                 modelo4.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Se elimino el dept_emp");
                 dato=null;
-                dato2=null;
+                dato4=null;
             }
         //}
     } catch (ParseException ex) {
@@ -2010,7 +2016,8 @@ PreparedStatement preparedStatement = null;
         dato1 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 1));
         dato2 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 3));
-        
+        dato4 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 4));
+        dato5 = String.valueOf(Tabladept_emp.getValueAt(seleccionar, 5));
     }//GEN-LAST:event_Tabladept_empMouseClicked
 
     private void updatedeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedeptActionPerformed
@@ -2027,7 +2034,7 @@ PreparedStatement preparedStatement = null;
     private void updatetitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatetitleActionPerformed
     try {
         // TODO add your handling code here:
-        u.updateTitulos(dato, dato1, java.sql.Date.valueOf(dato2) , java.sql.Date.valueOf(dato3));
+        u.updateTitulos(dato, dato3, java.sql.Date.valueOf(dato4) , java.sql.Date.valueOf(dato5));
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -2036,7 +2043,7 @@ PreparedStatement preparedStatement = null;
     private void updateManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateManActionPerformed
     try {
         // TODO add your handling code here:
-        u.updateDept_manager(dato, dato1, java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+        u.updateDept_manager(dato, dato3, java.sql.Date.valueOf(dato4), java.sql.Date.valueOf(dato5));
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -2045,7 +2052,7 @@ PreparedStatement preparedStatement = null;
     private void updatetitle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatetitle1ActionPerformed
     try {
         // TODO add your handling code here:
-        u.updateSalarios(dato, dato1, java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+        u.updateSalarios(dato, dato3, java.sql.Date.valueOf(dato4), java.sql.Date.valueOf(dato5));
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
@@ -2056,7 +2063,7 @@ PreparedStatement preparedStatement = null;
     private void updateempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateempActionPerformed
     try {
         // TODO add your handling code here:
-        u.updateDept_emp(dato, dato1,java.sql.Date.valueOf(dato2), java.sql.Date.valueOf(dato3));
+        u.updateDept_emp(dato, dato3,java.sql.Date.valueOf(dato4), java.sql.Date.valueOf(dato5));
     } catch (ParseException ex) {
         Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {

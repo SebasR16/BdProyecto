@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -35,23 +35,23 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="CantidadLabel" min="-2" pref="95" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="TipoCuenta" pref="218" max="32767" attributes="0"/>
+                  <Component id="TipoCuenta" max="32767" attributes="0"/>
                   <Component id="TipoPago" max="32767" attributes="0"/>
                   <Component id="NumeroEmpleado" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="Desdeday" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Desdemonth" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Component id="Desdeyear" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="Rutatxt" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="CantidadLabel" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -68,23 +68,20 @@
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="Cancelar" min="-2" pref="141" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="Comprobar" min="-2" pref="141" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="RegistrarNomina" min="-2" pref="141" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="Back" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="Cancelar" min="-2" pref="123" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="Comprobar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="RegistrarNomina" min="-2" pref="131" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,13 +131,13 @@
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CantidadLabel" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="RegistrarNomina" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                  <Component id="Comprobar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="Cancelar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="Cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Comprobar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RegistrarNomina" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Back" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -473,6 +470,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Back">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

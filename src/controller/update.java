@@ -44,7 +44,7 @@ public class update {
             pst.setDate(6, sqdet1);
             pst.setInt(7, Integer.parseInt(userId));
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null, "Se actualizo el registro");
             
     }
       public boolean updateDepartamentos(String id, String name) throws ParseException, SQLException {
@@ -76,7 +76,7 @@ public class update {
             pst.setString(2, name);
                 pst.setString(3, id);
             pst.executeUpdate();
-            System.out.println("Registro exitoso");
+            JOptionPane.showMessageDialog(null, "Se actualizo el registro");
             return false;
         }
 
@@ -93,7 +93,7 @@ public class update {
             pst.setDate(4, sqdet1);
                  pst.setInt(5, Integer.parseInt(Numemp));
             pst.executeUpdate();
-            System.out.println("Se realizo el registro");
+            JOptionPane.showMessageDialog(null, "Se actualizo el registro");
             
         } catch (SQLException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,7 +110,7 @@ public class update {
         pst.setInt(5, Integer.parseInt(Numempleado));
         pst.setInt(6, Integer.parseInt(Salario));
         pst.executeUpdate();
-        System.out.println("Se realizo el registro");
+       JOptionPane.showMessageDialog(null, "Se actualizo el registro");
     }
 
     public void updateDept_emp(String Numemp1, String departamento, java.sql.Date sqdet, java.sql.Date sqdet1) throws ParseException, SQLException {
@@ -122,7 +122,7 @@ public class update {
         pst.setDate(4, sqdet1);
         pst.setInt(5, Integer.parseInt(Numemp1));
         pst.executeUpdate();
-        System.out.println("Se realizo el registro");
+        JOptionPane.showMessageDialog(null, "Se actualizo el registro");
     }
 
     public void updateDept_manager(String Numemp2, String departamento1, java.sql.Date sqdet, java.sql.Date sqdet1) throws ParseException {
@@ -159,7 +159,7 @@ public class update {
     }
 
     public void updateDeduction(String deduct_emp_no, java.sql.Date deduct_date, String deduct_amount, String deduct_type_no) throws SQLException {
-        String SQL = "UPDATE deduction SET emp_no = ?,deduct_date = ?,deduct_amount = ?,deduct_type_no = ? WHERE emp_no = ?,deduct_date = ?";
+        String SQL = "UPDATE deduction SET emp_no = ?,deduct_date = ?,deduct_amount = ?,deduct_type_no = ? WHERE emp_no = ? AND deduct_date = ?";
         PreparedStatement pst = con.prepareStatement(SQL);
         pst.setInt(1, Integer.parseInt(deduct_emp_no));
         pst.setDate(2, deduct_date);

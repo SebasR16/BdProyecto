@@ -420,9 +420,10 @@ public class select {
         modelo.addColumn("Primer Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Fecha de Bonus");
-      
+        modelo.addColumn("Cantidad de Bonus");
         modelo.addColumn("Tipo de Bonus");
-          modelo.addColumn("Cantidad de Bonus");
+        modelo.addColumn("NO. Tipo de Bonus");
+        
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -479,14 +480,15 @@ public class select {
 			}};
         String SQL = "SELECT TOP 100 * FROM empDeduction ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
-        modelo.addColumn("Número de Empleado");
-          modelo.addColumn("Primer Nombre");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Fecha de Deducción");
-   
-        modelo.addColumn("Tipo de Deducción");
-             modelo.addColumn("Cantidad de Deducción");
-        
+            modelo.addColumn("Número de Empleado");
+            modelo.addColumn("Primer Nombre");
+            modelo.addColumn("Apellido");
+            modelo.addColumn("Fecha de Deducción");
+            modelo.addColumn("Cantidad de Deducción");
+            modelo.addColumn("Tipo de Deducción");
+            modelo.addColumn("NO. Tipo de Deduccion");
+            
+            
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

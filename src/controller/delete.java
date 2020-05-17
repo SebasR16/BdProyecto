@@ -85,6 +85,7 @@ public class delete {
             preparedStatement = con.prepareStatement(SQL);
       
             resultSet = preparedStatement.executeQuery();
+            System.out.println(dato1);
             while (resultSet.next()) {
                 datos[0] = resultSet.getString(1);
                 datos[2] = resultSet.getDate(3).toString();
@@ -132,6 +133,7 @@ return datos;
             preparedStatement = con.prepareStatement(SQL);
        
             resultSet = preparedStatement.executeQuery();
+            System.out.println(dato1);
             while (resultSet.next()) {
                 datos[0] = resultSet.getString(1);
                 datos[2] = resultSet.getDate(3).toString();
