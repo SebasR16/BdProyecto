@@ -515,9 +515,11 @@ public class select {
                         }
 				
 			}};
-        String SQL = "SELECT TOP 100 * FROM holiday ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100 * FROM empHoliday ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
+		modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
         
@@ -547,9 +549,11 @@ public class select {
                         }
 				
 			}};
-        String SQL = "SELECT TOP 100 * FROM sickleave ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100 * FROM empSickleave ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
+		modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
         modelo.addColumn("Razon");
@@ -796,8 +800,10 @@ public class select {
         DefaultTableModel modelo = new DefaultTableModel();
           
         
-        String SQL = "SELECT * FROM holiday WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empHoliday WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+	modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");	
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
 
@@ -821,8 +827,10 @@ public class select {
         DefaultTableModel modelo = new DefaultTableModel();
           
         
-        String SQL = "SELECT * FROM sickleave WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empSickleave WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+	modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
         modelo.addColumn("Razon");
