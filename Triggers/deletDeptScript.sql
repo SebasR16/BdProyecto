@@ -15,7 +15,7 @@ AS
 BEGIN
   DELETE FROM dbo.dept_manager WHERE dbo.dept_manager.dept_no in (SELECT deleted.dept_no FROM deleted);
    DELETE FROM dbo.dept_emp WHERE dbo.dept_emp.dept_no in (SELECT deleted.dept_no FROM deleted);
-    
+    DELETE FROM dbo.departments WHERE dbo.departments.dept_no in(SELECT deleted.dept_no FROM deleted);
   /** ROLLBACK TRANSACTION**/
 END
 GO
