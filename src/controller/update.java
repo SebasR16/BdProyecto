@@ -173,7 +173,7 @@ public class update {
 
     public void updateHolliday(String holliday_emp_no, java.sql.Date start_date, java.sql.Date end_date) throws SQLException {
 
-        String SQL = "UPDATE holiday SET emp_no = ? ,start_date = ? end_date = ? WHERE emp_no=? AND start_date=?";
+        String SQL = "UPDATE holiday SET emp_no = ? ,start_date = ?, end_date = ? WHERE emp_no=? AND start_date=?";
         PreparedStatement pst = con.prepareStatement(SQL);
         pst.setInt(1, Integer.parseInt(holliday_emp_no));
         pst.setDate(2, start_date);
@@ -187,7 +187,7 @@ public class update {
 
     public void updateSick(String sick_emp_no, java.sql.Date start_date, java.sql.Date end_date, String reason) throws SQLException {
 
-        String SQL = "UPDATE sickleave SET emp_no = ? ,start_date = ?,end_date = ?,reason =? WHERE emp_no=? AND start_date ";
+        String SQL = "UPDATE sickleave SET emp_no = ? ,start_date = ?,end_date = ?,reason =? WHERE emp_no=? AND start_date =?";
         PreparedStatement pst = con.prepareStatement(SQL);
         pst.setInt(1, Integer.parseInt(sick_emp_no));
         pst.setDate(2, start_date);

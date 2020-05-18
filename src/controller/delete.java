@@ -49,7 +49,7 @@ public class delete {
             String SQL1 = "DELETE FROM employees WHERE emp_no = " + dato + " ;";
             Statement st = con.createStatement();
             st.executeUpdate(SQL1);
-
+            
         }
 
         return datos;

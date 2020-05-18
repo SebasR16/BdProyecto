@@ -321,8 +321,10 @@ public class select {
     }
       public DefaultTableModel FindTitulos(int id) throws SQLException {
        DefaultTableModel modelo = new DefaultTableModel();
-        String SQL = "SELECT * FROM titles WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empTitles WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Titulo");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -340,8 +342,10 @@ public class select {
     }
      public  DefaultTableModel FindDept_Manager(int id) throws SQLException {
           DefaultTableModel modelo = new DefaultTableModel();
-        String SQL = "SELECT * FROM dept_manager WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM managerDepartments WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Número de Departamento");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -359,8 +363,10 @@ public class select {
     }
      public DefaultTableModel FindSalarios(int id) throws SQLException {
          DefaultTableModel modelo = new DefaultTableModel();
-        String SQL = "SELECT * FROM salaries WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empsalaries WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Salario");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -379,8 +385,10 @@ public class select {
     }
       public DefaultTableModel FindDept_Emp(int id) throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
-        String SQL = "SELECT * FROM dept_emp WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empDepartments WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Número de Departamento");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -440,11 +448,14 @@ public class select {
         DefaultTableModel modelo = new DefaultTableModel();
           
         
-        String SQL = "SELECT * FROM bonus WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empBonus WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");	
         modelo.addColumn("Fecha de Bonus");
         modelo.addColumn("Cantidad de Bonus");
         modelo.addColumn("Tipo de Bonus");
+        modelo.addColumn("NO. Tipo de Bonus");
 
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
@@ -515,10 +526,10 @@ public class select {
                         }
 				
 			}};
-        String SQL = "SELECT TOP 100 * FROM empHoliday ORDER by emp_no DESC;";
+        String SQL = "SELECT TOP 100 * FROM empHolliday ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
-		modelo.addColumn("Nombre");
+	modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -552,7 +563,7 @@ public class select {
         String SQL = "SELECT TOP 100 * FROM empSickleave ORDER by emp_no DESC;";
         //String SQL = "SELECT * FROM employees ORDER by emp_no DESC limit 100;";
         modelo.addColumn("Número de Empleado");
-		modelo.addColumn("Nombre");
+	modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Desde");
         modelo.addColumn("Hasta");
@@ -774,11 +785,14 @@ public class select {
         DefaultTableModel modelo = new DefaultTableModel();
           
         
-        String SQL = "SELECT * FROM deduction WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empDeduction WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");	
         modelo.addColumn("Fecha de Deducción");
         modelo.addColumn("Cantidad de Deducción");
         modelo.addColumn("Tipo de Deducción");
+        modelo.addColumn("NO. Tipo de Deduccion");
 
         preparedStatement = con.prepareStatement(SQL);
         resultSet = preparedStatement.executeQuery();
@@ -800,7 +814,7 @@ public class select {
         DefaultTableModel modelo = new DefaultTableModel();
           
         
-        String SQL = "SELECT * FROM empHoliday WHERE emp_no = " + id;
+        String SQL = "SELECT * FROM empHolliday WHERE emp_no = " + id;
         modelo.addColumn("Número de Empleado");
 	modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");	
