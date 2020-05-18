@@ -36,8 +36,6 @@ public class select {
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
                     case 0:
-
-                    case 1:
                         return false;
 
                     default:
@@ -107,9 +105,10 @@ public class select {
             @Override
             public boolean isCellEditable(int row, int column) {
                 switch (column) {
-                    case 0  :
+                    case 0:
                     case 1:
                     case 2:
+                    case 4:
 
                         return false;
 
@@ -149,6 +148,7 @@ public class select {
                     case 0:
                     case 1:
                      case 2:
+                         case 4:
                         return false;
 
                     default:
@@ -203,6 +203,7 @@ public class select {
                     case 0:
                     case 1:
                      case 2:
+                     case 4:
 
                         return false;
 
@@ -243,6 +244,7 @@ public class select {
                    case 0:
                     case 1:
                      case 2:
+                         case 4:
 
                         return false;
 
@@ -414,6 +416,8 @@ public class select {
                         switch(column){
                             case 0:
                             case 1:
+                            case 2:
+                            case 3:
                                 return false;
                                
                             default:
@@ -481,6 +485,8 @@ public class select {
                         switch(column){
                             case 0:
                             case 1:
+                            case 2:
+                            case 3:
                                 return false;
                                
                             default:
@@ -518,6 +524,8 @@ public class select {
                         switch(column){
                             case 0:
                             case 1:
+                            case 2:
+                            case 3:
                                 return false;
                                
                             default:
@@ -547,11 +555,13 @@ public class select {
       }
         public DefaultTableModel  getSickleave() throws SQLException {
           DefaultTableModel modelo = new DefaultTableModel(){
-@Override
+            @Override
 			public boolean isCellEditable(int row, int column) {
                         switch(column){
                             case 0:
                             case 1:
+                            case 2:
+                            case 3:
                                 return false;
                                
                             default:

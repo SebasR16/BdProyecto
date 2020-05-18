@@ -1615,6 +1615,7 @@ public final class SistemaNomina extends javax.swing.JFrame implements ActionLis
         dato2 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 2));
         dato3 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 3));
         dato4 = String.valueOf(TablaHoliday.getValueAt(seleccionar, 4));
+        
     }//GEN-LAST:event_TablaHolidayMouseClicked
 
     private void TablaHolidayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHolidayMouseExited
